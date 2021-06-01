@@ -1,0 +1,38 @@
+{
+  "name": "my-will",
+  "version": "1.0.0",
+  "description": "Draft a will in less than 5 minutes.",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Forester93/my-will.git"
+  },
+  "keywords": [
+    "Will",
+    "Legal",
+    "Draft"
+  ],
+  "author": "Forester Solutions",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Forester93/my-will/issues"
+  },
+  "homepage": "https://github.com/Forester93/my-will#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "connect-session-sequelize": "^7.1.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.2",
+    "express-session": "^1.17.2",
+    "handlebars": "^4.7.7",
+    "jest": "^27.0.3",
+    "mysql2": "^2.2.5",
+    "nodemon": "^2.0.7",
+    "pdfkit": "^0.12.1",
+    "sequelize": "^6.6.2"
+  }
+}
