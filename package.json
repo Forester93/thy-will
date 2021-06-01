@@ -4,7 +4,9 @@
   "description": "Draft a will in less than 5 minutes.",
   "main": "server.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "seed": "node ./seeds/seed",
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",

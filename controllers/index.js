@@ -1,5 +1,9 @@
-function trial() {
-  console.log("Hi");
-}
+const router = require("express").Router();
 
-module.exports = trial;
+const apiRoutes = require("./api");
+const homeRoutes = require("./homeRoutes");
+
+router.use("/", homeRoutes);
+router.use("/api", apiRoutes);
+
+module.exports = router;
