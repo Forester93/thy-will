@@ -100,4 +100,4 @@ Contact the team as per the above information.
 | Mark Forester   | markforester93@gmail.com | +61-(0)-404-831-362 | [Mark Forester Github Profile](https://github.com/forester93/) |
 | Tom Chappell    | tom@example.com          | Tom's Phone Number  | [Tom Chappell's Github Profile](https://github.com/choonchy/)  |
 | Jack Ritchie    | jack@example.com         | Jack's Phone Number | [Jack Ritchie's Github Profile](https://github.com/jitchie/)   |
-| Zhou (Joe) Tian | joe@example.com          | Joe's Phone Number  | [Zhou's Github Profile](https://github.com/ZhouTian0716/)      |
+| Zhou (Joe) Tian | egglord0716@gmail.com    | 0406199376          | [Zhou's Github Profile](https://github.com/ZhouTian0716/)      |
