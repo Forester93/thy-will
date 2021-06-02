@@ -1,8 +1,8 @@
-# MyWill
+# ThyWill
 
 ## Pitch
 
-Don't we grow up feeling like we'll live forever? Two years ago, Australia with ridden with seemingly endless bushfires. Fires, that took fathers from their sons and mothers from their daughters. Further, we have road accidents is one of the main reaper of young parent's lives in Australia. Many of these parents did not leave behind a will to make sure what they've worked for their lives gets passed on to their family and loved ones. With MyWill, we'll help you draft a will in less than 5 minutes.
+Don't we grow up feeling like we'll live forever? Two years ago, Australia with ridden with seemingly endless bushfires. Fires, that took fathers from their sons and mothers from their daughters. Further, road accidents is one of the biggest reapers of young parent's lives in Australia. Many of these parents did not leave behind a will to make sure what they've worked for their lives gets passed on to their family and loved ones. With MyWill, we'll help you draft a will in less than 5 minutes.
 Don't wait... till it's too late.
 
 ## Contents
@@ -100,4 +100,4 @@ Contact the team as per the above information.
 | Mark Forester   | markforester93@gmail.com | +61-(0)-404-831-362 | [Mark Forester Github Profile](https://github.com/forester93/) |
 | Tom Chappell    | tom@example.com          | Tom's Phone Number  | [Tom Chappell's Github Profile](https://github.com/choonchy/)  |
 | Jack Ritchie    | jack@example.com         | Jack's Phone Number | [Jack Ritchie's Github Profile](https://github.com/jitchie/)   |
-| Zhou (Joe) Tian | egglord0716@gmail.com    | 0406199376          | [Zhou's Github Profile](https://github.com/ZhouTian0716/)      |
+| Zhou (Joe) Tian | egglord0716@gmail.com    | +61-(0)-406-199-376 | [Zhou's Github Profile](https://github.com/ZhouTian0716/)      |
