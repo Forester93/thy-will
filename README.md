@@ -85,7 +85,7 @@ THEN I can click ‘download’ and download a PDF copy of my will
 
 ### Screenshot of the Application
 
-![Screenshot of the page](./public/assets/images/screenshot.png)
+![Screenshot of the page](/public/assets/images/screenshot.png)
 
 ## Questions
 

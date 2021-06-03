@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="/assets/styles/style.css" />
   </head>
   <body>
-    <header>
+        <header>
       <div class="text">
         Lorem ipsum dolor sit amet consectetur adipisicing.
       </div>
@@ -27,6 +27,8 @@
         <i class="fas fa-share-alt-square"></i>
       </div>
     </header>
+
+    
     <nav class="navbar">
       
         <div class="text">
@@ -39,6 +41,9 @@
           <li><a href="#" class="menu-btn">Account</a></li>
           <li><a href="#" class="menu-btn">Legal</a></li>
           <li><a href="#" class="menu-btn">Testimonials</a></li>
+          {{#if logged_in}}
+          <li><a href="#" class="menu-btn" id="logout">Logout</a></li>
+          {{/if}}
         </ul>
         <div class="menu-btn">
           <i class="fas fa-bars"></i>
@@ -46,64 +51,18 @@
       
     </nav>
 
-    <!-- home section start -->
-    <section class="home" id="home">
-      <div class="max-width">
-        <div class="home-content">
-          <div class="text-1">Welcome to</div>
-          <div class="text-2">Thy<span>Will</span></div>
-          <div class="text-3">A Popular Will Generator</div>
-          <div class="text-3">We are <span class="typing"></span></div>
-          <div>
-            <a href="#"><i class="fas fa-pen-fancy"></i> Get Started</a>
-            <button id="modalBtn" data-toggle="modal" data-target="#loginModal"><i class="fas fa-sign-in-alt"></i></i> Login</button>
-          </div>  
-        </div>
-      </div>
-    </section>
-
-    <div class="modal fade custom-modal" id="loginModal" tabindex="-1" role="dialog"
-        aria-labelledby="project-modal-form" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Login or Sign Up<span class="flash" id="validateMessage"></span></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form id="login-form">
-                    <div class="modal-body">
-                      <div class="form-group">
-                        <label for="nameInput">Username:</label>
-                        <input type="text" id="nameInput" class="form-control" placeholder="Required for Sign Up"/>
-                      </div>
-                      <div class="form-group">
-                          <label for="emailInput">Email:</label>
-                          <input type="email" id="emailInput" class="form-control" required />
-                      </div>
-                      <div class="form-group">
-                        <label for="pwInput">Password:</label>
-                        <input type= "password" id="pwInput" class="form-control" required />
-                      </div>
-                      </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-light" id="signBtn">Sign Up</button>
-                        <button type="submit" class="btn btn-light" id="loginBtn">Login</button>
-                    </div>
-                </form>
-            </div>
-            
-        </div>
-    </div>
-
-
+    <main>
+      
+    {{{body}}}
+    </main>
+    
     <!-- footer section start -->
     <footer>
       <span>Created By lorem | <span class="far fa-copyright"></span> 2021 All rights reserved.</span>
     </footer>
-
-    <script src="/assets/scripts/script.js"></script>
   </body>
+      <script src="/assets/scripts/script.js"></script>
+          {{#if logged_in}}
+    <script src="/assets/scripts/logout.js"></script>
+    {{/if}}
 </html>
