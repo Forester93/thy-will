@@ -1,27 +1,23 @@
 [
   {
-    "name": "Sal",
-    "email": "sal@hotmail.com",
+    "first_name": "Mark",
+    "last_name": "Forester",
+    "occupation": "Project Manager",
+    "DOB": "12/02/1993",
+    "casket": "Rosewood & Crucifix",
+    "ceremony": "Catholic",
+    "address": "19 Gardener Street, Suburb NSW",
+    "email": "mark@example.com",
     "password": "password12345"
   },
   {
-    "name": "Lernantino",
-    "email": "lernantino@gmail.com",
-    "password": "password12345"
-  },
-  {
-    "name": "Amiko",
-    "email": "amiko2k20@aol.com",
-    "password": "password12345"
-  },
-  {
-    "name": "Jordan",
-    "email": "jordan99@msn.com",
-    "password": "password12345"
-  },
-  {
-    "name": "Blake",
-    "email": "the_blake@yahoo.com",
+    "first_name": "John",
+    "last_name": "Smith",
+    "occupation": "Hedge Fund Manager",
+    "DOB": "17/03/1968",
+    "ceremony": "Jewish",
+    "address": "55 Pitt Street, Sydney NSW",
+    "email": "john@smith.com",
     "password": "password12345"
   }
 ]

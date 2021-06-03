@@ -31,6 +31,10 @@ Beneficiary.init(
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
+    isCharity: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
     guardian_name: {
       type: DataTypes.STRING,
       allowNull: true,

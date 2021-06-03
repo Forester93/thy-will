@@ -20,7 +20,7 @@ Asset.init(
       allowNull: true,
     },
     value: {
-      type: DataTypes.DECIMAL(100, 2),
+      type: DataTypes.DECIMAL(65, 2),
       allowNull: false,
     },
     user_id: {
