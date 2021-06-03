@@ -77,7 +77,7 @@ THEN I can click ‘download’ and download a PDF copy of my will
 
 ### Link to the Deployed Application
 
-[My Will Deployed Webpage](https://forester93.github.io/my-will/)
+[My Will Deployed Webpage](https://mysterious-brushlands-45330.herokuapp.com)
 
 ### Link to the Github Repository
 
