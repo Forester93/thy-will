@@ -17,10 +17,39 @@ User.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    first_name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    middle_name: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    last_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    occupation: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    DOB: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    casket: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    ceremony: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    address: {
+      type: DataTypes.STRING,
+      allownull: false,
+    },
+
     email: {
       type: DataTypes.STRING,
       allowNull: false,
