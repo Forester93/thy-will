@@ -2,8 +2,8 @@
 
 ## Pitch
 
-Don't we grow up feeling like we'll live forever? Two years ago, Australia with ridden with seemingly endless bushfires. Fires, that took fathers from their sons and mothers from their daughters. Further, road accidents is one of the biggest reapers of young parent's lives in Australia. Many of these parents did not leave behind a will to make sure what they've worked for their lives gets passed on to their family and loved ones. With MyWill, we'll help you draft a will in less than 5 minutes.
-Don't wait... till it's too late.
+Don't we grow up feeling like we'll live forever? Two years ago, Australia with ridden with seemingly endless bushfires. Fires, that took fathers from their sons and mothers from their daughters. Further, road accidents is one of the biggest reapers of young parents' lives in Australia. Many of these parents did not leave behind a will to make sure what they've worked for their lives gets passed on to their family and loved ones. With ThyWill, we'll help you draft your will in as little as 10 minutes.
+Don't wait... 'till it's too late.
 
 ## Contents
 
@@ -81,7 +81,7 @@ THEN I can click ‘download’ and download a PDF copy of my will
 
 ### Link to the Github Repository
 
-[My Will Github Repo](https://github.com/forester93/my-will/)
+[My Will Github Repo](https://github.com/forester93/thy-will/)
 
 ### Screenshot of the Application
 
