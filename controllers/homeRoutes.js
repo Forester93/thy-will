@@ -6,13 +6,15 @@ router.get("/", withAuth, async (req, res) => {
   try {
     const userData = await User.findAll({
       attributes: { exclude: ["password"] },
-      order: [["name", "ASC"]],
+      order: [["first_name", "ASC"]],
     });
 
     const users = userData.map((project) => project.get({ plain: true }));
+    console.log(users);
+    let user = users[0];
 
     res.render("homepage", {
-      users,
+      user,
       logged_in: req.session.logged_in,
     });
   } catch (err) {

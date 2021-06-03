@@ -83,7 +83,7 @@ header .icons i:hover {
 /* home section styling */
 .home {
   display: flex;
-  background: url("img/welcome1.jpg") no-repeat center;
+  background: url("/assets/images/welcome1.jpg") no-repeat center;
   height: 100vh;
   color: black;
   background-size: cover;
@@ -111,7 +111,8 @@ header .icons i:hover {
   color: var(--themeColor1);
   font-weight: bolder;
 }
-.home .home-content a,button{
+.home .home-content a,
+button {
   display: inline-block;
   background: var(--themeColor1);
   color: white;
@@ -122,7 +123,8 @@ header .icons i:hover {
   border: 2px solid var(--themeColor1);
   transition: all 0.3s ease;
 }
-.home .home-content a:hover,button:hover {
+.home .home-content a:hover,
+button:hover {
   color: var(--themeColor1);
   background: none;
 }
@@ -172,7 +174,7 @@ footer {
     width: 100%;
     left: -100%;
     top: 0;
-    background: url("img/welcome2.jpg") no-repeat center;
+    background: url("/assets/images/welcome2.jpg") no-repeat center;
     background-size: cover;
     text-align: center;
     padding-top: 80px;
@@ -197,7 +199,8 @@ footer {
   .home .home-content .text-3 {
     font-size: 35px;
   }
-  .home .home-content a,button {
+  .home .home-content a,
+  button {
     font-size: 23px;
     padding: 10px 30px;
   }
@@ -237,7 +240,8 @@ footer {
   .home .home-content .text-3 {
     font-size: 32px;
   }
-  .home .home-content a,button {
+  .home .home-content a,
+  button {
     font-size: 20px;
   }
   .services .serv-content .card {
