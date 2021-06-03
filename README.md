@@ -75,6 +75,10 @@ THEN I can click ‘download’ and download a PDF copy of my will
 
 ## Links
 
+### Team Presentation
+
+[Development Team Presentation](https://prezi.com/p/rmxexzyw1fow/?present=1)
+
 ### Link to the Deployed Application
 
 [My Will Deployed Webpage](https://mysterious-brushlands-45330.herokuapp.com)
@@ -100,4 +104,4 @@ Contact the team as per the above information.
 | Mark Forester   | markforester93@gmail.com | +61-(0)-404-831-362 | [Mark Forester Github Profile](https://github.com/forester93/) |
 | Tom Chappell    | tom@example.com          | Tom's Phone Number  | [Tom Chappell's Github Profile](https://github.com/choonchy/)  |
 | Jack Ritchie    | jack@example.com         | Jack's Phone Number | [Jack Ritchie's Github Profile](https://github.com/jitchie/)   |
-| Zhou (Joe) Tian | egglord0716@gmail.com    | +61-(0)-406-199-376 | [Zhou's Github Profile](https://github.com/ZhouTian0716/)      |
+| Zhou (Joe) Tian | egglord0716@gmail.com    | +61-(0)-406-199-376 | [Zhou Tian's Github Profile](https://github.com/ZhouTian0716/) |
