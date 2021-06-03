@@ -1,17 +1,58 @@
-<h2>Login</h2>
 
-<form class="form login-form">
-  <div class="form-group">
-    <label for="email-login">email:</label>
-    <input class="form-input" type="text" id="email-login" />
-  </div>
-  <div class="form-group">
-    <label for="password-login">password:</label>
-    <input class="form-input" type="password" id="password-login" />
-  </div>
-  <div class="form-group">
-    <button class="btn btn-primary" type="submit">login</button>
-  </div>
-</form>
+    
+    <!-- home section start -->
+    <section class="home" id="home">
+      <div class="max-width">
+        <div class="home-content">
+          <div class="text-1">Welcome to</div>
+          <div class="text-2">Thy<span>Will</span></div>
+          <div class="text-3">A Popular Will Generator</div>
+          <div class="text-3">We are <span class="typing"></span></div>
+          <div>
+            <a href="#"><i class="fas fa-pen-fancy"></i> Get Started</a>
+            <button id="modalBtn" data-toggle="modal" data-target="#loginModal"><i class="fas fa-sign-in-alt"></i></i> Login</button>
+          </div>  
+        </div>
+      </div>
+    </section>
 
-<script src="/assets/scripts/login.js"></script>
+    <div class="modal fade custom-modal" id="loginModal" tabindex="-1" role="dialog"
+        aria-labelledby="project-modal-form" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Login or Sign Up<span class="flash" id="validateMessage"></span></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="login-form">
+                    <div class="modal-body">
+                      <div class="form-group">
+                        <label for="nameInput">Username:</label>
+                        <input type="text" id="nameInput" class="form-control" placeholder="Required for Sign Up"/>
+                      </div>
+                      <div class="form-group">
+                          <label for="emailInput">Email:</label>
+                          <input type="email" id="email-login" class="form-control" required />
+                      </div>
+                      <div class="form-group">
+                        <label for="pwInput">Password:</label>
+                        <input type= "password" id="password-login" class="form-control" required />
+                      </div>
+                      </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-light" id="signBtn">Sign Up</button>
+                        <button type="submit" class="btn btn-light" id="loginBtn">Login</button>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+
+    <script src="/assets/scripts/login.js"></script>
+    {{#if logged_in}}
+    <script src="/assets/scripts/logout.js"></script>
+    {{/if}}

@@ -10,9 +10,11 @@ router.get("/", withAuth, async (req, res) => {
     });
 
     const users = userData.map((project) => project.get({ plain: true }));
+    console.log(users);
+    let user = users[0];
 
     res.render("homepage", {
-      users,
+      user,
       logged_in: req.session.logged_in,
     });
   } catch (err) {
