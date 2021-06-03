@@ -1,24 +1,25 @@
 const PDFDocument = require('pdfkit');
 const fs = require('fs');
 const sequelize = require('sequelize');
+const blobStream = require('blob-stream');
 
 const date = new Date();
 
 var currentDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
 
-var fullName = 'Thomas Chappell';
+var fullName = 'Tom Chappell';
 
 var occupation = 'eCommerce Support Specialist';
 
 var address = '21-23 Grose St, North Parramatta NSW 2151';
 
-const writePDF = () => {
-	const doc = new PDFDocument();
+// const writePDF = () => {
+const doc = new PDFDocument();
 
-	doc.pipe(fs.createWriteStream('output.pdf'));
+doc.pipe(fs.createWriteStream('../public/assets/output.pdf'));
 
-	doc.text(
-		`Last Will and Testament
+doc.text(
+	`Last Will and Testament
     This will dated ${currentDate} is made by me, ${fullName}, ${occupation}, of ${address}.
 
     Executors
@@ -26,7 +27,7 @@ const writePDF = () => {
 
     {executors}
 
-    Alternate executors
+    Alternate executors 100
     If the above executors are unavailable, the following alternate executors will take their place.
 
     {alternateExecutors}
@@ -65,10 +66,18 @@ const writePDF = () => {
 
     {signature}
     `
-	);
+);
 
-	doc.end();
-	console.log('done');
-};
+doc.end();
+// stream.on('finish', function () {
+// 	// get a blob you can do whatever you like with
+// 	const blob = stream.toBlob('application/pdf');
 
-document.getElementById('btn').onclick = writePDF();
+// 	// or get a blob URL for display in the browser
+// 	const url = stream.toBlobURL('application/pdf');
+// 	iframe.src = url;
+// });
+console.log('done');
+// };
+
+// document.getElementById('btn').onclick = writePDF();

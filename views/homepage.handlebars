@@ -1,3 +1,13 @@
+<div class="row align-center mb-5">
+  <div class="col-md-6">
+    <h2>{{user.first_name}} {{user.last_name}}</h2>
+    <h3>{{user.address}}</h3>
+    <h3>{{user.ceremony}}</h3>
+    <h3>{{user.casket}}</h3>
+    <h4>{{user.DOB}}</h4>
+  </div>
+  <div class="col-md-6">
+    <h3><a href="mailto:{{user.email}}">{{user.email}}</a></h3>
+  </div>
 
-<button id="btn">Click me!</button>
-<script src="../utils/pdfGenerator.js"></script>
+</div>
