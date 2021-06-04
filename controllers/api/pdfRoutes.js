@@ -56,9 +56,7 @@ router.get('/:id', async (req, res) => {
 				`Executor #${i + 1}
             
                 Name: ${executors[i].name}
-                Date of Birth: ${executors[i].DOB.getDate()}/${executors[
-					i
-				].DOB.getMonth()}/${executors[i].DOB.getFullYear()}
+                Date of Birth: ${executors[i].DOB}
                 Relationship: ${executors[i].relationship}
                 Address: ${executors[i].address}
             
