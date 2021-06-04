@@ -6,28 +6,48 @@ const { User, Executor, Beneficiary, Asset, AssetApportion } = require('../../mo
 router.get('/:id', async (req, res) => {
     // res.header('Content-Disposition', 'attachment; filename=output.pdf');
     
-    const willOwner = await User.findOne({
+    const userData = await User.findOne({
         where: {
             id: req.params.id
         }
     })
 
-    console.log(willOwner)
+    const executorData = await Executor.findAll({
+        where: {
+            user_id: req.params.id
+        }
+    })
+
+    console.log(userData)
+
+    console.log(executorData)
 
 	const date = new Date();
 
 	var currentDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
 
 	var fullName = () => {
-        if(!willOwner.getDataValue('middle_name')) {
-            return `${willOwner.getDataValue('first_name')} ${willOwner.getDataValue('last_name')}`
+        if(!userData.getDataValue('middle_name')) {
+            return `${userData.getDataValue('first_name')} ${userData.getDataValue('last_name')}`
         } else {
-            return `${willOwner.getDataValue('first_name')} ${willOwner.getDataValue('middle_name')} ${willOwner.getDataValue('last_name')}`
+            return `${userData.getDataValue('first_name')} ${userData.getDataValue('middle_name')} ${userData.getDataValue('last_name')}`
         }
     }
-	var occupation = willOwner.getDataValue('occupation');
+	var occupation = userData.getDataValue('occupation');
 
-	var address = willOwner.getDataValue('address')
+    var address = userData.getDataValue('address')
+
+    let executorID = 0;
+    
+    const executors = executorData.map(executorData => executorData.dataValues).forEach(() => {
+        return `Executor #${executorID + 1}
+        
+        Name: ${executors[executorID].name}
+        Date of Birth: ${executors[executorID].DOB}
+        Relationship: ${executors[executorID].relationship}`
+    })
+
+    console.log(executors)
 
 	// const writePDF = () => {
 	const doc = new PDFDocument();
@@ -41,7 +61,7 @@ router.get('/:id', async (req, res) => {
         Executors
         The following executors will be responsible for the distribution of my assets as directed by this will.
     
-        {executors}
+        ${executors}
     
         Alternate executors 100
         If the above executors are unavailable, the following alternate executors will take their place.
