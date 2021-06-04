@@ -17,17 +17,21 @@ AssetApportion.init(
         model: "asset",
         key: "id",
       },
-      beneficiary_id: {
-        type: DataTypes.INTEGER,
-        references: {
-          model: "beneficiary",
-          key: "id",
-        },
+    },
+    beneficiary_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "beneficiary",
+        key: "id",
       },
-      percentage: {
-        type: DataTypes.DECIMAL(3, 3),
-        allowNull: false,
-      },
+    },
+    percentage: {
+      type: DataTypes.DECIMAL(4, 3),
+      allowNull: false,
+    },
+    apportion_instructions: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
   },
   {

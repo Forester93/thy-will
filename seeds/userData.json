@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "first_name": "Mark",
     "last_name": "Forester",
     "occupation": "Project Manager",
@@ -11,6 +12,7 @@
     "password": "password12345"
   },
   {
+    "id": 2,
     "first_name": "John",
     "last_name": "Smith",
     "occupation": "Hedge Fund Manager",
