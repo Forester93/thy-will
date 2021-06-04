@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "description": "Shares Portfolio",
+    "type": "Monetary",
+    "value": 3750000,
+    "user_id": 1
+  },
+  {
+    "id": 2,
+    "description": "Property @ 9 Harris Street, Pyrmont NSW",
+    "type": "Physical",
+    "value": 5000000,
+    "user_id": 1
+  },
+  {
+    "id": 3,
+    "description": "Mercedes S Class",
+    "type": "Physical",
+    "value": 1200000,
+    "user_id": 1
+  },
+  {
+    "id": 4,
+    "description": "Cash",
+    "type": "Monetary",
+    "value": 90000,
+    "user_id": 1
+  },
+  {
+    "id": 5,
+    "description": "Diary",
+    "type": "Sentimental",
+    "value": 0,
+    "user_id": 1
+  },
+  {
+    "id": 6,
+    "description": "Superannuation",
+    "type": "Monetary",
+    "value": 53000,
+    "user_id": 1
+  }
+]

@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Saul Goodman",
+    "DOB": "01/02/1980",
+    "relationship": "Solicitor",
+    "address": "230 Saul Street, Albuquerque NSW",
+    "user_id": 1
+  },
+  {
+    "name": "Aaron Schmidt",
+    "DOB": "09/07/1970",
+    "relationship": "Family Lawyer",
+    "address": "230 Law Street, Sydney NSW",
+    "user_id": 2
+  }
+]

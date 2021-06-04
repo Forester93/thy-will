@@ -16,7 +16,7 @@ Executor.init(
       allowNull: false,
     },
     DOB: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     relationship: {
