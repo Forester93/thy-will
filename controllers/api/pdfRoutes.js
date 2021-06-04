@@ -9,6 +9,8 @@ const {
 	AssetApportion,
 } = require('../../models');
 
+const executorTemplate = require('../../utils/willGenerator/executorTemplate');
+
 router.get('/:id', async (req, res) => {
 	// res.header('Content-Disposition', 'attachment; filename=output.pdf');
 
@@ -17,16 +19,6 @@ router.get('/:id', async (req, res) => {
 			id: req.params.id,
 		},
 	});
-
-	const executorData = await Executor.findAll({
-		where: {
-			user_id: req.params.id,
-		},
-	});
-
-	console.log(userData);
-
-	console.log(executorData);
 
 	const date = new Date();
 
@@ -47,6 +39,12 @@ router.get('/:id', async (req, res) => {
 
 	var address = userData.getDataValue('address');
 
+	const executorData = await Executor.findAll({
+		where: {
+			user_id: req.params.id,
+		},
+	});
+
 	const executors = executorData.map((results) => results.dataValues);
 
 	const executorTemplate = () => {
@@ -54,12 +52,12 @@ router.get('/:id', async (req, res) => {
 		for (i = 0; i < executors.length; i++) {
 			executorArray.push(
 				`Executor #${i + 1}
-            
+
                 Name: ${executors[i].name}
                 Date of Birth: ${executors[i].DOB}
                 Relationship: ${executors[i].relationship}
                 Address: ${executors[i].address}
-            
+
             `
 			);
 		}
@@ -67,8 +65,35 @@ router.get('/:id', async (req, res) => {
 		return executorString;
 	};
 
-	console.log(executors);
-	console.log(executorTemplate);
+	const beneficiaryData = await Beneficiary.findAll({
+		where: {
+			user_id: req.params.id,
+		},
+	});
+
+	const beneficiaries = beneficiaryData.map((results) => results.dataValues);
+
+	console.log(beneficiaries);
+
+	const beneficiaryTemplate = () => {
+		let beneficiaryArray = [];
+		for (i = 0; i < beneficiaries.length; i++) {
+			if (!beneficiaries[i].isCharity) {
+				beneficiaryArray.push(
+					`Beneficiary #${i + 1}
+                
+                    Name: ${beneficiaries[i].name},
+                    DOB: ${beneficiaries[i].DOB},
+                    Relationship: ${beneficiaries[i].relationship},
+                    Address: ${beneficiaries[i].address}
+
+            `
+				);
+			}
+		}
+		let beneficiaryString = beneficiaryArray.join('');
+		return beneficiaryString;
+	};
 
 	// const writePDF = () => {
 	const doc = new PDFDocument();
@@ -77,6 +102,7 @@ router.get('/:id', async (req, res) => {
 
 	doc.text(
 		`Last Will and Testament
+
         This will dated ${currentDate} is made by me, ${fullName()}, ${occupation}, of ${address}.
     
         Executors
@@ -103,10 +129,10 @@ router.get('/:id', async (req, res) => {
     
         {charityDonations}
     
-        Primary Beneficiary
-        The following person is to be the primary beneficiary of my estate
+        List of Beneficiaries
+        The following list contians all people who are beneficiaries to my estate:
     
-        {primaryBeneficiary}
+        ${beneficiaryTemplate()}
     
         Witnesses
     
