@@ -1,19 +1,33 @@
 const router = require('express').Router();
-// const { User } = require('../models');
 // const withAuth = require('../utils/auth');
 const PDFDocument = require('pdfkit');
+const { User, Executor, Beneficiary, Asset, AssetApportion } = require('../../models')
 
-router.get('/test.pdf', async (req, res) => {
-	// res.header('Content-Disposition', 'attachment; filename=output.pdf');
+router.get('/:id', async (req, res) => {
+    // res.header('Content-Disposition', 'attachment; filename=output.pdf');
+    
+    const willOwner = await User.findOne({
+        where: {
+            id: req.params.id
+        }
+    })
+
+    console.log(willOwner)
+
 	const date = new Date();
 
 	var currentDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
 
-	var fullName = 'tommy';
+	var fullName = () => {
+        if(!willOwner.getDataValue('middle_name')) {
+            return `${willOwner.getDataValue('first_name')} ${willOwner.getDataValue('last_name')}`
+        } else {
+            return `${willOwner.getDataValue('first_name')} ${willOwner.getDataValue('middle_name')} ${willOwner.getDataValue('last_name')}`
+        }
+    }
+	var occupation = willOwner.getDataValue('occupation');
 
-	var occupation = 'eCommerce Support Specialist';
-
-	var address = '21-23 Grose St, North Parramatta NSW 2151';
+	var address = willOwner.getDataValue('address')
 
 	// const writePDF = () => {
 	const doc = new PDFDocument();
@@ -22,7 +36,7 @@ router.get('/test.pdf', async (req, res) => {
 
 	doc.text(
 		`Last Will and Testament
-        This will dated ${currentDate} is made by me, ${fullName}, ${occupation}, of ${address}.
+        This will dated ${currentDate} is made by me, ${fullName()}, ${occupation}, of ${address}.
     
         Executors
         The following executors will be responsible for the distribution of my assets as directed by this will.
