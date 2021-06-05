@@ -2,9 +2,13 @@ const router = require("express").Router();
 const { User } = require("../models");
 const withAuth = require("../utils/auth");
 
-// route to welcome page
-router.get("/", async (req, res) => {
-  res.render("home");
+// This is home route, If the user is already logged in, redirect to user's profile page
+router.get('/', (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect('/profile');
+    return;
+  }
+  res.render('home');
 });
 
 //route to profile
@@ -18,7 +22,7 @@ router.get("/profile", withAuth, async (req, res) => {
 
     const user = userData.get({ plain: true });
     
-    res.render("userpage", {
+    res.render("profile", {
       ...user,
       logged_in: true
     });

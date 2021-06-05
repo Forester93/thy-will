@@ -1,0 +1,67 @@
+<header class="header">
+  <div class="welcome">Welcome back!</div>
+  <ul class="menu">
+    <li class="dropdown" style="float:left;">
+      <a href="#">Options</a>
+      <div class="dropdown-content" style="left:0;">
+        <button><i class="fas fa-envelope-square"> Email</i></button>
+        <button><i class="fas fa-download"> Download</i></button>
+        <button><i class="fas fa-share-alt-square"> Share</i></button>
+      </div>
+    </li>
+    <li><a href="#">My Will</a></li>
+    <li><a href="/" id="logout">Logout</a></li>
+  </ul>
+</header>
+
+
+
+<section class="user">
+  <div class="logo">Thy<span>Will</span></div>
+  <div class="box-1">
+    <div class="box-head">
+      {{#if gender}}
+      <img src="/assets/images/users/oldman.jpg" alt="oldman">
+      {{else}}
+      <img src="/assets/images/users/oldlady.jpg" alt="oldlady">
+      {{/if}}
+      <div>
+        <p>Will owner:</p>
+        <p>{{first_name}} {{last_name}}</p>
+      </div>
+    </div>
+    <p>Email: <a href="mailto:{{email}}">{{email}}</a></p>
+    <p>D.O.B: {{DOB}}</p>
+    <p>Address: {{address}}</p>
+    <p>Casket: {{casket}}</p>
+    <p>Ceremony: {{ceremony}}</p>
+    <button>Edit</button>
+  </div>
+
+  <h2 class="title">Your Will is <span class="status">in Progress</span></h2>
+
+  <div class="box-2">
+    <div class="max-width carousel owl-carousel">
+
+      <div class="card" id="part-1">
+        <h2 class="order">No.1</h2>
+        <h4>Benificiaries</h4>
+        <h5>Individuals entitled to inherit money or property from this will owner.</h5>
+        <button>Start</button>
+      </div>
+      <div class="card" id="part-2">
+        <h2 class="order">No.2</h2>
+        <h4>Guardians</h4>
+        <h5>Who should looks after your Benificiaries.</h5>
+        <button>Start</button>
+      </div>
+      <div class="card" id="part-3">
+        <h2 class="order">No.3</h2>
+        <h4>Executors</h4>
+        <h5>The one to execute your wishes</h5>
+        <button>Start</button>
+      </div>
+
+      
+    </div>
+  </div>
