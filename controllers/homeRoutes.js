@@ -8,7 +8,9 @@ router.get('/', (req, res) => {
     res.redirect('/profile');
     return;
   }
-  res.render('home');
+  res.render('home',{
+    layout:"main",
+  });
 });
 
 //route to profile
@@ -23,6 +25,7 @@ router.get("/profile", withAuth, async (req, res) => {
     const user = userData.get({ plain: true });
     
     res.render("profile", {
+      layout:"main-1",
       ...user,
       logged_in: true
     });
