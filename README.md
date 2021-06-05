@@ -81,11 +81,11 @@ THEN I can click ‘download’ and download a PDF copy of my will
 
 ### Link to the Deployed Application
 
-[My Will Deployed Webpage](https://mysterious-brushlands-45330.herokuapp.com)
+[Thy Will Deployed Webpage](https://thy-will.herokuapp.com)
 
 ### Link to the Github Repository
 
-[My Will Github Repo](https://github.com/forester93/thy-will/)
+[Thy Will Github Repo](https://github.com/forester93/thy-will/)
 
 ### Screenshot of the Application
 

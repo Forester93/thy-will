@@ -1,7 +1,7 @@
 const PDFDocument = require('pdfkit');
 const fs = require('fs');
 const sequelize = require('sequelize');
-const blobStream = require('blob-stream');
+
 
 const date = new Date();
 

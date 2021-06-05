@@ -1,74 +1,221 @@
 const router = require('express').Router();
-// const { User } = require('../models');
 // const withAuth = require('../utils/auth');
 const PDFDocument = require('pdfkit');
+const {
+	User,
+	Executor,
+	Beneficiary,
+	Asset,
+	AssetApportion,
+    Witness,
+} = require('../../models');
 
-router.get('/test.pdf', async (req, res) => {
+const executorTemplate = require('../../utils/willGenerator/executorTemplate');
+
+router.get('/:id', async (req, res) => {
 	// res.header('Content-Disposition', 'attachment; filename=output.pdf');
+
+	const userData = await User.findOne({
+		where: {
+			id: req.params.id,
+		},
+	});
+
 	const date = new Date();
 
 	var currentDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
 
-	var fullName = 'tommy';
+	var fullName = () => {
+		if (!userData.getDataValue('middle_name')) {
+			return `${userData.getDataValue('first_name')} ${userData.getDataValue(
+				'last_name'
+			)}`;
+		} else {
+			return `${userData.getDataValue('first_name')} ${userData.getDataValue(
+				'middle_name'
+			)} ${userData.getDataValue('last_name')}`;
+		}
+	};
+	var occupation = userData.getDataValue('occupation');
 
-	var occupation = 'eCommerce Support Specialist';
+	var address = userData.getDataValue('address');
 
-	var address = '21-23 Grose St, North Parramatta NSW 2151';
+	const executorData = await Executor.findAll({
+		where: {
+			user_id: req.params.id,
+		},
+	});
 
-	// const writePDF = () => {
-	const doc = new PDFDocument();
+	const executors = executorData.map((results) => results.dataValues);
 
-	doc.pipe(res);
+	const executorTemplate = () => {
+        const executorArray = [];
+        let executorNumber = 1
+		for (i = 0; i < executors.length; i++) {
+            if (!executors[i].isAlternate) {
+			    executorArray.push(
+				    `Executor #${executorNumber}
 
-	doc.text(
-		`Last Will and Testament
-        This will dated ${currentDate} is made by me, ${fullName}, ${occupation}, of ${address}.
+                    Name: ${executors[i].name}
+                    Date of Birth: ${executors[i].DOB}
+                    Relationship: ${executors[i].relationship}
+                    Address: ${executors[i].address}
+
+                `
+                );
+                executorNumber ++
+            }
+		}
+		let executorString = executorArray.join('');
+		return executorString;
+    };
     
-        Executors
-        The following executors will be responsible for the distribution of my assets as directed by this will.
-    
-        {executors}
-    
-        Alternate executors 100
-        If the above executors are unavailable, the following alternate executors will take their place.
-    
-        {alternateExecutors}
-    
-        Non-monetary gifts
-        My non-monetary and non-sentimental possessions will be divided as follows:
-    
-        gifts}
-    
-        Monetary gifts
-    
-        My financial assets will be divided as follows:
-    
-        {financialAssets}
-    
-        With the rest of my finances, I pledge to the following charities:
-    
-        {charityDonations}
-    
-        Primary Beneficiary
-        The following person is to be the primary beneficiary of my estate
-    
-        {primaryBeneficiary}
-    
-        Witnesses
-    
-        The following people have witnessed my signature and initial on each page of this will:
-    
-        {witnesses}
-    
-        Declaration
-    
-        I, {fullName}, declare the above and all included in this document to be my last will and testament.
-    
-        Signed
-    
-        {signature}
+    const altExecutorTemplate = () => {
+        const executorArray = [];
+        let executorNumber = 1
+		for (i = 0; i < executors.length; i++) {
+            if (executors[i].isAlternate) {
+                executorArray.push(
+                    `Alternate Executor #${executorNumber}
+
+                    Name: ${executors[i].name}
+                    Date of Birth: ${executors[i].DOB}
+                    Relationship: ${executors[i].relationship}
+                    Address: ${executors[i].address}
+
+                `
+                );
+                executorNumber ++;
+            }
+		}
+		let altExecutorString = executorArray.join('');
+		return altExecutorString;
+	};
+
+	const beneficiaryData = await Beneficiary.findAll({
+		where: {
+			user_id: req.params.id,
+		},
+	});
+
+	const beneficiaries = beneficiaryData.map((results) => results.dataValues);
+
+	console.log(beneficiaries);
+
+const beneficiaryTemplate = () => {
+	const beneficiaryArray = [];
+	for (i = 0; i < beneficiaries.length; i++) {
+		if (!beneficiaries[i].isCharity) {
+			beneficiaryArray.push(
+				`Beneficiary #${i + 1}
+                
+                Name: ${beneficiaries[i].name},
+                DOB: ${beneficiaries[i].DOB},
+                Relationship: ${beneficiaries[i].relationship},
+                Address: ${beneficiaries[i].address}
+
         `
-	);
+			);
+		}
+	}
+	let beneficiaryString = beneficiaryArray.join('');
+	return beneficiaryString;
+};
+
+const witnessData = await Witness.findAll({
+    where: {
+        user_id: req.params.id,
+    },
+});
+
+const witnesses = witnessData.map((results) => results.dataValues);
+
+	console.log(witnesses);
+
+const witnessTemplate = () => {
+	const witnessArray = [];
+	for (i = 0; i < witnesses.length; i++) {
+		witnessArray.push(
+			`Witness #${i + 1}
+                
+                Name: ${witnesses[i].name},
+                Relationship: ${witnesses[i].relationship},
+                Address: ${witnesses[i].address},
+                
+                Date signed: ______________
+
+
+
+                ___________________________
+                Signature
+
+        `
+			);
+	}
+	let witnessString = witnessArray.join('');
+	return witnessString;
+};
+
+const doc = new PDFDocument();
+
+doc.pipe(res);
+
+doc.text(
+	`Last Will and Testament
+
+    This will dated ${currentDate} is made by me, ${fullName()}, ${occupation}, of ${address}.
+    
+    Executors
+
+    The following executors will be responsible for the distribution of my assets as directed by this will.
+    
+    ${executorTemplate()}
+    Alternate executors
+
+    If the above executors are unavailable, the following alternate executors will take their place.
+    
+    ${altExecutorTemplate()}
+    Non-monetary gifts
+    
+    My non-monetary and non-sentimental possessions will be divided as follows:
+    
+    gifts}
+    
+    Monetary gifts
+    
+    My financial assets will be divided as follows:
+    
+    {financialAssets}
+    
+    With the rest of my finances, I pledge to the following charities:
+    
+    {charityDonations}
+    
+    List of Beneficiaries
+
+    The following list contians all people who are beneficiaries to my estate:
+    
+    ${beneficiaryTemplate()}
+    
+    Witnesses
+    
+    The following people have witnessed my signature and initial on each page of this will:
+    
+    ${witnessTemplate()}
+    
+    Declaration
+    
+    I, ${fullName()}, declare the above and all included in this document to be my last will and testament.
+    
+    
+    ___________________________
+    Signature
+
+
+    ___________________________
+    Date signed
+    `
+);
 
 	doc.end();
 	// stream.on('finish', function () {

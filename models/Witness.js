@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-class Executor extends Model {}
+class Witness extends Model {}
 
-Executor.init(
+Witness.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -27,10 +27,6 @@ Executor.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    isAlternate: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-    },
     user_id: {
       type: DataTypes.INTEGER,
       references: {
@@ -44,8 +40,8 @@ Executor.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "executor",
+    modelName: "witness",
   }
 );
 
-module.exports = Executor;
+module.exports = Witness;
