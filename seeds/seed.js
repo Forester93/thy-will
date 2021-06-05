@@ -5,6 +5,7 @@ const {
   Executor,
   Asset,
   AssetApportion,
+  Witness,
 } = require("../models");
 
 const userData = require("./userData.json");
@@ -12,6 +13,7 @@ const beneficiaryData = require("./beneficiaryData.json");
 const executorData = require("./executorData.json");
 const assetData = require("./assetData.json");
 const assetApportionData = require("./assetApportionData.json");
+const witnessData = require("./witnessData.json");
 
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
@@ -36,7 +38,10 @@ const seedDatabase = async () => {
     individualHooks: true,
     returning: true,
   });
-
+  await Witness.bulkCreate(witnessData, {
+    individualHooks: true,
+    returning: true,
+  });
   process.exit(0);
 };
 

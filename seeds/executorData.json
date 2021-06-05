@@ -4,6 +4,15 @@
     "DOB": "01/02/1980",
     "relationship": "Solicitor",
     "address": "230 Saul Street, Albuquerque NSW",
+    "isAlternate": false,
+    "user_id": 1
+  },
+  {
+    "name": "Harvey Specter",
+    "DOB": "01/03/1979",
+    "relationship": "Lawyer",
+    "address": "230 Harvey Street, Melbourne VIC",
+    "isAlternate": true,
     "user_id": 1
   },
   {
@@ -11,6 +20,7 @@
     "DOB": "09/07/1970",
     "relationship": "Family Lawyer",
     "address": "230 Law Street, Sydney NSW",
+    "isAlternate": false,
     "user_id": 2
   }
 ]
