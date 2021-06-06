@@ -99,9 +99,9 @@ You can reach out to us over one of the following for any questions about this a
 
 Contact the team as per the below contact information.
 
-| Name            | Email                    | Phone Numer         | GitHubProfile                                                  |
-| --------------- | ------------------------ | ------------------- | -------------------------------------------------------------- |
-| Mark Forester   | markforester93@gmail.com | +61-(0)-404-831-362 | [Mark Forester Github Profile](https://github.com/forester93/) |
-| Tom Chappell    | tom@example.com          | Tom's Phone Number  | [Tom Chappell's Github Profile](https://github.com/choonchy/)  |
-| Jack Ritchie    | jack@example.com         | Jack's Phone Number | [Jack Ritchie's Github Profile](https://github.com/jitchie/)   |
-| Zhou (Joe) Tian | egglord0716@gmail.com    | +61-(0)-406-199-376 | [Zhou Tian's Github Profile](https://github.com/ZhouTian0716/) |
+| Name            | Email                       | Phone Numer         | GitHubProfile                                                  |
+| --------------- | --------------------------- | ------------------- | -------------------------------------------------------------- |
+| Mark Forester   | markforester93@gmail.com    | +61-(0)-404-831-362 | [Mark Forester Github Profile](https://github.com/forester93/) |
+| Tom Chappell    | thomas.chappell@outlook.com | +61-(0)-437-840-909 | [Tom Chappell's Github Profile](https://github.com/choonchy/)  |
+| Jack Ritchie    | jack@example.com            | Jack's Phone Number | [Jack Ritchie's Github Profile](https://github.com/jitchie/)   |
+| Zhou (Joe) Tian | egglord0716@gmail.com       | +61-(0)-406-199-376 | [Zhou Tian's Github Profile](https://github.com/ZhouTian0716/) |
