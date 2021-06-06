@@ -14,5 +14,21 @@
     "relationship": "Brother",
     "address": "1/212 Joshua Pl, Suburb NSW",
     "user_id": 1
+  },
+  {
+    "id": 3,
+    "name": "George Black",
+    "DOB": "07/03/1971",
+    "relationship": "Business Partner",
+    "address": "2 George St, Suburb NSW",
+    "user_id": 2
+  },
+  {
+    "id": 4,
+    "name": "Maxim Stepanov",
+    "DOB": "12/08/1975",
+    "relationship": "Business Partner",
+    "address": "3 Main Rd, Suburb NSW",
+    "user_id": 2
   }
 ]

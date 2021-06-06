@@ -40,5 +40,47 @@
     "type": "Monetary",
     "value": 53000,
     "user_id": 1
+  },
+  {
+    "id": 7,
+    "description": "Shares Portfolio",
+    "type": "Monetary",
+    "value": 13750000,
+    "user_id": 2
+  },
+  {
+    "id": 8,
+    "description": "Property @ 1 George Street, Sydney NSW",
+    "type": "Physical",
+    "value": 8000000,
+    "user_id": 2
+  },
+  {
+    "id": 9,
+    "description": "Mercedes S Class",
+    "type": "Physical",
+    "value": 1200000,
+    "user_id": 2
+  },
+  {
+    "id": 10,
+    "description": "Cash",
+    "type": "Monetary",
+    "value": 390000,
+    "user_id": 2
+  },
+  {
+    "id": 11,
+    "description": "Stamp Collection",
+    "type": "Sentimental",
+    "value": 0,
+    "user_id": 2
+  },
+  {
+    "id": 12,
+    "description": "Superannuation",
+    "type": "Monetary",
+    "value": 530000,
+    "user_id": 2
   }
 ]

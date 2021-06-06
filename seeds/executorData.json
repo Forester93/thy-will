@@ -19,8 +19,16 @@
     "name": "Aaron Schmidt",
     "DOB": "09/07/1970",
     "relationship": "Family Lawyer",
-    "address": "230 Law Street, Sydney NSW",
+    "address": "1/230 Law Street, Sydney NSW",
     "isAlternate": false,
+    "user_id": 2
+  },
+  {
+    "name": "Michael Portelli",
+    "DOB": "04/03/1972",
+    "relationship": "Lawyer",
+    "address": "2/230 Law Street, Sydney NSW",
+    "isAlternate": true,
     "user_id": 2
   }
 ]

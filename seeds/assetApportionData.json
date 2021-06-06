@@ -67,7 +67,7 @@
     "asset_id": 4,
     "beneficiary_id": 4,
     "percentage": 0.2,
-    "apportion_instructions": "20% of the cash to the daughter"
+    "apportion_instructions": "20% of the cash to charity"
   },
   {
     "id": 11,
@@ -80,6 +80,90 @@
     "id": 12,
     "asset_id": 6,
     "beneficiary_id": 1,
+    "percentage": 1,
+    "apportion_instructions": "Superannuation goes to the wife"
+  },
+  {
+    "id": 13,
+    "asset_id": 7,
+    "beneficiary_id": 5,
+    "percentage": 0.5,
+    "apportion_instructions": "Half of the shares for the wife."
+  },
+  {
+    "id": 14,
+    "asset_id": 7,
+    "beneficiary_id": 6,
+    "percentage": 0.25,
+    "apportion_instructions": "Quarter of the shares for the daughter."
+  },
+  {
+    "id": 15,
+    "asset_id": 7,
+    "beneficiary_id": 7,
+    "percentage": 0.25,
+    "apportion_instructions": "Quarter of the shares for the daughter."
+  },
+  {
+    "id": 16,
+    "asset_id": 8,
+    "beneficiary_id": 5,
+    "percentage": 0.34,
+    "apportion_instructions": "One third of the property for the wife"
+  },
+  {
+    "id": 17,
+    "asset_id": 8,
+    "beneficiary_id": 6,
+    "percentage": 0.33,
+    "apportion_instructions": "One third of the property for the daughter"
+  },
+  {
+    "id": 18,
+    "asset_id": 8,
+    "beneficiary_id": 7,
+    "percentage": 0.33,
+    "apportion_instructions": "One third of the property for the daughter"
+  },
+  {
+    "id": 19,
+    "asset_id": 9,
+    "beneficiary_id": 5,
+    "percentage": 1,
+    "apportion_instructions": "Car goes to the wife"
+  },
+  {
+    "id": 20,
+    "asset_id": 10,
+    "beneficiary_id": 6,
+    "percentage": 0.4,
+    "apportion_instructions": "40% of the cash to the daughter"
+  },
+  {
+    "id": 21,
+    "asset_id": 10,
+    "beneficiary_id": 7,
+    "percentage": 0.4,
+    "apportion_instructions": "40% of the cash to the daughter"
+  },
+  {
+    "id": 22,
+    "asset_id": 10,
+    "beneficiary_id": 8,
+    "percentage": 0.2,
+    "apportion_instructions": "20% of the cash to charity"
+  },
+  {
+    "id": 23,
+    "asset_id": 11,
+    "beneficiary_id": 5,
+    "percentage": 1,
+    "apportion_instructions": "Diary goes to the wife"
+  },
+  {
+    "id": 24,
+    "asset_id": 12,
+    "beneficiary_id": 5,
     "percentage": 1,
     "apportion_instructions": "Superannuation goes to the wife"
   }
