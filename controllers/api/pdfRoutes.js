@@ -12,9 +12,9 @@ const {
 
 const executorTemplate = require('../../utils/willGenerator/executorTemplate');
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', withAuth, async (req, res) => {
 	// res.header('Content-Disposition', 'attachment; filename=output.pdf');
-
+	if (res.session.id)
 	const userData = await User.findOne({
 		where: {
 			id: req.params.id,
