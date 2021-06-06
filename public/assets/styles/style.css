@@ -1,7 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Parisienne&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap");
 :root {
-  --themeColor1: darkslateblue;
-  --themeColor2: grey;
+  --themeColor1: rgb(72, 61, 139, 0.9);
+  --themeColor2: rgb(72, 61, 139, 0.1);
+  --themeColor3: #f0fff0;
 }
 html {
   scroll-behavior: smooth;
@@ -13,127 +15,68 @@ html {
   text-decoration: none;
 }
 .max-width {
-  padding: 0 30px;
+  max-width: 1400px;
+  padding: 0 50px;
+  margin: auto;
 }
-
-/* header styling */
-header {
-  background-color: var(--themeColor2);
+/* ======================  Common stylings ====================== */
+.logo {
+  font-size: 75px;
+  font-weight: 600;
+  font-family: "Parisienne", cursive;
+}
+.logo span {
+  color: var(--themeColor1);
+}
+button {
+  background: var(--themeColor1);
   color: white;
-  font-size: 18px;
-  font-family: "Montserrat", sans-serif;
+  padding: 6px 20px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+button:hover {
+  color: var(--themeColor1);
+  border: 1px solid var(--themeColor1);
+  background-color: var(--themeColor2);
+}
+.header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-header .icons i {
-  font-size: 24px;
-  padding: 10px 20px;
-  border-left: 1px solid white;
-}
-header .icons i:hover {
-  color: var(--themeColor1);
-  cursor: pointer;
-}
-/* navbar styling */
-.navbar {
   width: 100%;
   z-index: 999;
-  padding: 15px 0;
+  padding: 0 25px;
   background-color: var(--themeColor1);
   color: white;
   font-family: "Montserrat", sans-serif;
-  transition: all 0.3s ease;
-}
-
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 30px;
-}
-
-.navbar .menu {
-  margin: 15px 0;
-}
-.navbar .menu li {
-  list-style: none;
-  display: inline-block;
-}
-.navbar .menu li a {
-  display: block;
   font-size: 18px;
   font-weight: 600;
-  padding: 10px;
-  border-radius: 5px;
-  transition: color 0.3s ease;
+  padding: 8px 10px;
+  transition: all 0.3s ease;
 }
-.navbar .menu li a:hover {
+.header .menu {
+  margin: 15px 0;
+}
+.header .menu li {
+  list-style: none;
+  display: inline-block;
+  padding-right: 20px;
+}
+.header .menu li a {
+  display: block;
+  border-radius: 5px;
+  padding: 5px;
+  transition: color 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+}
+.header .menu li a:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* menu btn styling */
-.menu-btn {
-  color: white;
-  font-size: 23px;
-  cursor: pointer;
-  display: none;
-}
-
-/* home section styling */
-.home {
-  display: flex;
-  background: url("/assets/images/welcome1.jpg") no-repeat center;
-  height: 100vh;
-  color: black;
-  background-size: cover;
-  /* background-attachment: fixed; */
-  font-family: "Montserrat", sans-serif;
-}
-.home .max-width {
-  margin: auto 0 auto 40px;
-}
-.home .home-content .text-1 {
-  font-size: 25px;
-}
-.home .home-content .text-2 {
-  font-size: 60px;
-  font-weight: 600;
-}
-.home .home-content .text-2 span {
-  color: var(--themeColor1);
-}
-.home .home-content .text-3 {
-  font-size: 35px;
-  margin: 5px 0;
-}
-.home .home-content .text-3 span {
-  color: var(--themeColor1);
-  font-weight: bolder;
-}
-.home .home-content a,
-button {
-  display: inline-block;
-  background: var(--themeColor1);
-  color: white;
-  padding: 12px 20px;
-  font-size: 25px;
-  margin-top: 20px;
-  border-radius: 8px;
-  border: 2px solid var(--themeColor1);
-  transition: all 0.3s ease;
-}
-.home .home-content a:hover,
-button:hover {
-  color: var(--themeColor1);
-  background: none;
-}
-
-/* common styling for all sections*/
-
-/* footer styling */
 footer {
-  background-color: var(--themeColor2);
+  background-color: var(--themeColor1);
   color: white;
   text-align: center;
   font-size: 18px;
@@ -141,125 +84,155 @@ footer {
   font-family: "Montserrat", sans-serif;
 }
 
-/* media query start from here */
-@media (max-width: 1300px) {
-  home .max-width {
-    margin-left: 0px;
-  }
+/* ======================  Welcome page stylings ====================== */
+.home {
+  display: flex;
+  background: url("/assets/images/welcome1.jpg") no-repeat center;
+  height: 100vh;
+  color: black;
+  background-size: cover;
+  font-family: "Roboto", sans-serif;
+}
+.home .max-width {
+  margin: auto 0 auto 40px;
+}
+.home .home-content .text-1 {
+  font-size: 25px;
 }
 
-@media (max-width: 1104px) {
-  .about .about-content .left img {
-    height: 350px;
-    width: 350px;
-  }
+.home .home-content .text-2 {
+  font-size: 35px;
+  margin: 5px 0;
+}
+.home .home-content .text-2 span {
+  color: var(--themeColor1);
+  font-weight: bolder;
+}
+.home .home-content button{
+  display: inline-block;
+  background: var(--themeColor1);
+  color: white;
+  padding: 12px 20px;
+  font-size: 25px;
+  margin: 20px 15px 0 0;
+  border-radius: 8px;
+  transition: all 0.3s ease;
 }
 
-@media (max-width: 991px) {
-  .max-width {
-    padding: 0 50px;
-  }
+
+/* ======================  User page styling ====================== */
+.dropdown {
+  position: relative;
+  display: inline-block;
 }
-@media (max-width: 947px) {
-  .menu-btn {
-    display: block;
-    z-index: 999;
-  }
-  .menu-btn i.active:before {
-    content: "\f00d";
-  }
-  .navbar .menu {
-    position: fixed;
-    height: 100vh;
-    width: 100%;
-    left: -100%;
-    top: 0;
-    background: url("/assets/images/welcome2.jpg") no-repeat center;
-    background-size: cover;
-    text-align: center;
-    padding-top: 80px;
-    transition: all 0.3s ease;
-  }
-  .navbar .menu.active {
-    left: 0;
-  }
-  .navbar .menu li {
-    display: block;
-  }
-  .navbar .menu li a {
-    color: white;
-    display: inline-block;
-    margin: 25px 0;
-    font-size: 25px;
-    font-weight: bolder;
-  }
-  .home .home-content .text-2 {
-    font-size: 70px;
-  }
-  .home .home-content .text-3 {
-    font-size: 35px;
-  }
-  .home .home-content a,
-  button {
-    font-size: 23px;
-    padding: 10px 30px;
-  }
-  .max-width {
-    max-width: 800px;
-  }
-  .about .about-content .column {
-    width: 100%;
-  }
-  .about .about-content .left {
-    display: flex;
-    justify-content: center;
-    margin: 0 auto 60px;
-  }
-  .about .about-content .left {
-    flex: 100%;
-  }
-  .services .serv-content .card {
-    width: calc(50% - 10px);
-    margin-bottom: 15px;
-  }
-  .contact .contact-content .left {
-    width: 100%;
-  }
-  .contact .contact-content .right {
-    width: 100%;
-  }
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  min-width: 130px;
+  z-index: 1;
+}
+.dropdown-content button {
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  background-color: var(--themeColor1);
+  padding: 5px 8px;
+  text-decoration: none;
+  text-align: left;
+  display: block;
+}
+.dropdown-content button:hover {
+  color: var(--themeColor1);
+  background-color: var(--themeColor3);
+}
+.dropdown:hover .dropdown-content {
+  display: flex;
+  flex-direction: column;
 }
 
-@media (max-width: 690px) {
-  .max-width {
-    padding: 0 23px;
-  }
-  .home .home-content .text-2 {
-    font-size: 60px;
-  }
-  .home .home-content .text-3 {
-    font-size: 32px;
-  }
-  .home .home-content a,
-  button {
-    font-size: 20px;
-  }
-  .services .serv-content .card {
-    width: 100%;
-  }
-  .skills .skills-content .column {
-    width: 100%;
-  }
-  .skills .skills-content .left {
-    margin-bottom: 30px;
-  }
+.user {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: black;
+  background-size: cover;
+  background-color: #fffff0;
+  padding: 30px;
+  font-family: "Montserrat", sans-serif;
+}
+.box-1,
+.box-2 {
+  background-color: white;
+  border-radius: 15;
+  box-shadow: 8px 8px 5px var(--themeColor1);
+  padding: 25px;
+  margin-bottom: 25px;
+}
+.user .box-head {
+  display: flex;
+  align-items: center;
+}
+.user .box-head img {
+  height: 80px;
+  width: 80px;
+  border-radius: 40px;
+  margin-right: 20px;
+  margin-bottom: 20px;
 }
 
-@media (max-width: 500px) {
-  .home .home-content .text-2 {
-    font-size: 50px;
-  }
-  .home .home-content .text-3 {
-    font-size: 27px;
-  }
+.box-1 .box-head p {
+  font-size: 25px;
+  font-weight: 600;
 }
+
+.box-2 .card{
+  width: 300px;
+  height: 300px;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  background-color: var(--themeColor3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.box-2 .card:hover{
+  transform: scale(1.05);
+  box-shadow: 0px 0px 8px pink;
+}
+.box-2 .card .order{
+  font-size: 24px;
+  font-weight: 500;
+  padding: 10px 0;
+  border: 1px dashed cadetblue;
+}
+
+.owl-dots{
+  text-align: center;
+  margin-top: 20px;
+}
+.owl-dot{
+  height: 13px;
+  width: 13px;
+  margin: 0 10px;
+  outline: none!important;
+  border-radius: 50%;
+  border: 2px solid var(--themeColor1)!important;
+  transition: all 0.3s ease;
+}
+.owl-dot.active{
+  width: 35px;
+  border-radius: 14px;
+}
+.owl-dot.active,
+.owl-dot:hover{
+  background: var(--themeColor1)!important;
+}
+
+.carousel{
+  max-width: 1500px;
+}
+
+/* ======================  OwlCarousel styling ====================== */
+

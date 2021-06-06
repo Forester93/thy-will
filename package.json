@@ -35,6 +35,7 @@
 		"mysql2": "^2.2.5",
 		"nodemon": "^2.0.7",
 		"pdfkit": "^0.12.1",
-		"sequelize": "^6.6.2"
+		"sequelize": "^6.6.2",
+		"typed.js": "^2.0.12"
 	}
 }

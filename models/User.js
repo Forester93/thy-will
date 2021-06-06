@@ -28,6 +28,10 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    gender: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
     occupation: {
       type: DataTypes.STRING,
       allowNull: false,

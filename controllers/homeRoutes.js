@@ -2,33 +2,39 @@ const router = require("express").Router();
 const { User } = require("../models");
 const withAuth = require("../utils/auth");
 
-router.get("/", withAuth, async (req, res) => {
+// This is home route, If the user is already logged in, redirect to user's profile page
+router.get('/', (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect('/profile');
+    return;
+  }
+  res.render('home',{
+    layout:"main",
+  });
+});
+
+//route to profile
+router.get("/profile", withAuth, async (req, res) => {
   try {
-    const userData = await User.findAll({
+    // Find the logged in user based on the session ID
+    const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ["password"] },
-      order: [["first_name", "ASC"]],
+    // join other table data here later
     });
 
-    const users = userData.map((project) => project.get({ plain: true }));
-    console.log(users);
-    let user = users[0];
-
-    res.render("homepage", {
-      user,
-      logged_in: req.session.logged_in,
+    const user = userData.get({ plain: true });
+    
+    res.render("profile", {
+      layout:"main-1",
+      ...user,
+      logged_in: true
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.get("/login", (req, res) => {
-  if (req.session.logged_in) {
-    res.redirect("/");
-    return;
-  }
 
-  res.render("login");
-});
+
 
 module.exports = router;
