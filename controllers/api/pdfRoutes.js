@@ -1,82 +1,71 @@
 const router = require('express').Router();
 // const withAuth = require('../utils/auth');
 const PDFDocument = require('pdfkit');
+const withAuth = require('../../utils/auth');
 const {
 	User,
 	Executor,
 	Beneficiary,
 	Asset,
 	AssetApportion,
-    Witness,
+	Witness,
 } = require('../../models');
 
 const executorTemplate = require('../../utils/willGenerator/executorTemplate');
+const e = require('express');
 
 router.get('/:id', withAuth, async (req, res) => {
-	// res.header('Content-Disposition', 'attachment; filename=output.pdf');
-	if (res.session.id)
-	const userData = await User.findOne({
-		where: {
-			id: req.params.id,
-		},
-	});
+	if (req.session.user_id == req.params.id) {
+		try {
+			const userInfo = await User.findOne({
+				where: {
+					id: req.params.id,
+				},
+			});
 
-	const date = new Date();
+			const date = new Date();
 
-	var currentDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
+			var currentDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
 
-	var fullName = () => {
-		if (!userData.getDataValue('middle_name')) {
-			return `${userData.getDataValue('first_name')} ${userData.getDataValue(
-				'last_name'
-			)}`;
-		} else {
-			return `${userData.getDataValue('first_name')} ${userData.getDataValue(
-				'middle_name'
-			)} ${userData.getDataValue('last_name')}`;
-		}
-	};
-	var occupation = userData.getDataValue('occupation');
+			var fullName = () => {
+				if (!userInfo.getDataValue('middle_name')) {
+					return `${userInfo.getDataValue(
+						'first_name'
+					)} ${userInfo.getDataValue('last_name')}`;
+				} else {
+					return `${userInfo.getDataValue(
+						'first_name'
+					)} ${userInfo.getDataValue('middle_name')} ${userInfo.getDataValue(
+						'last_name'
+					)}`;
+				}
+			};
+			var occupation = userInfo.getDataValue('occupation');
 
-	var address = userData.getDataValue('address');
+			var address = userInfo.getDataValue('address');
 
-	const executorData = await Executor.findAll({
-		where: {
-			user_id: req.params.id,
-		},
-	});
+			// res.header(
+			// 	'Content-Disposition',
+			// 	`attachment; filename=${userInfo.getDataValue(
+			// 		'first_name'
+			// 	)}_${userInfo.getDataValue('last_name')}_last_will_and_testament.pdf`
+			// );
 
-	const executors = executorData.map((results) => results.dataValues);
+			const executorData = await Executor.findAll({
+				where: {
+					user_id: req.params.id,
+				},
+			});
 
-	const executorTemplate = () => {
-        const executorArray = [];
-        let executorNumber = 1
-		for (i = 0; i < executors.length; i++) {
-            if (!executors[i].isAlternate) {
-			    executorArray.push(
-				    `Executor #${executorNumber}
+			const executors = executorData.map((results) => results.dataValues);
 
-                    Name: ${executors[i].name}
-                    Date of Birth: ${executors[i].DOB}
-                    Relationship: ${executors[i].relationship}
-                    Address: ${executors[i].address}
-
-                `
-                );
-                executorNumber ++
-            }
-		}
-		let executorString = executorArray.join('');
-		return executorString;
-    };
-    
-    const altExecutorTemplate = () => {
-        const executorArray = [];
-        let executorNumber = 1
-		for (i = 0; i < executors.length; i++) {
-            if (executors[i].isAlternate) {
-                executorArray.push(
-                    `Alternate Executor #${executorNumber}
+			const executorTemplate = () => {
+				const executorArray = [];
+				let executorNumber = 1;
+				for (i = 0; i < executors.length; i++) {
+					if (!executors[i].isAlternate) {
+						executorArray.push(
+							`Executor #${executorNumber}
 
                     Name: ${executors[i].name}
                     Date of Birth: ${executors[i].DOB}
@@ -84,30 +73,54 @@ router.get('/:id', withAuth, async (req, res) => {
                     Address: ${executors[i].address}
 
                 `
-                );
-                executorNumber ++;
-            }
-		}
-		let altExecutorString = executorArray.join('');
-		return altExecutorString;
-	};
+						);
+						executorNumber++;
+					}
+				}
+				let executorString = executorArray.join('');
+				return executorString;
+			};
 
-	const beneficiaryData = await Beneficiary.findAll({
-		where: {
-			user_id: req.params.id,
-		},
-	});
+			const altExecutorTemplate = () => {
+				const executorArray = [];
+				let executorNumber = 1;
+				for (i = 0; i < executors.length; i++) {
+					if (executors[i].isAlternate) {
+						executorArray.push(
+							`Alternate Executor #${executorNumber}
 
-	const beneficiaries = beneficiaryData.map((results) => results.dataValues);
+                    Name: ${executors[i].name}
+                    Date of Birth: ${executors[i].DOB}
+                    Relationship: ${executors[i].relationship}
+                    Address: ${executors[i].address}
 
-	console.log(beneficiaries);
+                `
+						);
+						executorNumber++;
+					}
+				}
+				let altExecutorString = executorArray.join('');
+				return altExecutorString;
+			};
 
-const beneficiaryTemplate = () => {
-	const beneficiaryArray = [];
-	for (i = 0; i < beneficiaries.length; i++) {
-		if (!beneficiaries[i].isCharity) {
-			beneficiaryArray.push(
-				`Beneficiary #${i + 1}
+			const beneficiaryData = await Beneficiary.findAll({
+				where: {
+					user_id: req.params.id,
+				},
+			});
+
+			const beneficiaries = beneficiaryData.map(
+				(results) => results.dataValues
+			);
+
+			console.log(beneficiaries);
+
+			const beneficiaryTemplate = () => {
+				const beneficiaryArray = [];
+				for (i = 0; i < beneficiaries.length; i++) {
+					if (!beneficiaries[i].isCharity) {
+						beneficiaryArray.push(
+							`Beneficiary #${i + 1}
                 
                 Name: ${beneficiaries[i].name},
                 DOB: ${beneficiaries[i].DOB},
@@ -115,28 +128,28 @@ const beneficiaryTemplate = () => {
                 Address: ${beneficiaries[i].address}
 
         `
-			);
-		}
-	}
-	let beneficiaryString = beneficiaryArray.join('');
-	return beneficiaryString;
-};
+						);
+					}
+				}
+				let beneficiaryString = beneficiaryArray.join('');
+				return beneficiaryString;
+			};
 
-const witnessData = await Witness.findAll({
-    where: {
-        user_id: req.params.id,
-    },
-});
+			const witnessData = await Witness.findAll({
+				where: {
+					user_id: req.params.id,
+				},
+			});
 
-const witnesses = witnessData.map((results) => results.dataValues);
+			const witnesses = witnessData.map((results) => results.dataValues);
 
-	console.log(witnesses);
+			console.log(witnesses);
 
-const witnessTemplate = () => {
-	const witnessArray = [];
-	for (i = 0; i < witnesses.length; i++) {
-		witnessArray.push(
-			`Witness #${i + 1}
+			const witnessTemplate = () => {
+				const witnessArray = [];
+				for (i = 0; i < witnesses.length; i++) {
+					witnessArray.push(
+						`Witness #${i + 1}
                 
                 Name: ${witnesses[i].name},
                 Relationship: ${witnesses[i].relationship},
@@ -150,18 +163,18 @@ const witnessTemplate = () => {
                 Signature
 
         `
-			);
-	}
-	let witnessString = witnessArray.join('');
-	return witnessString;
-};
+					);
+				}
+				let witnessString = witnessArray.join('');
+				return witnessString;
+			};
 
-const doc = new PDFDocument();
+			const doc = new PDFDocument();
 
-doc.pipe(res);
+			doc.pipe(res);
 
-doc.text(
-	`Last Will and Testament
+			doc.text(
+				`Last Will and Testament
 
     This will dated ${currentDate} is made by me, ${fullName()}, ${occupation}, of ${address}.
     
@@ -215,21 +228,18 @@ doc.text(
     ___________________________
     Date signed
     `
-);
+			);
 
-	doc.end();
-	// stream.on('finish', function () {
-	// 	// get a blob you can do whatever you like with
-	// 	const blob = stream.toBlob('application/pdf');
+			doc.end();
 
-	// 	// or get a blob URL for display in the browser
-	// 	const url = stream.toBlobURL('application/pdf');
-	// 	iframe.src = url;
-	// });
-	console.log('done');
-	// };
-
-	// document.getElementById('btn').onclick = writePDF();
+			console.log('done');
+		} catch (err) {
+			res.status(403).json(err);
+		}
+	} else {
+		console.log('redirecting');
+		res.redirect('/');
+	}
 });
 
 module.exports = router;
