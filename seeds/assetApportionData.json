@@ -95,7 +95,7 @@
     "asset_id": 7,
     "beneficiary_id": 6,
     "percentage": 0.25,
-    "apportion_instructions": "Quarter of the shares for the daughter."
+    "apportion_instructions": "Quarter of the shares for the son."
   },
   {
     "id": 15,
@@ -116,7 +116,7 @@
     "asset_id": 8,
     "beneficiary_id": 6,
     "percentage": 0.33,
-    "apportion_instructions": "One third of the property for the daughter"
+    "apportion_instructions": "One third of the property for the son"
   },
   {
     "id": 18,
@@ -137,7 +137,7 @@
     "asset_id": 10,
     "beneficiary_id": 6,
     "percentage": 0.4,
-    "apportion_instructions": "40% of the cash to the daughter"
+    "apportion_instructions": "40% of the cash to the son"
   },
   {
     "id": 21,
