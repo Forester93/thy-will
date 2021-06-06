@@ -17,7 +17,7 @@ Don't wait... 'till it's too late.
 
 ## Description
 
-Draft your will in under 5 minutes and make sure your loved ones are protected. All within a few clicks of a button.
+Draft your will in under 10 minutes and make sure your loved ones are protected. All within a few clicks of a button.
 
 ### User Story
 
@@ -97,7 +97,7 @@ You can reach out to us over one of the following for any questions about this a
 
 ## Contributing
 
-Contact the team as per the above information.
+Contact the team as per the below contact information.
 
 | Name            | Email                    | Phone Numer         | GitHubProfile                                                  |
 | --------------- | ------------------------ | ------------------- | -------------------------------------------------------------- |
