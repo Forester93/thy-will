@@ -1,5 +1,4 @@
 const router = require('express').Router();
-// const withAuth = require('../utils/auth');
 const PDFDocument = require('pdfkit');
 const withAuth = require('../../utils/auth');
 const {
@@ -15,7 +14,7 @@ const executorTemplate = require('../../utils/willGenerator/executorTemplate');
 const e = require('express');
 
 router.get('/:id', withAuth, async (req, res) => {
-	if (req.session.user_id == req.params.id) {
+	if (req.session.account_id == req.params.id) {
 		try {
 			const userInfo = await User.findByPk(req.params.id, {
 				include: [
@@ -45,10 +44,6 @@ router.get('/:id', withAuth, async (req, res) => {
 
 			var currentDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
 
-			var occupation = userInfo.getDataValue('occupation');
-
-			var address = userInfo.getDataValue('address');
-
 			// res.header(
 			// 	'Content-Disposition',
 			// 	`attachment; filename=${userInfo.getDataValue(
@@ -75,9 +70,9 @@ router.get('/:id', withAuth, async (req, res) => {
 						);
 						executorNumber++;
 					}
+					let executorString = executorArray.join('');
+					return executorString;
 				}
-				let executorString = executorArray.join('');
-				return executorString;
 			};
 
 			const altExecutorTemplate = () => {
@@ -104,8 +99,6 @@ router.get('/:id', withAuth, async (req, res) => {
 
 			const beneficiaries = user.beneficiaries;
 
-			console.log(beneficiaries);
-
 			const beneficiaryTemplate = () => {
 				const beneficiaryArray = [];
 				for (i = 0; i < beneficiaries.length; i++) {
@@ -124,6 +117,43 @@ router.get('/:id', withAuth, async (req, res) => {
 				}
 				let beneficiaryString = beneficiaryArray.join('');
 				return beneficiaryString;
+			};
+
+			const assetsTemplate = () => {
+				let assetArray = [];
+				for (i = 0; i < assets.length; i++) {
+					assetArray.push(`Asset #${assets[i].id}
+
+Description: ${assets[i].description}
+Type: ${assets[i].type}
+Total value: $${assets[i].value.toFixed(2)}
+
+Apportion instructions: 
+${apportionTemplate(assets[i])}
+`);
+				}
+				let assetString = assetArray.join('');
+				return assetString;
+			};
+
+			const apportionTemplate = (assetID) => {
+				let apportionArray = [];
+				for (x = 0; x < assetApportions.length; x++) {
+					// console.log(assetApportions[x].asset_id);
+					// console.log(assetID);
+					if (assetApportions[x].asset_id == assetID.id) {
+						// console.log(assetApportions[x].beneficiary_id);
+						apportionArray.push(`Beneficiary: ${
+							beneficiaries[assetApportions[x].beneficiary_id - 1].name
+						}
+Instruction: ${assetApportions[x].apportion_instructions}
+Apportion value: $${(assetID.value * assetApportions[x].percentage).toFixed(2)}
+
+`);
+					}
+				}
+				let apportionString = apportionArray.join('');
+				return apportionString;
 			};
 
 			const witnesses = user.witnesses;
@@ -152,16 +182,23 @@ router.get('/:id', withAuth, async (req, res) => {
 				return witnessString;
 			};
 
+			const assets = user.assets;
+
+			const assetApportions = user.asset_apportions;
+
+			console.log(assets);
+
+			console.log(assetApportions);
+
 			const doc = new PDFDocument();
 
 			doc.pipe(res);
 
-			doc.text(
-				`Last Will and Testament
+			doc.text(`Last Will and Testament
 
-    This will dated ${currentDate} is made by me, ${
-					user.name
-				}, ${occupation}, of ${address}.
+    This will dated ${currentDate} is made by me, ${user.name}, ${
+				user.occupation
+			}, of ${user.address}.
     
     Executors
 
@@ -173,28 +210,18 @@ router.get('/:id', withAuth, async (req, res) => {
     If the above executors are unavailable, the following alternate executors will take their place.
     
     ${altExecutorTemplate()}
-    Non-monetary gifts
-    
-    My non-monetary and non-sentimental possessions will be divided as follows:
-    
-    gifts}
-    
-    Monetary gifts
-    
-    My financial assets will be divided as follows:
-    
-    {financialAssets}
-    
-    With the rest of my finances, I pledge to the following charities:
-    
-    {charityDonations}
-    
-    List of Beneficiaries
+List of Beneficiaries
 
     The following list contians all people who are beneficiaries to my estate:
     
     ${beneficiaryTemplate()}
-    
+
+Assets
+
+Below is a list of all my assets included in this will. Any assets not described in this will shall be divided as per the guidance of my executors.
+
+${assetsTemplate()}
+
     Witnesses
     
     The following people have witnessed my signature and initial on each page of this will:
@@ -214,8 +241,7 @@ router.get('/:id', withAuth, async (req, res) => {
 
     ___________________________
     Date signed
-    `
-			);
+    `);
 
 			doc.end();
 
