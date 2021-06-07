@@ -6,6 +6,7 @@ const {
   Beneficiary,
   Witness,
   Executor,
+  Account,
 } = require("../../models");
 
 // The `/api/users` endpoint
@@ -44,16 +45,6 @@ router.get("/data/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
-// router.post("/", async (req, res) => {
-//   // create a new category
-//   try {
-//     const categories = await Category.create(req.body);
-//     res.status(200).json(categories);
-//   } catch (err) {
-//     res.status(400).send(err);
-//   }
-// });
 
 // router.put("/:id", async (req, res) => {
 //   // update a category by its `id` value

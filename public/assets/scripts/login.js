@@ -3,9 +3,9 @@ const loginFormHandler = async (event) => {
 
   const email = document.querySelector("#email-login").value.trim();
   const password = document.querySelector("#password-login").value.trim();
-
+  let response;
   if (email && password) {
-    const response = await fetch("/api/accounts", {
+    response = await fetch("/api/accounts", {
       method: "POST",
       body: JSON.stringify({ email, password }),
       headers: { "Content-Type": "application/json" },
@@ -19,10 +19,41 @@ const loginFormHandler = async (event) => {
   }
 };
 
-document.querySelector("#loginBtn").addEventListener("click", loginFormHandler);
+const signUpFormHandler = async (event) => {
+  event.preventDefault();
 
-const starterPage = () => {
-  document.location.replace("/starter");
+  const email = document.querySelector("#email-signup").value.trim();
+  const password = document.querySelector("#password-signup").value.trim();
+  const passwordRepeat = document
+    .querySelector("#password-repeat")
+    .value.trim();
+
+  if (email && password && password == passwordRepeat) {
+    let response;
+    response = await fetch("/api/accounts/create", {
+      method: "POST",
+      body: JSON.stringify({ email: email, password: password }),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (response.status == 200) {
+      response = await fetch("/api/accounts", {
+        method: "POST",
+        body: JSON.stringify({ email, password }),
+        headers: { "Content-Type": "application/json" },
+      });
+      if (response.status == 200) {
+        document.location.replace("/profile");
+      }
+    } else {
+      alert("Failed to sign up");
+    }
+  }
 };
 
-document.querySelector("#startBtn").addEventListener("click", starterPage);
+document.querySelector("#loginBtn").addEventListener("click", loginFormHandler);
+// const starterPage = () => {
+//   document.location.replace("/starter");
+// };
+
+document.querySelector("#signBtn").addEventListener("click", signUpFormHandler);

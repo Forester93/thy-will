@@ -39,5 +39,31 @@ router.post("/logout", (req, res) => {
     res.status(404).end();
   }
 });
+router.get("/logout", (req, res) => {
+  if (req.session.logged_in) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
+  }
+});
+
+router.post("/create", async (req, res) => {
+  // create a new account
+  try {
+    const accountInfo = await Account.create(req.body);
+    let account = accountInfo.get({ plain: true });
+    res.status(200).json("Account created!");
+    req.session.save(() => {
+      req.session.account_id = account.id;
+      req.session.logged_in = true;
+      res.json({ account: account, message: "You are now logged in!" });
+    });
+    res.redirect("/");
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
 
 module.exports = router;
