@@ -1,7 +1,14 @@
 const router = require("express").Router();
-const { Account, User } = require("../models");
+const {
+  Account,
+  User,
+  Asset,
+  AssetApportion,
+  Beneficiary,
+  Witness,
+  Executor,
+} = require("../models");
 const withAuth = require("../utils/auth");
-
 // Starter route,
 router.get("/starter", (req, res) => {
   res.render("starter", {
@@ -35,11 +42,39 @@ router.get("/profile", withAuth, async (req, res) => {
       // join other table data here later
     });
 
+    const userInfo = await User.findByPk(req.session.account_id, {
+      include: [
+        {
+          model: Asset,
+        },
+        {
+          model: Beneficiary,
+        },
+        {
+          model: Executor,
+        },
+        {
+          model: Witness,
+        },
+        {
+          model: AssetApportion,
+        },
+      ],
+    });
+
+    const user = userInfo.get({ plain: true });
+
     const account = accountData.get({ plain: true });
+    console.log(user.beneficiaries);
 
     res.render("profile", {
       layout: "main-1",
       ...account,
+      beneficiaries: user.beneficiaries,
+      executors: user.executors,
+      witnesses: user.witnesses,
+      assets: user.assets,
+      assetApportions: user.asset_apportions,
       logged_in: true,
     });
   } catch (err) {
