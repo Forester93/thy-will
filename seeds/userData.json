@@ -1,8 +1,7 @@
 [
   {
     "id": 1,
-    "first_name": "Mark",
-    "last_name": "Forester",
+    "name": "Mark Forester",
     "gender": true,
     "occupation": "Project Manager",
     "DOB": "12/02/1993",
@@ -14,8 +13,7 @@
   },
   {
     "id": 2,
-    "first_name": "John",
-    "last_name": "Smith",
+    "name": "John Smith",
     "gender": true,
     "occupation": "Hedge Fund Manager",
     "DOB": "17/03/1968",
@@ -26,8 +24,7 @@
   },
   {
     "id": 3,
-    "first_name": "Belina",
-    "last_name": "Apice",
+    "name": "Belina Apice",
     "gender": false,
     "occupation": "HR manager",
     "DOB": "17/03/1970",
