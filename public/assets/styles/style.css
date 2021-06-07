@@ -120,7 +120,7 @@ footer {
 }
 
 
-/* ======================  User page styling ====================== */
+/* ======================  Profile page styling ====================== */
 .dropdown {
   position: relative;
   display: inline-block;
@@ -174,7 +174,7 @@ footer {
   display: flex;
   align-items: center;
 }
-.user .box-head img {
+.user .box-head img{
   height: 80px;
   width: 80px;
   border-radius: 40px;
@@ -234,5 +234,5 @@ footer {
   max-width: 1500px;
 }
 
-/* ======================  OwlCarousel styling ====================== */
+/* ======================  Question pages styling ====================== */
 

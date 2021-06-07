@@ -22,3 +22,12 @@ const loginFormHandler = async (event) => {
 document
   .querySelector("#loginBtn")
   .addEventListener("click", loginFormHandler);
+
+
+const starterPage = () => {
+  document.location.replace("/starter");
+}
+
+document
+  .querySelector("#startBtn")
+  .addEventListener("click", starterPage);
