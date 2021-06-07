@@ -17,29 +17,34 @@ const e = require('express');
 router.get('/:id', withAuth, async (req, res) => {
 	if (req.session.user_id == req.params.id) {
 		try {
-			const userInfo = await User.findOne({
-				where: {
-					id: req.params.id,
-				},
+			const userInfo = await User.findByPk(req.params.id, {
+				include: [
+					{
+						model: Asset,
+					},
+					{
+						model: Beneficiary,
+					},
+					{
+						model: Executor,
+					},
+					{
+						model: Witness,
+					},
+					{
+						model: AssetApportion,
+					},
+				],
 			});
+
+			const user = userInfo.get({ plain: true });
+
+			console.log(user);
 
 			const date = new Date();
 
 			var currentDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
 
-			var fullName = () => {
-				if (!userInfo.getDataValue('middle_name')) {
-					return `${userInfo.getDataValue(
-						'first_name'
-					)} ${userInfo.getDataValue('last_name')}`;
-				} else {
-					return `${userInfo.getDataValue(
-						'first_name'
-					)} ${userInfo.getDataValue('middle_name')} ${userInfo.getDataValue(
-						'last_name'
-					)}`;
-				}
-			};
 			var occupation = userInfo.getDataValue('occupation');
 
 			var address = userInfo.getDataValue('address');
@@ -51,13 +56,7 @@ router.get('/:id', withAuth, async (req, res) => {
 			// 	)}_${userInfo.getDataValue('last_name')}_last_will_and_testament.pdf`
 			// );
 
-			const executorData = await Executor.findAll({
-				where: {
-					user_id: req.params.id,
-				},
-			});
-
-			const executors = executorData.map((results) => results.dataValues);
+			const executors = user.executors;
 
 			const executorTemplate = () => {
 				const executorArray = [];
@@ -103,15 +102,7 @@ router.get('/:id', withAuth, async (req, res) => {
 				return altExecutorString;
 			};
 
-			const beneficiaryData = await Beneficiary.findAll({
-				where: {
-					user_id: req.params.id,
-				},
-			});
-
-			const beneficiaries = beneficiaryData.map(
-				(results) => results.dataValues
-			);
+			const beneficiaries = user.beneficiaries;
 
 			console.log(beneficiaries);
 
@@ -135,15 +126,7 @@ router.get('/:id', withAuth, async (req, res) => {
 				return beneficiaryString;
 			};
 
-			const witnessData = await Witness.findAll({
-				where: {
-					user_id: req.params.id,
-				},
-			});
-
-			const witnesses = witnessData.map((results) => results.dataValues);
-
-			console.log(witnesses);
+			const witnesses = user.witnesses;
 
 			const witnessTemplate = () => {
 				const witnessArray = [];
@@ -176,7 +159,9 @@ router.get('/:id', withAuth, async (req, res) => {
 			doc.text(
 				`Last Will and Testament
 
-    This will dated ${currentDate} is made by me, ${fullName()}, ${occupation}, of ${address}.
+    This will dated ${currentDate} is made by me, ${
+					user.name
+				}, ${occupation}, of ${address}.
     
     Executors
 
@@ -218,7 +203,9 @@ router.get('/:id', withAuth, async (req, res) => {
     
     Declaration
     
-    I, ${fullName()}, declare the above and all included in this document to be my last will and testament.
+    I, ${
+			user.name
+		}, declare the above and all included in this document to be my last will and testament.
     
     
     ___________________________
