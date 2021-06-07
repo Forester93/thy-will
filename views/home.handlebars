@@ -7,7 +7,6 @@
           <li><a href="#" class="menu-btn">Home</a></li>
           <li><a href="#" class="menu-btn">About</a></li>
           <li><a href="#" class="menu-btn">Guide</a></li>
-          <li><a href="#" class="menu-btn">Account</a></li>
           <li><a href="https://legislation.nsw.gov.au/view/whole/html/inforce/current/act-2006-080" target="_blank" ="menu-btn">Legal</a></li>
           <li><a href="#" class="menu-btn">Testimonials</a></li>
           
@@ -26,12 +25,13 @@
           <div class="text-2">We are <span class="typing"></span></div>
           <div>
             <button id="startBtn"><i class="fas fa-pen-fancy"></i> Get Started</button>
-            <button id="modalBtn" data-toggle="modal" data-target="#loginModal"><i class="fas fa-sign-in-alt"></i></i> Login</button>
+            <button id="modalBtn" data-toggle="modal" data-target="#loginModal"><i class="fas fa-sign-in-alt"></i></i> Account</button>
           </div>  
         </div>
       </div>
     </section>
 
+{{!↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ login modal ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓}}
     <div class="modal fade custom-modal" id="loginModal" tabindex="-1" role="dialog"
         aria-labelledby="project-modal-form" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -63,6 +63,7 @@
             
         </div>
     </div>
+{{!↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ login modal ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑}}
 
     <script src="/assets/scripts/login.js"></script>
     {{#if logged_in}}

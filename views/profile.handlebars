@@ -48,7 +48,7 @@
           <h3 class="num">1</h3>
           <h4>Benificiaries</h4>
           <p>Individuals entitled to inherit money or property from this will owner.</p>
-          <a href="/">Start</a>
+          <button id="modalBtn" data-toggle="modal" data-target="#loginModal">Edit</button>
         </div>
         <div class="card" id="part-2">
           <h3 class="checked"><i class="fas fa-check"></i></h3>
@@ -72,16 +72,43 @@
           <h3 class="num">5</h3>
           <h4>Witness</h4>
           <p>Basic info of your nominated Witness</p>
-          <a href="/">Start</a>
-        </div>
-        <div class="card" id="part-6">
-          <h3 class="num">6</h3>
-          <h4>Guardians</h4>
-          <p>Who should looks after your Benificiaries.</p>
-          <a href="/">Start</a>
+          <button id="modalBtn" data-toggle="modal" data-target="#witnessModal">Edit</button>
         </div>
       </div>
     </div>
   </div>
 
   
+  {{!↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Witness modal ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓}}
+    <div class="modal fade custom-modal" id="witnessModal" tabindex="-1" role="dialog"
+        aria-labelledby="project-modal-form" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Login or Sign Up<span class="flash" id="validateMessage"></span></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="login-form">
+                    <div class="modal-body">
+                      <div class="form-group">
+                          <label for="emailInput">Email:</label>
+                          <input type="email" id="email-login" class="form-control" required />
+                      </div>
+                      <div class="form-group">
+                        <label for="pwInput">Password:</label>
+                        <input type= "password" id="password-login" class="form-control" required />
+                      </div>
+                      </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-light" id="signBtn">Sign Up</button>
+                        <button type="submit" class="btn btn-light" id="loginBtn">Login</button>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+{{!↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ login modal ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑}}
