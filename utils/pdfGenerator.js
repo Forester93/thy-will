@@ -2,7 +2,6 @@ const PDFDocument = require('pdfkit');
 const fs = require('fs');
 const sequelize = require('sequelize');
 
-
 const date = new Date();
 
 var currentDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
@@ -20,51 +19,58 @@ doc.pipe(fs.createWriteStream('../public/assets/output.pdf'));
 
 doc.text(
 	`Last Will and Testament
-    This will dated ${currentDate} is made by me, ${fullName}, ${occupation}, of ${address}.
 
+    This will dated ${currentDate} is made by me, ${fullName()}, ${occupation}, of ${address}.
+    
     Executors
+
     The following executors will be responsible for the distribution of my assets as directed by this will.
+    
+    ${executorTemplate()}
+    Alternate executors
 
-    {executors}
-
-    Alternate executors 100
     If the above executors are unavailable, the following alternate executors will take their place.
-
-    {alternateExecutors}
-
+    
+    ${altExecutorTemplate()}
     Non-monetary gifts
+    
     My non-monetary and non-sentimental possessions will be divided as follows:
-
+    
     gifts}
-
+    
     Monetary gifts
-
+    
     My financial assets will be divided as follows:
-
+    
     {financialAssets}
-
+    
     With the rest of my finances, I pledge to the following charities:
-
+    
     {charityDonations}
+    
+    List of Beneficiaries
 
-    Primary Beneficiary
-    The following person is to be the primary beneficiary of my estate
-
-    {primaryBeneficiary}
-
+    The following list contians all people who are beneficiaries to my estate:
+    
+    ${beneficiaryTemplate()}
+    
     Witnesses
-
+    
     The following people have witnessed my signature and initial on each page of this will:
-
-    {witnesses}
-
+    
+    ${witnessTemplate()}
+    
     Declaration
+    
+    I, ${fullName()}, declare the above and all included in this document to be my last will and testament.
+    
+    
+    ___________________________
+    Signature
 
-    I, {fullName}, declare the above and all included in this document to be my last will and testament.
 
-    Signed
-
-    {signature}
+    ___________________________
+    Date signed
     `
 );
 
