@@ -25,7 +25,7 @@
       {{/if}}
       <div>
         <p>Will owner:</p>
-        <p>{{first_name}} {{last_name}}</p>
+        <p>{{name}}</p>
       </div>
     </div>
     <p>Email: <a href="mailto:{{email}}">{{email}}</a></p>
@@ -45,36 +45,53 @@
           <h3 class="num">1</h3>
           <h4>Benificiaries</h4>
           <p>Individuals entitled to inherit money or property from this will owner.</p>
-          <button id="modalBtn" data-toggle="modal" data-target="#benificiaryModal">Add</button>
+          <button id="modalBtn" class="w-100" data-toggle="modal" data-target="#beneficiaryModal">Add</button>
+          {{#each beneficiaries}}
+          {{> beneficiary-details}}
+          {{/each}}
         </div>
         <div class="card" id="part-2">
           <h3 class="num">2</h3>
           <h4>Executors</h4>
           <p>The one to execute your wishes.</p>
-          <button id="modalBtn" data-toggle="modal" data-target="#executorModal">Add</button>
+          <button id="modalBtn" class="w-100" data-toggle="modal" data-target="#executorModal">Add</button>
+          {{#each executors}}
+          {{> executor-details}}
+          {{/each}}
+
         </div>
         <div class="card" id="part-3">
           <h3 class="num">3</h3>
           <h4>Asset</h4>
           <p>A quick list of your major Assets.</p>
-          <button id="modalBtn" data-toggle="modal" data-target="#assetModal">Add</button>
+          <button id="modalBtn" class="w-100" data-toggle="modal" data-target="#assetModal">Add</button>
+          {{#each assets}}
+          {{> asset-details}}
+          {{/each}}
+
         </div>
         <div class="card" id="part-4">
           <h3 class="num">4</h3>
           <h4>AssetApportion</h4>
           <p>Set up percentages for each benificiary.</p>
-          <button id="modalBtn" data-toggle="modal" data-target="#assetModal">Add</button>
+          <button id="modalBtn" class="w-100" data-toggle="modal" data-target="#apportionModal">Add</button>
+          {{#each assetApportions}}
+          {{> assetApportion-details}}
+          {{/each}}
+
         </div>
         <div class="card" id="part-5">
           <h3 class="num">5</h3>
           <h4>Witness</h4>
           <p>Basic info of your nominated Witness</p>
-          <button id="modalBtn" data-toggle="modal" data-target="#witnessModal">Edit</button>
+          <button id="modalBtn" class="w-100" data-toggle="modal" data-target="#witnessModal">Add</button>
+          {{#each witnesses}}
+          {{> witness-details}}
+          {{/each}}
         </div>
       </div>
     </div>
   </div>
-
   
   {{!↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Witness modal ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓}}
   <div class="modal fade custom-modal" id="witnessModal" tabindex="-1" role="dialog" aria-labelledby="project-modal-form" aria-hidden="true">
