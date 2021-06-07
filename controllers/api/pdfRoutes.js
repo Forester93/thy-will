@@ -59,14 +59,7 @@ router.get('/:id', withAuth, async (req, res) => {
 				for (i = 0; i < executors.length; i++) {
 					if (!executors[i].isAlternate) {
 						executorArray.push(
-							`Executor #${executorNumber}
-
-                    Name: ${executors[i].name}
-                    Date of Birth: ${executors[i].DOB}
-                    Relationship: ${executors[i].relationship}
-                    Address: ${executors[i].address}
-
-                `
+							`Executor #${executorNumber}\n\n    Name: ${executors[i].name}\n    Date of Birth: ${executors[i].DOB}\n    Relationship: ${executors[i].relationship}\n    Address: ${executors[i].address}\n\n`
 						);
 						executorNumber++;
 					}
@@ -81,14 +74,7 @@ router.get('/:id', withAuth, async (req, res) => {
 				for (i = 0; i < executors.length; i++) {
 					if (executors[i].isAlternate) {
 						executorArray.push(
-							`Alternate Executor #${executorNumber}
-
-                    Name: ${executors[i].name}
-                    Date of Birth: ${executors[i].DOB}
-                    Relationship: ${executors[i].relationship}
-                    Address: ${executors[i].address}
-
-                `
+							`Alternate Executor #${executorNumber}\n\n    Name: ${executors[i].name}\n    Date of Birth: ${executors[i].DOB}\n    Relationship: ${executors[i].relationship}\n    Address: ${executors[i].address}\n\n`
 						);
 						executorNumber++;
 					}
@@ -104,14 +90,17 @@ router.get('/:id', withAuth, async (req, res) => {
 				for (i = 0; i < beneficiaries.length; i++) {
 					if (!beneficiaries[i].isCharity) {
 						beneficiaryArray.push(
-							`Beneficiary #${i + 1}
-                
-                Name: ${beneficiaries[i].name},
-                DOB: ${beneficiaries[i].DOB},
-                Relationship: ${beneficiaries[i].relationship},
-                Address: ${beneficiaries[i].address}
-
-        `
+							`Beneficiary #${i + 1}\n\n    Name: ${
+								beneficiaries[i].name
+							}\n    DOB: ${beneficiaries[i].DOB}\n    Relationship: ${
+								beneficiaries[i].relationship
+							}\n    Address: ${beneficiaries[i].address}\n\n`
+						);
+					} else {
+						beneficiaryArray.push(
+							`Beneficiary #${i + 1}\n\n    Name: ${
+								beneficiaries[i].name
+							}\n    Address: ${beneficiaries[i].address}\n\n`
 						);
 					}
 				}
@@ -122,15 +111,15 @@ router.get('/:id', withAuth, async (req, res) => {
 			const assetsTemplate = () => {
 				let assetArray = [];
 				for (i = 0; i < assets.length; i++) {
-					assetArray.push(`Asset #${assets[i].id}
-
-Description: ${assets[i].description}
-Type: ${assets[i].type}
-Total value: $${assets[i].value.toFixed(2)}
-
-Apportion instructions: 
-${apportionTemplate(assets[i])}
-`);
+					assetArray.push(
+						`Asset #${assets[i].id}\n\n    Description: ${
+							assets[i].description
+						}\n    Type: ${assets[i].type}\n    Total value: $${assets[
+							i
+						].value.toFixed(
+							2
+						)}\n\n  Apportion instructions:\n\n${apportionTemplate(assets[i])}`
+					);
 				}
 				let assetString = assetArray.join('');
 				return assetString;
@@ -139,17 +128,16 @@ ${apportionTemplate(assets[i])}
 			const apportionTemplate = (assetID) => {
 				let apportionArray = [];
 				for (x = 0; x < assetApportions.length; x++) {
-					// console.log(assetApportions[x].asset_id);
-					// console.log(assetID);
 					if (assetApportions[x].asset_id == assetID.id) {
-						// console.log(assetApportions[x].beneficiary_id);
-						apportionArray.push(`Beneficiary: ${
-							beneficiaries[assetApportions[x].beneficiary_id - 1].name
-						}
-Instruction: ${assetApportions[x].apportion_instructions}
-Apportion value: $${(assetID.value * assetApportions[x].percentage).toFixed(2)}
-
-`);
+						apportionArray.push(
+							`    Beneficiary: ${
+								beneficiaries[assetApportions[x].beneficiary_id - 1].name
+							}\n    Instruction: ${
+								assetApportions[x].apportion_instructions
+							}\n    Apportion value: $${(
+								assetID.value * assetApportions[x].percentage
+							).toFixed(2)}\n\n`
+						);
 					}
 				}
 				let apportionString = apportionArray.join('');
@@ -162,20 +150,11 @@ Apportion value: $${(assetID.value * assetApportions[x].percentage).toFixed(2)}
 				const witnessArray = [];
 				for (i = 0; i < witnesses.length; i++) {
 					witnessArray.push(
-						`Witness #${i + 1}
-                
-                Name: ${witnesses[i].name},
-                Relationship: ${witnesses[i].relationship},
-                Address: ${witnesses[i].address},
-                
-                Date signed: ______________
-
-
-
-                ___________________________
-                Signature
-
-        `
+						`Witness #${i + 1}\n\n    Name: ${
+							witnesses[i].name
+						}\n    Relationship: ${witnesses[i].relationship}\n    Address: ${
+							witnesses[i].address
+						}\n\n\n    Date signed: ______________\n\n\n\n    _________________________\n    Signature\n\n\n`
 					);
 				}
 				let witnessString = witnessArray.join('');
@@ -190,58 +169,98 @@ Apportion value: $${(assetID.value * assetApportions[x].percentage).toFixed(2)}
 
 			console.log(assetApportions);
 
-			const doc = new PDFDocument();
+			const doc = new PDFDocument({ font: 'Times-Roman' });
 
 			doc.pipe(res);
 
-			doc.text(`Last Will and Testament
+			doc.polygon([10, 10], [600, 10], [600, 780], [10, 780]).stroke();
 
-    This will dated ${currentDate} is made by me, ${user.name}, ${
-				user.occupation
-			}, of ${user.address}.
-    
-    Executors
+			doc.fontSize(25).text(`Last Will and Testament\n\n`, {
+				align: 'center',
+				underline: true,
+			});
 
-    The following executors will be responsible for the distribution of my assets as directed by this will.
-    
-    ${executorTemplate()}
-    Alternate executors
+			doc
+				.fontSize(12)
+				.text(
+					`This will dated ${currentDate} is made by me, ${user.name}, ${user.occupation}, of ${user.address}.\n\n`
+				);
 
-    If the above executors are unavailable, the following alternate executors will take their place.
-    
-    ${altExecutorTemplate()}
-List of Beneficiaries
+			doc.fontSize(20).text(`Executors\n\n`, { underline: true });
 
-    The following list contians all people who are beneficiaries to my estate:
-    
-    ${beneficiaryTemplate()}
+			doc
+				.fontSize(12)
+				.text(
+					`The following executors will be responsible for the distribution of my assets as directed by this will.\n\n${executorTemplate()}\n`
+				);
 
-Assets
+			doc.fontSize(20).text(`Alternate executors\n\n`, { underline: true });
 
-Below is a list of all my assets included in this will. Any assets not described in this will shall be divided as per the guidance of my executors.
+			doc
+				.fontSize(12)
+				.text(
+					`If the above executors are unavailable, the following alternate executors will take their place.\n\n${altExecutorTemplate()}`
+				);
 
-${assetsTemplate()}
+			doc.image('./public/assets/images/logo-transparent.png', 495, 675, {
+				fit: [100, 100],
+				align: 'right',
+				valign: 'bottom',
+			});
 
-    Witnesses
-    
-    The following people have witnessed my signature and initial on each page of this will:
-    
-    ${witnessTemplate()}
-    
-    Declaration
-    
-    I, ${
-			user.name
-		}, declare the above and all included in this document to be my last will and testament.
-    
-    
-    ___________________________
-    Signature
+			doc
+				.addPage()
+				.stroke()
+				.fontSize(20)
+				.text(`List of Beneficiaries\n\n`, { underline: true });
 
+			doc
+				.fontSize(12)
+				.text(
+					`The following list contians all people who are beneficiaries to my estate:\n\n${beneficiaryTemplate()}`
+				);
 
-    ___________________________
-    Date signed
-    `);
+			doc
+				.addPage()
+				.stroke()
+				.fontSize(20)
+				.text(`Assets\n\n`, { underline: true });
+
+			doc
+				.fontSize(12)
+				.text(
+					`Below is a list of all my assets included in this will. Any assets not described in this will shall be divided as per the guidance of my executors.\n\n${assetsTemplate()}`
+				);
+
+			doc
+				.addPage()
+				.stroke()
+				.fontSize(20)
+				.text(`Witnesses\n\n`, { underline: true });
+
+			doc
+				.fontSize(12)
+				.text(
+					`The following people have witnessed my signature and initial on each page of this will:\n\n${witnessTemplate()}`
+				);
+
+			doc
+				.addPage()
+				.stroke()
+				.fontSize(20)
+				.text(`Declaration\n\n`, { underline: true });
+
+			doc
+				.fontSize(12)
+				.text(
+					`I, ${user.name}, declare the above and all included in this document to be my last will and testament.\n\n\n\n    ___________________________\n    Signature\n\n\n\n    ___________________________\n    Date signed`
+				);
+
+			doc.image('./public/assets/images/logo-transparent.png', 495, 675, {
+				fit: [100, 100],
+				align: 'right',
+				valign: 'bottom',
+			});
 
 			doc.end();
 
