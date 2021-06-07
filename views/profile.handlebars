@@ -9,12 +9,10 @@
         <button><i class="fas fa-share-alt-square"> Share</i></button>
       </div>
     </li>
-    <li><a href="#">My Will</a></li>
+    <li><a href="/api/pdf/{{id}}" target="_blank">Preview</a></li>
     <li><a href="/" id="logout">Logout</a></li>
   </ul>
 </header>
-
-
 
 <section class="user">
   <div class="logo">Thy<span>Will</span></div>
@@ -43,48 +41,52 @@
   <div class="box-2">
     <div class="max-width">
       <div class="carousel owl-carousel">
-
         <div class="card" id="part-1">
-          <h2 class="order">No.1</h2>
+          <h3 class="num">1</h3>
           <h4>Benificiaries</h4>
-          <h5>Individuals entitled to inherit money or property from this will owner.</h5>
-          <button>Add</button>
+          <p>Individuals entitled to inherit money or property from this will owner.</p>
+          <button id="modalBtn" data-toggle="modal" data-target="#beneficiaryModal">A</button>
           {{#each beneficiaries}}
           {{> beneficiary-details}}
           {{/each}}
         </div>
         <div class="card" id="part-2">
-          <h2 class="order">No.2</h2>
+          <h3 class="checked"><i class="fas fa-check"></i></h3>
           <h4>Executors</h4>
-          <h5>The one to execute your wishes.</h5>
-          <button>Add</button>
+          <p>The one to execute your wishes.</p>
+          <button id="modalBtn" data-toggle="modal" data-target="#executorModal">Add</button>
           {{#each executors}}
           {{> executor-details}}
           {{/each}}
+
         </div>
         <div class="card" id="part-3">
-          <h2 class="order">No.3</h2>
+          <h3 class="num">3</h3>
           <h4>Asset</h4>
-          <h5>A quick list of your major Assets.</h5>
+          <p>A quick list of your major Assets.</p>
+          <button id="modalBtn" data-toggle="modal" data-target="#assetModal">Add</button>
           <button>Add</button>
           {{#each assets}}
           {{> asset-details}}
           {{/each}}
+
         </div>
         <div class="card" id="part-4">
-          <h2 class="order">No.4</h2>
+          <h3 class="num">4</h3>
           <h4>AssetApportion</h4>
-          <h5>Set up percentages for each benificiary.</h5>
-          <button>Add</button>
+          <p>Set up percentages for each benificiary.</p>
+          <button id="modalBtn" data-toggle="modal" data-target="#apportionModal">Add</button>
           {{#each assetApportions}}
           {{> assetApportion-details}}
           {{/each}}
+
         </div>
         <div class="card" id="part-5">
-          <h2 class="order">No.5</h2>
+          <h3 class="num">5</h3>
           <h4>Witness</h4>
-          <h5>Basic info of your nominated Witness</h5>
-          <button>Add</button>
+
+          <p>Basic info of your nominated Witness</p>
+          <button id="modalBtn" data-toggle="modal" data-target="#witnessModal">Add</button>
           {{#each witnesses}}
           {{> witness-details}}
           {{/each}}
@@ -92,6 +94,39 @@
       </div>
     </div>
   </div>
-
-  <script src="/assets/scripts/carousel.js"></script>
-  <script src="/assets/scripts/profile.js"></script>
+  
+  {{!↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Witness modal ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓}}
+  <div class="modal fade custom-modal" id="witnessModal" tabindex="-1" role="dialog" aria-labelledby="project-modal-form" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Witness<span class="flash" id="validateMessage"></span></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <form id="witness-form">
+          <div class="modal-body">
+            <div class="form-group">
+              <label>Name:</label>
+              <input type="text" id="witnessName" class="form-control" placeholder="First Last" required />
+            </div>
+            <div class="form-group">
+              <label>Relationship:</label>
+              <select class="form-control" id="witnessRelation" required>
+                <option value="Friend">Friend</option>
+                <option value="Relatives">Relatives</option>
+                <option value="Business Partner">Business Partner</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Address:</label>
+              <input type="text" id="witnessAddress" class="form-control" placeholder="79 Main Road, Suburb NSW" required />
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-light" id="loginBtn">Save</button>
+            </div>
+          </div>
+        </form>        
+      </div>     
+    </div>
+  </div> 
+{{!↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ Witness modal ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑}} 
