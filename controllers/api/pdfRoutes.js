@@ -10,9 +10,6 @@ const {
 	Witness,
 } = require('../../models');
 
-const executorTemplate = require('../../utils/willGenerator/executorTemplate');
-const e = require('express');
-
 router.get('/:id', withAuth, async (req, res) => {
 	if (req.session.account_id == req.params.id) {
 		try {
@@ -175,6 +172,18 @@ router.get('/:id', withAuth, async (req, res) => {
 
 			doc.polygon([10, 10], [600, 10], [600, 780], [10, 780]).stroke();
 
+			doc.on('pageAdded', () =>
+				doc.polygon([10, 10], [600, 10], [600, 780], [10, 780]).stroke()
+			);
+
+			doc.on('pageAdded', () =>
+				doc.image('./public/assets/images/logo-transparent.png', 495, 675, {
+					fit: [100, 100],
+					align: 'right',
+					valign: 'bottom',
+				})
+			);
+
 			doc.fontSize(25).text(`Last Will and Testament\n\n`, {
 				align: 'center',
 				underline: true,
@@ -255,12 +264,6 @@ router.get('/:id', withAuth, async (req, res) => {
 				.text(
 					`I, ${user.name}, declare the above and all included in this document to be my last will and testament.\n\n\n\n    ___________________________\n    Signature\n\n\n\n    ___________________________\n    Date signed`
 				);
-
-			doc.image('./public/assets/images/logo-transparent.png', 495, 675, {
-				fit: [100, 100],
-				align: 'right',
-				valign: 'bottom',
-			});
 
 			doc.end();
 
