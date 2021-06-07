@@ -5,7 +5,7 @@ const loginFormHandler = async (event) => {
   const password = document.querySelector("#password-login").value.trim();
 
   if (email && password) {
-    const response = await fetch("/api/users", {
+    const response = await fetch("/api/accounts", {
       method: "POST",
       body: JSON.stringify({ email, password }),
       headers: { "Content-Type": "application/json" },
@@ -19,15 +19,10 @@ const loginFormHandler = async (event) => {
   }
 };
 
-document
-  .querySelector("#loginBtn")
-  .addEventListener("click", loginFormHandler);
-
+document.querySelector("#loginBtn").addEventListener("click", loginFormHandler);
 
 const starterPage = () => {
   document.location.replace("/starter");
-}
+};
 
-document
-  .querySelector("#startBtn")
-  .addEventListener("click", starterPage);
+document.querySelector("#startBtn").addEventListener("click", starterPage);

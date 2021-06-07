@@ -4,14 +4,20 @@ const Executor = require("./Executor");
 const Asset = require("./Asset");
 const AssetApportion = require("./AssetApportion");
 const Witness = require("./Witness");
+const Account = require("./Account");
 
-//To-do: Set relationships between tables here.
+// Account has ...
+
+Account.hasOne(User, { onDelete: "cascade" });
+User.belongsTo(Account, { foreignKey: "accound_id" });
+
 // User has...
 
 User.hasMany(Asset, { onDelete: "cascade" });
 User.hasMany(Beneficiary, { onDelete: "cascade" });
 User.hasMany(Executor, { onDelete: "cascade" });
 User.hasMany(Witness, { onDelete: "cascade" });
+User.hasMany(AssetApportion, { onDelete: "cascade" });
 
 // Belongs to One user
 
@@ -24,6 +30,7 @@ Witness.belongsTo(User, { foreignKey: "user_id" });
 
 Asset.belongsToMany(Beneficiary, { through: AssetApportion });
 Beneficiary.belongsToMany(Asset, { through: AssetApportion });
+AssetApportion.belongsTo(User, { foreignKey: "user_id" });
 
 module.exports = {
   User,
@@ -32,4 +39,5 @@ module.exports = {
   Asset,
   AssetApportion,
   Witness,
+  Account,
 };

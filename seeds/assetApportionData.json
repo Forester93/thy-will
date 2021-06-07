@@ -4,167 +4,191 @@
     "asset_id": 1,
     "beneficiary_id": 1,
     "percentage": 0.5,
-    "apportion_instructions": "Half of the shares for the wife."
+    "apportion_instructions": "Half of the shares for the wife.",
+    "user_id": 1
   },
   {
     "id": 2,
     "asset_id": 1,
     "beneficiary_id": 2,
     "percentage": 0.25,
-    "apportion_instructions": "Quarter of the shares for the daughter."
+    "apportion_instructions": "Quarter of the shares for the daughter.",
+    "user_id": 1
   },
   {
     "id": 3,
     "asset_id": 1,
     "beneficiary_id": 3,
     "percentage": 0.25,
-    "apportion_instructions": "Quarter of the shares for the daughter."
+    "apportion_instructions": "Quarter of the shares for the daughter.",
+    "user_id": 1
   },
   {
     "id": 4,
     "asset_id": 2,
     "beneficiary_id": 1,
     "percentage": 0.34,
-    "apportion_instructions": "One third of the property for the wife"
+    "apportion_instructions": "One third of the property for the wife",
+    "user_id": 1
   },
   {
     "id": 5,
     "asset_id": 2,
     "beneficiary_id": 2,
     "percentage": 0.33,
-    "apportion_instructions": "One third of the property for the daughter"
+    "apportion_instructions": "One third of the property for the daughter",
+    "user_id": 1
   },
   {
     "id": 6,
     "asset_id": 2,
     "beneficiary_id": 3,
     "percentage": 0.33,
-    "apportion_instructions": "One third of the property for the daughter"
+    "apportion_instructions": "One third of the property for the daughter",
+    "user_id": 1
   },
   {
     "id": 7,
     "asset_id": 3,
     "beneficiary_id": 1,
     "percentage": 1,
-    "apportion_instructions": "Car goes to the wife"
+    "apportion_instructions": "Car goes to the wife",
+    "user_id": 1
   },
   {
     "id": 8,
     "asset_id": 4,
     "beneficiary_id": 2,
     "percentage": 0.4,
-    "apportion_instructions": "40% of the cash to the daughter"
+    "apportion_instructions": "40% of the cash to the daughter",
+    "user_id": 1
   },
   {
     "id": 9,
     "asset_id": 4,
     "beneficiary_id": 3,
     "percentage": 0.4,
-    "apportion_instructions": "40% of the cash to the daughter"
+    "apportion_instructions": "40% of the cash to the daughter",
+    "user_id": 1
   },
   {
     "id": 10,
     "asset_id": 4,
     "beneficiary_id": 4,
     "percentage": 0.2,
-    "apportion_instructions": "20% of the cash to charity"
+    "apportion_instructions": "20% of the cash to charity",
+    "user_id": 1
   },
   {
     "id": 11,
     "asset_id": 5,
     "beneficiary_id": 1,
     "percentage": 1,
-    "apportion_instructions": "Diary goes to the wife"
+    "apportion_instructions": "Diary goes to the wife",
+    "user_id": 1
   },
   {
     "id": 12,
     "asset_id": 6,
     "beneficiary_id": 1,
     "percentage": 1,
-    "apportion_instructions": "Superannuation goes to the wife"
+    "apportion_instructions": "Superannuation goes to the wife",
+    "user_id": 1
   },
   {
     "id": 13,
     "asset_id": 7,
     "beneficiary_id": 5,
     "percentage": 0.5,
-    "apportion_instructions": "Half of the shares for the wife."
+    "apportion_instructions": "Half of the shares for the wife.",
+    "user_id": 2
   },
   {
     "id": 14,
     "asset_id": 7,
     "beneficiary_id": 6,
     "percentage": 0.25,
-    "apportion_instructions": "Quarter of the shares for the son."
+    "apportion_instructions": "Quarter of the shares for the son.",
+    "user_id": 2
   },
   {
     "id": 15,
     "asset_id": 7,
     "beneficiary_id": 7,
     "percentage": 0.25,
-    "apportion_instructions": "Quarter of the shares for the daughter."
+    "apportion_instructions": "Quarter of the shares for the daughter.",
+    "user_id": 2
   },
   {
     "id": 16,
     "asset_id": 8,
     "beneficiary_id": 5,
     "percentage": 0.34,
-    "apportion_instructions": "One third of the property for the wife"
+    "apportion_instructions": "One third of the property for the wife",
+    "user_id": 2
   },
   {
     "id": 17,
     "asset_id": 8,
     "beneficiary_id": 6,
     "percentage": 0.33,
-    "apportion_instructions": "One third of the property for the son"
+    "apportion_instructions": "One third of the property for the son",
+    "user_id": 2
   },
   {
     "id": 18,
     "asset_id": 8,
     "beneficiary_id": 7,
     "percentage": 0.33,
-    "apportion_instructions": "One third of the property for the daughter"
+    "apportion_instructions": "One third of the property for the daughter",
+    "user_id": 2
   },
   {
     "id": 19,
     "asset_id": 9,
     "beneficiary_id": 5,
     "percentage": 1,
-    "apportion_instructions": "Car goes to the wife"
+    "apportion_instructions": "Car goes to the wife",
+    "user_id": 2
   },
   {
     "id": 20,
     "asset_id": 10,
     "beneficiary_id": 6,
     "percentage": 0.4,
-    "apportion_instructions": "40% of the cash to the son"
+    "apportion_instructions": "40% of the cash to the son",
+    "user_id": 2
   },
   {
     "id": 21,
     "asset_id": 10,
     "beneficiary_id": 7,
     "percentage": 0.4,
-    "apportion_instructions": "40% of the cash to the daughter"
+    "apportion_instructions": "40% of the cash to the daughter",
+    "user_id": 2
   },
   {
     "id": 22,
     "asset_id": 10,
     "beneficiary_id": 8,
     "percentage": 0.2,
-    "apportion_instructions": "20% of the cash to charity"
+    "apportion_instructions": "20% of the cash to charity",
+    "user_id": 2
   },
   {
     "id": 23,
     "asset_id": 11,
     "beneficiary_id": 5,
     "percentage": 1,
-    "apportion_instructions": "Diary goes to the wife"
+    "apportion_instructions": "Diary goes to the wife",
+    "user_id": 2
   },
   {
     "id": 24,
     "asset_id": 12,
     "beneficiary_id": 5,
     "percentage": 1,
-    "apportion_instructions": "Superannuation goes to the wife"
+    "apportion_instructions": "Superannuation goes to the wife",
+    "user_id": 2
   }
 ]

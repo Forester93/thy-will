@@ -1,39 +1,33 @@
 [
   {
     "id": 1,
-    "first_name": "Mark",
-    "last_name": "Forester",
+    "name": "Mark Forester",
     "gender": true,
     "occupation": "Project Manager",
     "DOB": "12/02/1993",
     "casket": "Rosewood & Crucifix",
     "ceremony": "Catholic",
     "address": "19 Gardener Street, Suburb NSW",
-    "email": "mark@example.com",
-    "password": "password12345"
+    "account_id": 1
   },
   {
     "id": 2,
-    "first_name": "John",
-    "last_name": "Smith",
+    "name": "John Smith",
     "gender": true,
     "occupation": "Hedge Fund Manager",
     "DOB": "17/03/1968",
     "ceremony": "Jewish",
     "address": "55 Pitt Street, Sydney NSW",
-    "email": "john@smith.com",
-    "password": "password12345"
+    "account_id": 2
   },
   {
     "id": 3,
-    "first_name": "Belina",
-    "last_name": "Apice",
+    "name": "Belina Apice",
     "gender": false,
     "occupation": "HR manager",
     "DOB": "17/03/1970",
     "ceremony": "Catholic",
     "address": "30 Johnstone Street, Glengowrie SA",
-    "email": "Belina@Apice.com",
-    "password": "password12345"
+    "account_id": 3
   }
 ]
