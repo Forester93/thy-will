@@ -1,5 +1,5 @@
-function trial() {
-  console.log("Hello World");
+function unobjectify(item) {
+  return JSON.stringify(item);
 }
 
-module.exports = { trial };
+module.exports = { unobjectify };
