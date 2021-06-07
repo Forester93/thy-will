@@ -1,9 +1,9 @@
-const router = require('express').Router();
-const userRoutes = require('./userRoutes');
-const pdfRoutes = require('./pdfRoutes');
+const router = require("express").Router();
+const accountRoutes = require("./accountRoutes");
+const pdfRoutes = require("./pdfRoutes");
 
-router.use('/users', userRoutes);
+router.use("/accounts", accountRoutes);
 
-router.use('/pdf', pdfRoutes);
+router.use("/pdf", pdfRoutes);
 
 module.exports = router;

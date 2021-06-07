@@ -1,30 +1,28 @@
 const router = require("express").Router();
-const { User } = require("../models");
+const { Account, User } = require("../models");
 const withAuth = require("../utils/auth");
 
-// Starter route, 
-router.get('/starter', (req, res) => {
-  res.render('starter',{
-    layout:"main-1",
+// Starter route,
+router.get("/starter", (req, res) => {
+  res.render("starter", {
+    layout: "main-1",
   });
 });
 
-router.get('/starter/asset', (req, res) => {
-  res.render('asset',{
-    layout:"main-1",
+router.get("/starter/asset", (req, res) => {
+  res.render("asset", {
+    layout: "main-1",
   });
 });
-
-
 
 // This is home route, If the user is already logged in, redirect to user's profile page
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
   if (req.session.logged_in) {
-    res.redirect('/profile');
+    res.redirect("/profile");
     return;
   }
-  res.render('home',{
-    layout:"main",
+  res.render("home", {
+    layout: "main",
   });
 });
 
@@ -32,24 +30,21 @@ router.get('/', (req, res) => {
 router.get("/profile", withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
-    const userData = await User.findByPk(req.session.user_id, {
+    const accountData = await Account.findByPk(req.session.account_id, {
       attributes: { exclude: ["password"] },
-    // join other table data here later
+      // join other table data here later
     });
 
-    const user = userData.get({ plain: true });
-    
+    const account = accountData.get({ plain: true });
+
     res.render("profile", {
-      layout:"main-1",
-      ...user,
-      logged_in: true
+      layout: "main-1",
+      ...account,
+      logged_in: true,
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
-
-
-
 
 module.exports = router;
