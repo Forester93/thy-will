@@ -189,24 +189,59 @@ footer {
 
 .box-2 .card{
   width: 300px;
-  height: 300px;
+  height: 400px;
   padding: 15px;
   border-radius: 8px;
-  text-align: center;
+  align-items: flex-start;
   background-color: var(--themeColor3);
   cursor: pointer;
   transition: all 0.3s ease;
 }
 .box-2 .card:hover{
-  transform: scale(1.05);
-  box-shadow: 0px 0px 8px pink;
+  box-shadow: 0px 0px 16px pink;
+}
+.box-2 .card .num{
+  width: 60px;
+  height: 60px;
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 10px;
+  border-radius: 30px;
+  border: 2px dashed cadetblue;
+}
+.box-2 .card .checked{
+  width: 60px;
+  height: 60px;
+  padding: 10px;
+  color: white;
+  text-align: center;
+  margin-bottom: 10px;
+  border-radius: 30px;
+  background-color: green
 }
 .box-2 .card .order{
-  font-size: 24px;
+  text-align: center;
+  font-size: 25px;
   font-weight: 500;
-  padding: 10px 0;
-  border: 1px dashed cadetblue;
+  padding: 10px;
+  border-radius: 25px;
+  border: 3px dashed cadetblue;
 }
+.box-2 .card a{
+  margin-top: auto;
+  text-decoration: none;
+  background: var(--themeColor1);
+  color: white;
+  padding: 6px 20px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+.box-2 .card a:hover{
+  color: var(--themeColor1);
+  border: 1px solid var(--themeColor1);
+  background-color: var(--themeColor2);
+}
+
 
 .owl-dots{
   text-align: center;
