@@ -4,8 +4,13 @@ const Executor = require("./Executor");
 const Asset = require("./Asset");
 const AssetApportion = require("./AssetApportion");
 const Witness = require("./Witness");
+const Account = require("./Account");
 
-//To-do: Set relationships between tables here.
+// Account has ...
+
+Account.hasOne(User, { onDelete: "cascade" });
+User.belongsTo(Account, { foreignKey: "accound_id" });
+
 // User has...
 
 User.hasMany(Asset, { onDelete: "cascade" });
@@ -34,4 +39,5 @@ module.exports = {
   Asset,
   AssetApportion,
   Witness,
+  Account,
 };

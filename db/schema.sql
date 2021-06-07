@@ -14,4 +14,4 @@ FROM
 beneficiary JOIN asset JOIN asset_apportion 
 ON beneficiary.id=asset_apportion.beneficiary_id 
 AND asset.id=asset_apportion.asset_id 
-AND beneficiary.user_id=(SELECT user.id FROM user WHERE CONCAT(first_name," ",last_name)="John Smith") ;
+AND beneficiary.user_id=(SELECT user.id FROM user WHERE name="John Smith") ORDER by beneficiary.name ;
