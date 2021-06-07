@@ -101,7 +101,7 @@
     "beneficiary_id": 5,
     "percentage": 0.5,
     "apportion_instructions": "Half of the shares for the wife.",
-    "user_id": 1
+    "user_id": 2
   },
   {
     "id": 14,
@@ -109,7 +109,7 @@
     "beneficiary_id": 6,
     "percentage": 0.25,
     "apportion_instructions": "Quarter of the shares for the son.",
-    "user_id": 1
+    "user_id": 2
   },
   {
     "id": 15,
@@ -117,7 +117,7 @@
     "beneficiary_id": 7,
     "percentage": 0.25,
     "apportion_instructions": "Quarter of the shares for the daughter.",
-    "user_id": 1
+    "user_id": 2
   },
   {
     "id": 16,
@@ -125,7 +125,7 @@
     "beneficiary_id": 5,
     "percentage": 0.34,
     "apportion_instructions": "One third of the property for the wife",
-    "user_id": 1
+    "user_id": 2
   },
   {
     "id": 17,
@@ -133,7 +133,7 @@
     "beneficiary_id": 6,
     "percentage": 0.33,
     "apportion_instructions": "One third of the property for the son",
-    "user_id": 1
+    "user_id": 2
   },
   {
     "id": 18,
@@ -141,7 +141,7 @@
     "beneficiary_id": 7,
     "percentage": 0.33,
     "apportion_instructions": "One third of the property for the daughter",
-    "user_id": 1
+    "user_id": 2
   },
   {
     "id": 19,
@@ -149,7 +149,7 @@
     "beneficiary_id": 5,
     "percentage": 1,
     "apportion_instructions": "Car goes to the wife",
-    "user_id": 1
+    "user_id": 2
   },
   {
     "id": 20,
@@ -157,7 +157,7 @@
     "beneficiary_id": 6,
     "percentage": 0.4,
     "apportion_instructions": "40% of the cash to the son",
-    "user_id": 1
+    "user_id": 2
   },
   {
     "id": 21,
@@ -165,7 +165,7 @@
     "beneficiary_id": 7,
     "percentage": 0.4,
     "apportion_instructions": "40% of the cash to the daughter",
-    "user_id": 1
+    "user_id": 2
   },
   {
     "id": 22,
@@ -173,7 +173,7 @@
     "beneficiary_id": 8,
     "percentage": 0.2,
     "apportion_instructions": "20% of the cash to charity",
-    "user_id": 1
+    "user_id": 2
   },
   {
     "id": 23,
@@ -181,7 +181,7 @@
     "beneficiary_id": 5,
     "percentage": 1,
     "apportion_instructions": "Diary goes to the wife",
-    "user_id": 1
+    "user_id": 2
   },
   {
     "id": 24,
@@ -189,6 +189,6 @@
     "beneficiary_id": 5,
     "percentage": 1,
     "apportion_instructions": "Superannuation goes to the wife",
-    "user_id": 1
+    "user_id": 2
   }
 ]
