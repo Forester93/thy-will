@@ -7,3 +7,13 @@ fetch("/api/users/data/1")
   .then((response) => {
     console.log(response);
   });
+
+// ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ All page rendering relevant codes ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+const addBenificiary = () => {
+
+}
+
+searchFormEl.on('click', '#searchBtn', modalSubmit);
+
+
+// ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ All page rendering relevant codes ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑

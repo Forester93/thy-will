@@ -108,7 +108,7 @@ footer {
   color: var(--themeColor1);
   font-weight: bolder;
 }
-.home .home-content button{
+.home .home-content button {
   display: inline-block;
   background: var(--themeColor1);
   color: white;
@@ -118,7 +118,6 @@ footer {
   border-radius: 8px;
   transition: all 0.3s ease;
 }
-
 
 /* ======================  Profile page styling ====================== */
 .dropdown {
@@ -174,7 +173,7 @@ footer {
   display: flex;
   align-items: center;
 }
-.user .box-head img{
+.user .box-head img {
   height: 80px;
   width: 80px;
   border-radius: 40px;
@@ -187,9 +186,18 @@ footer {
   font-weight: 600;
 }
 
-.box-2 .card{
+.box-2 .card .updateBtn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.box-2 .card .updateBtn span{
+  text-align: left;
+}
+.box-2 .card {
   width: 300px;
-  height: 400px;
+  height: 550px;
   padding: 15px;
   border-radius: 8px;
   align-items: flex-start;
@@ -197,10 +205,15 @@ footer {
   cursor: pointer;
   transition: all 0.3s ease;
 }
-.box-2 .card:hover{
+
+.box-2 .card .subBtn {
+  margin-top: auto;
+}
+
+.box-2 .card:hover {
   box-shadow: 0px 0px 16px pink;
 }
-.box-2 .card .num{
+.box-2 .card .num {
   width: 60px;
   height: 60px;
   padding: 10px;
@@ -209,25 +222,8 @@ footer {
   border-radius: 30px;
   border: 2px dashed cadetblue;
 }
-.box-2 .card .checked{
-  width: 60px;
-  height: 60px;
-  padding: 10px;
-  color: white;
-  text-align: center;
-  margin-bottom: 10px;
-  border-radius: 30px;
-  background-color: green
-}
-.box-2 .card .order{
-  text-align: center;
-  font-size: 25px;
-  font-weight: 500;
-  padding: 10px;
-  border-radius: 25px;
-  border: 3px dashed cadetblue;
-}
-.box-2 .card a{
+
+.box-2 .card a {
   margin-top: auto;
   text-decoration: none;
   background: var(--themeColor1);
@@ -236,38 +232,36 @@ footer {
   border-radius: 8px;
   transition: all 0.3s ease;
 }
-.box-2 .card a:hover{
+.box-2 .card a:hover {
   color: var(--themeColor1);
   border: 1px solid var(--themeColor1);
   background-color: var(--themeColor2);
 }
 
-
-.owl-dots{
+.owl-dots {
   text-align: center;
   margin-top: 20px;
 }
-.owl-dot{
+.owl-dot {
   height: 13px;
   width: 13px;
   margin: 0 10px;
-  outline: none!important;
+  outline: none !important;
   border-radius: 50%;
-  border: 2px solid var(--themeColor1)!important;
+  border: 2px solid var(--themeColor1) !important;
   transition: all 0.3s ease;
 }
-.owl-dot.active{
+.owl-dot.active {
   width: 35px;
   border-radius: 14px;
 }
 .owl-dot.active,
-.owl-dot:hover{
-  background: var(--themeColor1)!important;
+.owl-dot:hover {
+  background: var(--themeColor1) !important;
 }
 
-.carousel{
+.carousel {
   max-width: 1500px;
 }
 
 /* ======================  Question pages styling ====================== */
-
