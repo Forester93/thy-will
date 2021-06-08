@@ -170,7 +170,7 @@
     </div>
   </div> 
   {{!↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑  Modal Beneficiary Adding ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑}}
-
+                {{! model for executors}}
 
 <div class="modal fade custom-modal" id="executorsModal" tabindex="-1" role="dialog" aria-labelledby="project-modal-form" aria-hidden="true">
     <div class="modal-dialog modal-lg"> {{! model header added by jack}}
@@ -209,10 +209,7 @@
               <label>Executor Alternate</label>
               <input type="checkbox" id="isAlternate" class="form-control" enabled = required />
             </div>
-
-
-
-        <div class="modal-footer">
+              <div class="modal-footer">
               <button type="submit" class="btn btn-light" id="executorModal">Save</button>
             </div>
 
@@ -222,7 +219,47 @@
       </div>     
     </div>
   </div> 
+                    {{! model for assets}}
 
+    <div class="modal fade custom-modal" id="assetsModal" tabindex="-1" role="dialog" aria-labelledby="project-modal-form" aria-hidden="true">
+    <div class="modal-dialog modal-lg"> {{! model assets header added by jack}}
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="assetsModalTitle">Add Assets</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+
+        <div class="form-group"> {{! jack added form for asset ID please check  }}
+              <label>Asset ID</label>
+              <input type="text" id="assetId" class="form-control" enabled = false />
+            </div>
+
+            <div class="form-group"> {{! jack added form asset description }}
+              <label>Asset Description</label>
+              <input type="text" id="assetDescription" class="form-control" enabled = required />
+            </div>
+
+            <div class="form-group"> {{! jack added form for type of asset, text for now could be drop down}}
+              <label>Asset Type</label>
+              <input type="text" id="assetType" class="form-control" enabled = required />
+            </div>
+
+            <div class="form-group"> {{! jack added form for  asset value }}
+              <label>Asset value</label>
+              <input type="text" id="assetValue" class="form-control" enabled = required />
+            </div>
+
+              <div class="modal-footer"> {{!asset model save button}}
+              <button type="submit" class="btn btn-light" id="assetsModal">Save</button>
+            </div>
+
+          </div>
+        </form>  
+
+      </div>     
+    </div>
+  </div> 
 
 
 
