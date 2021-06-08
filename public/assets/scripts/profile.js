@@ -1,3 +1,7 @@
+
+// ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Codes about page rendering ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+
+// }
 let beneficiaryName = $("#beneficiaryName");
 let beneficiaryDOB = $("#beneficiaryDOB");
 let beneficiaryAddress = $("#beneficiaryAddress");
@@ -56,6 +60,9 @@ function updateBeneficiaryModal(event) {
   let benificiaryBtn = $(event.target);
   
   let beneficiaryObject = JSON.parse(benificiaryBtn.attr("data"));
+
+  console.log(beneficiaryObject);
+
   beneficiaryID.val(beneficiaryObject.id);
   beneficiaryName.val(beneficiaryObject.name);
   beneficiaryDOB.val(beneficiaryObject.DOB);
