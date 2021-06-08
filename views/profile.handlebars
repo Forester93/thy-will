@@ -16,7 +16,14 @@
 
 <section class="user">
   <div class="logo">Thy<span>Will</span></div>
-  <div class="box-1">
+
+
+  {{!-- <h2 class="title">Your Will is <span class="status">in Progress</span></h2> --}}
+
+  <div class="box-2">
+    <div class="max-width">
+      <div class="carousel owl-carousel">
+          <div class="box-1">
     <div class="box-head">
       {{#if gender}}
       <img src="/assets/images/users/oldman.jpg" alt="oldman">
@@ -35,52 +42,46 @@
     <p>Ceremony: {{ceremony}}</p>
     <button>Edit</button>
   </div>
-
-  <h2 class="title">Your Will is <span class="status">in Progress</span></h2>
-
-  <div class="box-2">
-    <div class="max-width">
-      <div class="carousel owl-carousel">
         <div class="card" id="part-1">
           <h3 class="num">1</h3>
           <h4>Benificiaries</h4>
-          <p>Individuals entitled to inherit money or property from this will owner.</p>
+          <p>Individuals and/or organisations to inherit.</p>
           <div class="w-100 part-1-list" id="part-1-list">
             {{#each beneficiaries}}
             {{> beneficiary-details}}
             {{/each}}
           </div>
-          <button data-toggle="modal" data-target="#beneficiaryAdd"><i class="fas fa-plus"></i></button>
+          <button data-toggle="modal" data-target="#beneficiaryModal" id="launchBeneficiary"><i class="fas fa-plus"></i></button>
         </div>
 
         <div class="card" id="part-2">
           <h3 class="num">2</h3>
           <h4>Executors</h4>
-          <p>The one to execute your wishes.</p>
+          <p>The ones to execute your will.</p>
           {{#each executors}}
           {{> executor-details}}
           {{/each}}
-          <button class="w-100 addBtn" data-toggle="modal" data-target="#executorModal">Add</button>
+          <button data-toggle="modal" data-target="#executorModal" id="launchExecutor"><i class="fas fa-plus"></i></button>
         </div>
 
         <div class="card" id="part-3">
           <h3 class="num">3</h3>
           <h4>Asset</h4>
-          <p>A quick list of your major Assets.</p>
-          <button class="w-100" data-toggle="modal" data-target="#assetModal">Add</button>
+          <p>A list of your major Assets.</p>
           {{#each assets}}
           {{> asset-details}}
           {{/each}}
+          <button data-toggle="modal" data-target="#assetModal" id="launchAsset"><i class="fas fa-plus"></i></button>
 
         </div>
         <div class="card" id="part-4">
           <h3 class="num">4</h3>
           <h4>AssetApportion</h4>
           <p>Set up percentages for each benificiary.</p>
-          <button class="w-100" data-toggle="modal" data-target="#apportionModal">Add</button>
           {{#each assetApportions}}
           {{> assetApportion-details}}
           {{/each}}
+          <button data-toggle="modal" data-target="#assetApportionModal" id="launchAssetApportion"><i class="fas fa-plus"></i></button>
 
         </div>
         <div class="card" id="part-5">
@@ -90,7 +91,7 @@
           {{#each witnesses}}
           {{> witness-details}}
           {{/each}}
-          <button class="w-100 addBtn" data-toggle="modal" data-target="#witnessModal">Add</button>
+          <button data-toggle="modal" data-target="#witnessModal" id="launchWitness"><i class="fas fa-plus"></i></button>
         </div>
       </div>
     </div>
@@ -107,7 +108,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
 
-        <form id="beneficiary-add">
+        <form id="beneficiary">
           <div class="modal-body">
 
             <div class="form-group" 
@@ -160,7 +161,7 @@
 
 
             <div class="modal-footer">
-              <button type="submit" class="btn btn-light" id="addBeneficiary">Save</button>
+              <button type="submit" class="btn btn-light" id="beneficiarySave">Save</button>
             </div>
 
           </div>
@@ -170,17 +171,18 @@
     </div>
   </div> 
   {{!↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑  Modal Beneficiary Adding ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑}}
-                {{! model for executors}}
+  {{!↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓  Modal Executor Adding    ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓}}
 
-<div class="modal fade custom-modal" id="executorsModal" tabindex="-1" role="dialog" aria-labelledby="project-modal-form" aria-hidden="true">
+<div class="modal fade custom-modal" id="executorModal" tabindex="-1" role="dialog" aria-labelledby="project-modal-form" aria-hidden="true">
     <div class="modal-dialog modal-lg"> {{! model header added by jack}}
       <div class="modal-content">
 
         <div class="modal-header">
-          <h5 class="modal-title" id="executorsModalTitle">Executor Details</h5>
+          <h5 class="modal-title" id="executorModalTitle">Executor Details</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
-
+        <form id="executor">
+        <div class="modal-body">
         <div class="form-group"> {{! jack added form for  executor ID please check  }}
               <label>Executor ID</label>
               <input type="text" id="executorId" class="form-control" enabled = false />
@@ -210,7 +212,7 @@
               <input type="checkbox" id="executorIsAlternate" class="form-control" enabled = required />
             </div>
               <div class="modal-footer">
-              <button type="submit" class="btn btn-light" id="executorModal">Save</button>
+              <button type="submit" class="btn btn-light" id="executorSave">Save</button>
             </div>
 
           </div>
@@ -218,19 +220,22 @@
 
       </div>     
     </div>
-  </div> 
-                    {{! model for assets}}
+</div>
 
-    <div class="modal fade custom-modal" id="assetsModal" tabindex="-1" role="dialog" aria-labelledby="project-modal-form" aria-hidden="true">
+{{! modal for assets}}
+
+    <div class="modal fade custom-modal" id="assetModal" tabindex="-1" role="dialog" aria-labelledby="project-modal-form" aria-hidden="true">
     <div class="modal-dialog modal-lg"> {{! model assets header added by jack}}
       <div class="modal-content">
+        <form id="asset">
+        <div class="modal-body">
 
         <div class="modal-header">
           <h5 class="modal-title" id="assetsModalTitle">Add Assets</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
 
-        <div class="form-group"> {{! jack added form for asset ID please check  }}
+            <div class="form-group"> {{! jack added form for asset ID please check  }}
               <label>Asset ID</label>
               <input type="text" id="assetId" class="form-control" enabled = false />
             </div>
@@ -251,15 +256,14 @@
             </div>
 
               <div class="modal-footer"> {{!asset model save button}}
-              <button type="submit" class="btn btn-light" id="assetsModal">Save</button>
+              <button type="submit" class="btn btn-light" id="assetSave">Save</button>
             </div>
 
           </div>
         </form>  
-
+        </div> 
       </div>     
     </div>
-  </div> 
 
 
 
@@ -282,6 +286,7 @@
   <div class="modal fade custom-modal" id="witnessModal" tabindex="-1" role="dialog" aria-labelledby="project-modal-form" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
+        <form id="witness">
         <div class="modal-header">
           <h5 class="modal-title">Add Witness</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>

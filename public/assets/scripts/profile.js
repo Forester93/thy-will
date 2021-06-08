@@ -1,4 +1,3 @@
-
 // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Codes about page rendering ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 
 // }
@@ -22,6 +21,11 @@ let executorRelation = $("#executorRelation");
 let executorIsAlternate = $("#executorIsAlternate");
 let executorAdd = $("#executorAdd");
 let executorUpdate = $("#executorUpdate");
+
+let assetID = $("#assetId");
+let assetDescription = $("#assetDescription");
+let assetValue = $("#assetValue");
+let assetType = $("#assetType");
 
 // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Beneficiary relevant codes ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 $("#addBeneficiary").on("submit", addBenificiary);
@@ -52,27 +56,23 @@ function deleteBenificiary(event) {
   // console.log(beneficiaryOb.id);
   $(event.target).parent().remove();
   fetch(`/api/beneficiary/${beneficiaryOb.id}`, {
-    method: 'DELETE',
+    method: "DELETE",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   });
-  
+
   //Backend delete pending
 }
 
 $(".beneficiaryBtn").on("mouseover", updateBeneficiaryModal);
 $(".beneficiaryBtn").on("focus", updateBeneficiaryModal);
 
-
 function updateBeneficiaryModal(event) {
   //   event.stopPropagation();
   let benificiaryBtn = $(event.target);
-  
+
   let beneficiaryObject = JSON.parse(benificiaryBtn.attr("data"));
-
-  console.log(beneficiaryObject);
-
   beneficiaryID.val(beneficiaryObject.id);
   beneficiaryName.val(beneficiaryObject.name);
   beneficiaryDOB.val(beneficiaryObject.DOB);
@@ -86,22 +86,33 @@ function updateBeneficiaryModal(event) {
 
 // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ Beneficiary relevant codes ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 
-// $(".executorBtn").on("mouseover", updateExecutorModal);
-// $(".executorBtn").on("focus", updateExecutorModal);
+$(".executorBtn").on("mouseover", updateExecutorModal);
+$(".executorBtn").on("focus", updateExecutorModal);
 
-// function updateExecutorModal(event) {
-//   //   event.stopPropagation();
-//   let executorBtn = $(event.target);
-//   let executorObject = JSON.parse(benificiaryBtn.attr("data"));
-//   beneficiaryID.val(beneficiaryObject.id);
-//   beneficiaryName.val(beneficiaryObject.name);
-//   beneficiaryDOB.val(beneficiaryObject.DOB);
-//   beneficiaryRelation.val(beneficiaryObject.relationship);
-//   beneficiaryAddress.val(beneficiaryObject.address);
-//   beneficiaryIsChild.attr("checked", beneficiaryObject.isChild);
-//   beneficiaryIsCharity.attr("checked", beneficiaryObject.isCharity);
-//   beneficiaryGuardianAddress.val(beneficiaryObject.guardian_address);
-//   beneficiaryGuardianName.val(beneficiaryObject.guardian_name);
-// }
+function updateExecutorModal(event) {
+  //   event.stopPropagation();
+  let executorBtn = $(event.target);
+  let executorObject = JSON.parse(executorBtn.attr("data"));
+  executorID.val(executorObject.id);
+  executorName.val(executorObject.name);
+  executorDOB.val(executorObject.DOB);
+  executorRelation.val(executorObject.relationship);
+  executorAddress.val(executorObject.address);
+  executorIsAlternate.attr("checked", executorObject.IsAlternate);
+}
 
 // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ Executor relevant codes ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+
+$(".assetBtn").on("mouseover", updateAssetModal);
+$(".assetBtn").on("focus", updateAssetModal);
+
+function updateAssetModal(event) {
+  //   event.stopPropagation();
+  let assetBtn = $(event.target);
+  let assetObject = JSON.parse(assetBtn.attr("data"));
+  assetID.val(assetObject.id);
+  assetDescription.val(assetObject.description);
+  assetType.val(assetObject.type);
+  assetValue.val(assetObject.value);
+}
+// ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ Asset relevant codes ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
