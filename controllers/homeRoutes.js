@@ -9,6 +9,7 @@ const {
   Executor,
 } = require("../models");
 const withAuth = require("../utils/auth");
+
 // Starter route,
 router.get("/starter", (req, res) => {
   res.render("starter", {
@@ -75,7 +76,7 @@ router.get("/profile", withAuth, async (req, res) => {
     const user = userInfo.get({ plain: true });
 
     const account = accountData.get({ plain: true });
-    console.log(user.beneficiaries);
+    // console.log(user.beneficiaries);
 
     res.render("profile", {
       layout: "main-1",

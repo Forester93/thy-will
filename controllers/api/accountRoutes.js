@@ -39,15 +39,16 @@ router.post("/logout", (req, res) => {
     res.status(404).end();
   }
 });
-router.get("/logout", (req, res) => {
-  if (req.session.logged_in) {
-    req.session.destroy(() => {
-      res.status(204).end();
-    });
-  } else {
-    res.status(404).end();
-  }
-});
+
+// router.get("/logout", (req, res) => {
+//   if (req.session.logged_in) {
+//     req.session.destroy(() => {
+//       res.status(204).end();
+//     });
+//   } else {
+//     res.status(404).end();
+//   }
+// });
 
 router.post("/create", async (req, res) => {
   // create a new account

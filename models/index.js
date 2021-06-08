@@ -13,11 +13,11 @@ User.belongsTo(Account, { foreignKey: "accound_id" });
 
 // User has...
 
-User.hasMany(Asset, { onDelete: "cascade" });
-User.hasMany(Beneficiary, { onDelete: "cascade" });
-User.hasMany(Executor, { onDelete: "cascade" });
-User.hasMany(Witness, { onDelete: "cascade" });
-User.hasMany(AssetApportion, { onDelete: "cascade" });
+User.hasMany(Asset, { foreignKey: "user_id", onDelete: "cascade" });
+User.hasMany(Beneficiary, { foreignKey: "user_id", onDelete: "cascade" });
+User.hasMany(Executor, { foreignKey: "user_id", onDelete: "cascade" });
+User.hasMany(Witness, { foreignKey: "user_id", onDelete: "cascade" });
+User.hasMany(AssetApportion, { foreignKey: "user_id", onDelete: "cascade" });
 
 // Belongs to One user
 
