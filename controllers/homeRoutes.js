@@ -33,6 +33,16 @@ router.get("/", (req, res) => {
   });
 });
 
+router.get("/login", (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect("/profile");
+    return;
+  }
+  res.render("home", {
+    layout: "main",
+  });
+});
+
 //route to profile
 router.get("/profile", withAuth, async (req, res) => {
   try {

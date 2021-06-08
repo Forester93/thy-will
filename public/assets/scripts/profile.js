@@ -1,12 +1,12 @@
-const beneficiariesList = document.getElementById("part-1");
-let beneficiaryData = [];
-fetch("/api/users/data/1")
-  .then((response) => {
-    return response.json();
-  })
-  .then((response) => {
-    console.log(response);
-  });
+// const beneficiariesList = document.getElementById("part-1");
+// let beneficiaryData = [];
+// fetch("/api/users/data/1")
+//   .then((response) => {
+//     return response.json();
+//   })
+//   .then((response) => {
+//     console.log(response);
+//   });
 
 // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Codes about page rendering ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 $("#part-1-list").on("click", ".updateBtn", viewBenificiary);
@@ -20,22 +20,17 @@ var targetdata = parseInt($(event.target));
   //Backend delete pending
 }
 
+// }
 $("#addBeneficiary").on("click", addBenificiary);
-function addBenificiary(event) {
-  event.preventDefault();
+function addBenificiary() {
   var newName = $("#beneficiaryName").val();
   // var newDOB = $('#beneficiaryDOB').val();
   // var newRelationship = $('#beneficiaryRelation').val();
   // var newAddress = $('#beneficiaryAddress').val();
-  var newNameEl = $("<span>").text(newName);
-  var deleteBtn = $('<i class="fas fa-times">');
-  var newBtnEl = $("<button>")
-    .addClass("w-100 updateBtn")
-    .attr("data-toggle", "modal")
-    .attr("data-target", "#beneficiaryUpdate");
-  newBtnEl.append(newNameEl, deleteBtn);
-  $("#part-1-list").append(newBtnEl);
-  //Backend create pending
+  var newNameEl = $("<button>").text(newName);
+  artEl.append(newNameEl);
+
+  //Backend delete pending
 }
 
 $(".fa-times").on("click", deleteBenificiary);
@@ -45,5 +40,21 @@ function deleteBenificiary(event) {
   //Backend delete pending
 }
 
+let beneficiaryName = $("#beneficiaryName");
+let beneficiaryDOB = $("#beneficiaryDOB");
+let beneficiaryAddress = $("#beneficiaryAddress");
+let beneficiaryRelation = $("#beneficiaryRelation");
+
+$(".beneficiaryBtn").on("mouseover", (event) => {
+  //   event.stopPropagation();
+  let benificiaryBtn = $(event.target);
+  let beneficiaryObject = JSON.parse(benificiaryBtn.attr("data"));
+  beneficiaryName.val(beneficiaryObject.name);
+  beneficiaryDOB.val(beneficiaryObject.DOB);
+  beneficiaryRelation.val(beneficiaryObject.relationship);
+  beneficiaryAddress.val(beneficiaryObject.address);
+});
+
+// ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ All page rendering relevant codes ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+
 // alert("hello");
-// ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ Codes about page rendering ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑

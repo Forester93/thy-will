@@ -21,10 +21,10 @@
         <div class="home-content">
           <div class="text-1">Welcome to</div>
           <div class="logo">Thy<span>Will</span></div>
-          <div class="text-2">An Easy Will Generator</div>
+          <div class="text-2">Your Popular Will Drafting Tool</div>
           <div class="text-2">We are <span class="typing"></span></div>
           <div>
-            <button id="startBtn"><i class="fas fa-pen-fancy"></i> Get Started</button>
+            <button id="startBtn" data-toggle="modal" data-target="#signUpModal"><i class="fas fa-pen-fancy"></i> Get Started</button>
             <button id="modalBtn" data-toggle="modal" data-target="#loginModal"><i class="fas fa-sign-in-alt"></i></i> Account</button>
           </div>  
         </div>
@@ -38,7 +38,7 @@
 
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Login or Sign Up<span class="flash" id="validateMessage"></span></h5>
+                    <h5 class="modal-title">Login<span class="flash" id="validateMessage"></span></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -55,7 +55,6 @@
                       </div>
                       </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-light" id="signBtn">Sign Up</button>
                         <button type="submit" class="btn btn-light" id="loginBtn">Login</button>
                     </div>
                 </form>
@@ -64,6 +63,43 @@
         </div>
     </div>
 {{!↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ login modal ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑}}
+
+{{!↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Signup modal ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓}}
+    <div class="modal fade custom-modal" id="signUpModal" tabindex="-1" role="dialog"
+        aria-labelledby="project-modal-form" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Sign Up<span class="flash" id="validateMessageSignUp"></span></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="signup-form">
+                    <div class="modal-body">
+                      <div class="form-group">
+                          <label for="email-signup">Email:</label>
+                          <input type="email" id="email-signup" class="form-control" required />
+                      </div>
+                      <div class="form-group">
+                        <label for="password-signup">Password:</label>
+                        <input type= "password" id="password-signup" class="form-control" required />
+                      </div>
+                      <div class="form-group">
+                        <label for="password-repeat">Repeat Password:</label>
+                        <input type= "password" id="password-repeat" class="form-control" required />
+                      </div>
+                      </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-light" id="signBtn">Sign Up</button>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+{{!↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ Signup modal ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑}}
 
     <script src="/assets/scripts/login.js"></script>
     {{#if logged_in}}
