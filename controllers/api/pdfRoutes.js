@@ -190,7 +190,7 @@ router.get('/:id', withAuth, async (req, res) => {
 			});
 
 			doc
-				.fontSize(12)
+				.fontSize(13)
 				.text(
 					`This will dated ${currentDate} is made by me, ${user.name}, ${user.occupation}, of ${user.address}.\n\n`
 				);
@@ -198,7 +198,7 @@ router.get('/:id', withAuth, async (req, res) => {
 			doc.fontSize(20).text(`Executors\n\n`, { underline: true });
 
 			doc
-				.fontSize(12)
+				.fontSize(13)
 				.text(
 					`The following executors will be responsible for the distribution of my assets as directed by this will.\n\n${executorTemplate()}\n`
 				);
@@ -206,9 +206,9 @@ router.get('/:id', withAuth, async (req, res) => {
 			doc.fontSize(20).text(`Alternate executors\n\n`, { underline: true });
 
 			doc
-				.fontSize(12)
+				.fontSize(13)
 				.text(
-					`If the above executors are unavailable, the following alternate executors will take their place.\n\n${altExecutorTemplate()}`
+					`If the above executor(s) are unavailable, the following alternate executor(s) will take their place.\n\n${altExecutorTemplate()}`
 				);
 
 			doc.image('./public/assets/images/logo-transparent.png', 495, 675, {
@@ -224,7 +224,7 @@ router.get('/:id', withAuth, async (req, res) => {
 				.text(`List of Beneficiaries\n\n`, { underline: true });
 
 			doc
-				.fontSize(12)
+				.fontSize(13)
 				.text(
 					`The following list contians all people who are beneficiaries to my estate:\n\n${beneficiaryTemplate()}`
 				);
@@ -236,7 +236,7 @@ router.get('/:id', withAuth, async (req, res) => {
 				.text(`Assets\n\n`, { underline: true });
 
 			doc
-				.fontSize(12)
+				.fontSize(13)
 				.text(
 					`Below is a list of all my assets included in this will. Any assets not described in this will shall be divided as per the guidance of my executors.\n\n${assetsTemplate()}`
 				);
@@ -248,7 +248,7 @@ router.get('/:id', withAuth, async (req, res) => {
 				.text(`Witnesses\n\n`, { underline: true });
 
 			doc
-				.fontSize(12)
+				.fontSize(13)
 				.text(
 					`The following people have witnessed my signature and initial on each page of this will:\n\n${witnessTemplate()}`
 				);
@@ -260,7 +260,7 @@ router.get('/:id', withAuth, async (req, res) => {
 				.text(`Declaration\n\n`, { underline: true });
 
 			doc
-				.fontSize(12)
+				.fontSize(13)
 				.text(
 					`I, ${user.name}, declare the above and all included in this document to be my last will and testament.\n\n\n\n    ___________________________\n    Signature\n\n\n\n    ___________________________\n    Date signed`
 				);
