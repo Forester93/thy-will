@@ -45,12 +45,14 @@
           <h3 class="num">1</h3>
           <h4>Benificiaries</h4>
           <p>Individuals entitled to inherit money or property from this will owner.</p>
-          {{#each beneficiaries}}
-          {{> beneficiary-details}}
-          {{/each}}
+          <div class="w-100 part-1-list" id="part-1-list">
+            {{#each beneficiaries}}
+            {{> beneficiary-details}}
+            {{/each}}
+          </div>
           <button data-toggle="modal" data-target="#beneficiaryAdd"><i class="fas fa-plus"></i></button>
-          <button class="w-100 subBtn" id="#beneficiarySub">Submit</button>
         </div>
+
         <div class="card" id="part-2">
           <h3 class="num">2</h3>
           <h4>Executors</h4>
@@ -60,6 +62,7 @@
           {{/each}}
           <button class="w-100 addBtn" data-toggle="modal" data-target="#executorModal">Add</button>
         </div>
+
         <div class="card" id="part-3">
           <h3 class="num">3</h3>
           <h4>Asset</h4>

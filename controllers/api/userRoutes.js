@@ -10,6 +10,14 @@ const {
 } = require("../../models");
 
 // The `/api/users` endpoint
+router.get("/", async (req, res) => {
+  try {
+    const beneficiaryData = await Beneficiary.findAll({});
+    res.status(200).json(beneficiaryData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 router.get("/data/:id", async (req, res) => {
   try {

@@ -1,3 +1,7 @@
+
+// ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Codes about page rendering ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+
+// }
 let beneficiaryName = $("#beneficiaryName");
 let beneficiaryDOB = $("#beneficiaryDOB");
 let beneficiaryAddress = $("#beneficiaryAddress");
@@ -34,17 +38,32 @@ function addBenificiary() {
 $(".beneficiaryDelete").on("click", deleteBenificiary);
 function deleteBenificiary(event) {
   event.stopPropagation();
+  let targetDeleteBtn = $(event.target);
+  let beneficiaryOb = JSON.parse(targetDeleteBtn.parent().attr("data"));
+  // console.log(beneficiaryOb.id);
   $(event.target).parent().remove();
+  fetch(`/api/beneficiary/${beneficiaryOb.id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  
   //Backend delete pending
 }
 
 $(".beneficiaryBtn").on("mouseover", updateBeneficiaryModal);
 $(".beneficiaryBtn").on("focus", updateBeneficiaryModal);
 
+
 function updateBeneficiaryModal(event) {
   //   event.stopPropagation();
   let benificiaryBtn = $(event.target);
+  
   let beneficiaryObject = JSON.parse(benificiaryBtn.attr("data"));
+
+  console.log(beneficiaryObject);
+
   beneficiaryID.val(beneficiaryObject.id);
   beneficiaryName.val(beneficiaryObject.name);
   beneficiaryDOB.val(beneficiaryObject.DOB);

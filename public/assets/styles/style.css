@@ -197,7 +197,7 @@ footer {
 }
 .box-2 .card {
   width: 300px;
-  height: 550px;
+  /* height: 550px; */
   padding: 15px;
   border-radius: 8px;
   align-items: flex-start;
@@ -206,9 +206,7 @@ footer {
   transition: all 0.3s ease;
 }
 
-.box-2 .card .subBtn {
-  margin-top: auto;
-}
+
 
 .box-2 .card:hover {
   box-shadow: 0px 0px 16px pink;
