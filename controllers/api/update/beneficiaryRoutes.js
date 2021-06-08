@@ -1,12 +1,18 @@
 const router = require('express').Router();
 const withAuth = require('../../../utils/auth');
-const { User, Beneficiary } = require('../../../models');
+const { Beneficiary } = require('../../../models');
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', withAuth, async (req, res) => {
 	Beneficiary.update(
 		{
 			name: req.body.name,
 			address: req.body.address,
+			DOB: req.body.dob,
+			relationship: req.body.relationship,
+			isChild: req.body.isChild,
+			isCharity: req.body.isCharity,
+			guardian_name: req.body.guardian_name,
+			guardian_address: req.body.guardian_address,
 		},
 		{
 			where: {
