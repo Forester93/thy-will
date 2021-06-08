@@ -9,11 +9,38 @@ fetch("/api/users/data/1")
   });
 
 // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ All page rendering relevant codes ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-const addBenificiary = () => {
+
+// $('#addBeneficiary').on('sumbit', addBenificiary);
+// document.querySelector("#addBeneficiary").addEventListener("click", addBenificiary);
+// const addBenificiary = (event) => {
+//   event.preventDefault();
+//   alert("hello");
+//   // $('beneficiary-add').val().trim();
+
+// }
+$('#addBeneficiary').on('click', addBenificiary);
+function addBenificiary() {
+  var newName = $('#beneficiaryName').val();
+  // var newDOB = $('#beneficiaryDOB').val();
+  // var newRelationship = $('#beneficiaryRelation').val();
+  // var newAddress = $('#beneficiaryAddress').val();
+  var newNameEl = $('<button>').text(newName);
+  artEl.append(newNameEl);
+  
+  //Backend delete pending
 
 }
 
-searchFormEl.on('click', '#searchBtn', modalSubmit);
+$('.fa-times').on('click', deleteBenificiary);
+function deleteBenificiary(event) {
+  event.stopPropagation();
+  $(event.target).parent().remove();
+  //Backend delete pending
+
+}
+  
 
 
 // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ All page rendering relevant codes ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+
+// alert("hello");
