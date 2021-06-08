@@ -1,19 +1,3 @@
-<<<<<<< HEAD
-// const beneficiariesList = document.getElementById("part-1");
-// let beneficiaryData = [];
-// fetch("/api/users/data/1")
-//   .then((response) => {
-//     return response.json();
-//   })
-//   .then((response) => {
-//     console.log(response);
-//   });
-
-// ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Codes about page rendering ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-
-// }
-$("#addBeneficiary").on("click", addBenificiary);
-=======
 let beneficiaryName = $("#beneficiaryName");
 let beneficiaryDOB = $("#beneficiaryDOB");
 let beneficiaryAddress = $("#beneficiaryAddress");
@@ -28,7 +12,6 @@ let beneficiaryUpdate = $("#updateBeneficiary");
 
 // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Beneficiary relevant codes ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 $("#addBeneficiary").on("submit", addBenificiary);
->>>>>>> main
 function addBenificiary() {
   var newName = $("#beneficiaryName").val();
 
@@ -68,20 +51,12 @@ function deleteBenificiary(event) {
 $(".beneficiaryBtn").on("mouseover", updateBeneficiaryModal);
 $(".beneficiaryBtn").on("focus", updateBeneficiaryModal);
 
-<<<<<<< HEAD
-$(".beneficiaryBtn").on("click", (event) => {
-=======
 function updateBeneficiaryModal(event) {
->>>>>>> main
   //   event.stopPropagation();
   let benificiaryBtn = $(event.target);
   
   let beneficiaryObject = JSON.parse(benificiaryBtn.attr("data"));
-<<<<<<< HEAD
-  console.log(beneficiaryObject);
-=======
   beneficiaryID.val(beneficiaryObject.id);
->>>>>>> main
   beneficiaryName.val(beneficiaryObject.name);
   beneficiaryDOB.val(beneficiaryObject.DOB);
   beneficiaryRelation.val(beneficiaryObject.relationship);
