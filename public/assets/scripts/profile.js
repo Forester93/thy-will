@@ -8,39 +8,42 @@ fetch("/api/users/data/1")
     console.log(response);
   });
 
-// ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ All page rendering relevant codes ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+// ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Codes about page rendering ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+$("#part-1-list").on("click", ".updateBtn", viewBenificiary);
+function viewBenificiary(event) {
+var targetdata = parseInt($(event.target));
+  console.log(targetdata);
+  
+  
+  $("#beneficiaryName").val("abc");
+  // alert("hello");
+  //Backend delete pending
+}
 
-// $('#addBeneficiary').on('sumbit', addBenificiary);
-// document.querySelector("#addBeneficiary").addEventListener("click", addBenificiary);
-// const addBenificiary = (event) => {
-//   event.preventDefault();
-//   alert("hello");
-//   // $('beneficiary-add').val().trim();
-
-// }
-$('#addBeneficiary').on('click', addBenificiary);
-function addBenificiary() {
-  var newName = $('#beneficiaryName').val();
+$("#addBeneficiary").on("click", addBenificiary);
+function addBenificiary(event) {
+  event.preventDefault();
+  var newName = $("#beneficiaryName").val();
   // var newDOB = $('#beneficiaryDOB').val();
   // var newRelationship = $('#beneficiaryRelation').val();
   // var newAddress = $('#beneficiaryAddress').val();
-  var newNameEl = $('<button>').text(newName);
-  artEl.append(newNameEl);
-  
-  //Backend delete pending
-
+  var newNameEl = $("<span>").text(newName);
+  var deleteBtn = $('<i class="fas fa-times">');
+  var newBtnEl = $("<button>")
+    .addClass("w-100 updateBtn")
+    .attr("data-toggle", "modal")
+    .attr("data-target", "#beneficiaryUpdate");
+  newBtnEl.append(newNameEl, deleteBtn);
+  $("#part-1-list").append(newBtnEl);
+  //Backend create pending
 }
 
-$('.fa-times').on('click', deleteBenificiary);
+$(".fa-times").on("click", deleteBenificiary);
 function deleteBenificiary(event) {
   event.stopPropagation();
   $(event.target).parent().remove();
   //Backend delete pending
-
 }
-  
-
-
-// ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ All page rendering relevant codes ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 
 // alert("hello");
+// ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ Codes about page rendering ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
