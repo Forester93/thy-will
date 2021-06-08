@@ -45,26 +45,26 @@
           <h3 class="num">1</h3>
           <h4>Benificiaries</h4>
           <p>Individuals entitled to inherit money or property from this will owner.</p>
-          <button id="modalBtn" class="w-100" data-toggle="modal" data-target="#beneficiaryModal">Add</button>
           {{#each beneficiaries}}
           {{> beneficiary-details}}
           {{/each}}
+          <button data-toggle="modal" data-target="#beneficiaryAdd"><i class="fas fa-plus"></i></button>
+          <button class="w-100 subBtn" id="#beneficiarySub">Submit</button>
         </div>
         <div class="card" id="part-2">
-          <h3 class="checked"><i class="fas fa-check"></i></h3>
+          <h3 class="num">2</h3>
           <h4>Executors</h4>
           <p>The one to execute your wishes.</p>
-          <button id="modalBtn" class="w-100" data-toggle="modal" data-target="#executorModal">Add</button>
           {{#each executors}}
           {{> executor-details}}
           {{/each}}
-
+          <button class="w-100 addBtn" data-toggle="modal" data-target="#executorModal">Add</button>
         </div>
         <div class="card" id="part-3">
           <h3 class="num">3</h3>
           <h4>Asset</h4>
           <p>A quick list of your major Assets.</p>
-          <button id="modalBtn" class="w-100" data-toggle="modal" data-target="#assetModal">Add</button>
+          <button class="w-100" data-toggle="modal" data-target="#assetModal">Add</button>
           {{#each assets}}
           {{> asset-details}}
           {{/each}}
@@ -74,7 +74,7 @@
           <h3 class="num">4</h3>
           <h4>AssetApportion</h4>
           <p>Set up percentages for each benificiary.</p>
-          <button id="modalBtn" class="w-100" data-toggle="modal" data-target="#apportionModal">Add</button>
+          <button class="w-100" data-toggle="modal" data-target="#apportionModal">Add</button>
           {{#each assetApportions}}
           {{> assetApportion-details}}
           {{/each}}
@@ -84,27 +84,149 @@
           <h3 class="num">5</h3>
           <h4>Witness</h4>
           <p>Basic info of your nominated Witness</p>
-          <button id="modalBtn" class="w-100" data-toggle="modal" data-target="#witnessModal">Add</button>
           {{#each witnesses}}
           {{> witness-details}}
           {{/each}}
+          <button class="w-100 addBtn" data-toggle="modal" data-target="#witnessModal">Add</button>
         </div>
       </div>
     </div>
   </div>
+</section>
+
+  {{!↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓  Modal Beneficiary Adding ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓}}
+  <div class="modal fade custom-modal" id="beneficiaryAdd" tabindex="-1" role="dialog" aria-labelledby="project-modal-form" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title">Add Beneficiary</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+
+        <form id="beneficiary-add">
+          <div class="modal-body">
+
+            <div class="form-group">
+              <label>Name *</label>
+              <input type="text" id="beneficiaryName" class="form-control" placeholder="First & Last" required />
+            </div>
+
+            <div class="form-group">
+              <label for="DOB">DOB:</label>
+              <input type="text" id="beneficiaryDOB" class="form-control"/>
+            </div>
+
+            <div class="form-group">
+              <label>Relationship:</label>
+              <select class="form-control" id="beneficiaryRelation">
+                <option value="Friend">Friend</option>
+                <option value="Relatives">Relatives</option>
+                <option value="Business Partner">Business Partner</option>
+                <option value="Others">Others</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Address *</label>
+              <input type="text" id="beneficiaryAddress" class="form-control" placeholder="Example: 79 Main Road, Suburb NSW" required />
+            </div>
+
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-light" id="addBeneficiary">Save</button>
+            </div>
+
+          </div>
+        </form>  
+
+      </div>     
+    </div>
+  </div> 
+  {{!↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑  Modal Beneficiary Adding ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑}}
   
-  {{!↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Witness modal ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓}}
+  
+  {{!↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓  Modal Beneficiary Updating ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓}}
+  <div class="modal fade custom-modal" id="beneficiaryUpdate" tabindex="-1" role="dialog" aria-labelledby="project-modal-form" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title">Update Beneficiary</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+
+        <form id="beneficiary-update">
+          <div class="modal-body">
+
+            <div class="form-group">
+              <label>Name *</label>
+              <input type="text" id="beneficiaryName" class="form-control" placeholder="First & Last" required />
+            </div>
+
+            <div class="form-group">
+              <label for="DOB">DOB:</label>
+              <input type="text" id="beneficiaryDOB" class="form-control"/>
+            </div>
+
+            <div class="form-group">
+              <label>Relationship:</label>
+              <select class="form-control" id="beneficiaryRelation">
+                <option value="Friend">Friend</option>
+                <option value="Relatives">Relatives</option>
+                <option value="Business Partner">Business Partner</option>
+                <option value="Others">Others</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Address *</label>
+              <input type="text" id="beneficiaryAddress" class="form-control" required />
+            </div>
+
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-light" id="updateBeneficiary">Update</button>
+            </div>
+
+          </div>
+        </form>  
+
+      </div>     
+    </div>
+  </div> 
+  {{!↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑  Modal Beneficiary Updating ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑}}
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  {{!↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ witnessModal ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓}}
   <div class="modal fade custom-modal" id="witnessModal" tabindex="-1" role="dialog" aria-labelledby="project-modal-form" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Add Witness<span class="flash" id="validateMessage"></span></h5>
+          <h5 class="modal-title">Add Witness</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
         <form id="witness-form">
           <div class="modal-body">
             <div class="form-group">
-              <label>Name:</label>
+              <label>Name *</label>
               <input type="text" id="witnessName" class="form-control" placeholder="First Last" required />
             </div>
             <div class="form-group">
@@ -113,6 +235,7 @@
                 <option value="Friend">Friend</option>
                 <option value="Relatives">Relatives</option>
                 <option value="Business Partner">Business Partner</option>
+                <option value="Others">Others</option>
               </select>
             </div>
             <div class="form-group">
@@ -127,4 +250,4 @@
       </div>     
     </div>
   </div> 
-{{!↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ Witness modal ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑}} 
+{{!↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ witnessModal ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑}} 
