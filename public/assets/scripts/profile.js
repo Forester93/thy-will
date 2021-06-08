@@ -10,6 +10,15 @@ let beneficiaryGuardianAddress = $("#beneficiaryGuardianAddress");
 let beneficiaryAdd = $("#addBeneficiary");
 let beneficiaryUpdate = $("#updateBeneficiary");
 
+let executorID = $("#executorId");
+let executorName = $("#executorName");
+let executorDOB = $("#executorDOB");
+let executorAddress = $("#executorAddress");
+let executorRelation = $("#executorRelation");
+let executorIsAlternate = $("#executorIsAlternate");
+let executorAdd = $("#executorAdd");
+let executorUpdate = $("#executorUpdate");
+
 // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Beneficiary relevant codes ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 $("#addBeneficiary").on("submit", addBenificiary);
 function addBenificiary() {
@@ -58,4 +67,22 @@ function updateBeneficiaryModal(event) {
 
 // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ Beneficiary relevant codes ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 
-// alert("hello");
+// $(".executorBtn").on("mouseover", updateExecutorModal);
+// $(".executorBtn").on("focus", updateExecutorModal);
+
+// function updateExecutorModal(event) {
+//   //   event.stopPropagation();
+//   let executorBtn = $(event.target);
+//   let executorObject = JSON.parse(benificiaryBtn.attr("data"));
+//   beneficiaryID.val(beneficiaryObject.id);
+//   beneficiaryName.val(beneficiaryObject.name);
+//   beneficiaryDOB.val(beneficiaryObject.DOB);
+//   beneficiaryRelation.val(beneficiaryObject.relationship);
+//   beneficiaryAddress.val(beneficiaryObject.address);
+//   beneficiaryIsChild.attr("checked", beneficiaryObject.isChild);
+//   beneficiaryIsCharity.attr("checked", beneficiaryObject.isCharity);
+//   beneficiaryGuardianAddress.val(beneficiaryObject.guardian_address);
+//   beneficiaryGuardianName.val(beneficiaryObject.guardian_name);
+// }
+
+// ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ Executor relevant codes ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
