@@ -269,6 +269,7 @@ router.get('/:id', withAuth, async (req, res) => {
 
 			console.log('done');
 		} catch (err) {
+			console.log(err);
 			res.status(403).json(err);
 		}
 	} else {
