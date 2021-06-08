@@ -269,7 +269,7 @@ router.get('/:id', withAuth, async (req, res) => {
 
 			console.log('done');
 		} catch (err) {
-			res.status(403).json(err);
+			res.status(500).json(err);
 		}
 	} else {
 		console.log('redirecting');
