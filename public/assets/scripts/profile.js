@@ -1,57 +1,61 @@
-// const beneficiariesList = document.getElementById("part-1");
-// let beneficiaryData = [];
-// fetch("/api/users/data/1")
-//   .then((response) => {
-//     return response.json();
-//   })
-//   .then((response) => {
-//     console.log(response);
-//   });
+let beneficiaryName = $("#beneficiaryName");
+let beneficiaryDOB = $("#beneficiaryDOB");
+let beneficiaryAddress = $("#beneficiaryAddress");
+let beneficiaryRelation = $("#beneficiaryRelation");
+let beneficiaryID = $("#beneficiaryId");
+let beneficiaryIsChild = $("#beneficiaryIsChild");
+let beneficiaryIsCharity = $("#beneficiaryIsCharity");
+let beneficiaryGuardianName = $("#beneficiaryGuardianName");
+let beneficiaryGuardianAddress = $("#beneficiaryGuardianAddress");
+let beneficiaryAdd = $("#addBeneficiary");
+let beneficiaryUpdate = $("#updateBeneficiary");
 
-// ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ All page rendering relevant codes ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-
-// $('#addBeneficiary').on('sumbit', addBenificiary);
-// document.querySelector("#addBeneficiary").addEventListener("click", addBenificiary);
-// const addBenificiary = (event) => {
-//   event.preventDefault();
-//   alert("hello");
-//   // $('beneficiary-add').val().trim();
-
-// }
-$("#addBeneficiary").on("click", addBenificiary);
+// ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Beneficiary relevant codes ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+$("#addBeneficiary").on("submit", addBenificiary);
 function addBenificiary() {
   var newName = $("#beneficiaryName").val();
-  // var newDOB = $('#beneficiaryDOB').val();
-  // var newRelationship = $('#beneficiaryRelation').val();
-  // var newAddress = $('#beneficiaryAddress').val();
-  var newNameEl = $("<button>").text(newName);
-  artEl.append(newNameEl);
+
+  // fetch("/api/create/beneficiary", {
+  //   method: "POST",
+  //   body: {
+  //     name: newName,
+  //   },
+  // })
+  //   .then((response) => {
+  //     return response.json();
+  //   })
+  //   .then((response) => {
+  //     console.log(response);
+  //   });
 
   //Backend delete pending
 }
 
-$(".fa-times").on("click", deleteBenificiary);
+$(".beneficiaryDelete").on("click", deleteBenificiary);
 function deleteBenificiary(event) {
   event.stopPropagation();
   $(event.target).parent().remove();
   //Backend delete pending
 }
 
-let beneficiaryName = $("#beneficiaryName");
-let beneficiaryDOB = $("#beneficiaryDOB");
-let beneficiaryAddress = $("#beneficiaryAddress");
-let beneficiaryRelation = $("#beneficiaryRelation");
+$(".beneficiaryBtn").on("mouseover", updateBeneficiaryModal);
+$(".beneficiaryBtn").on("focus", updateBeneficiaryModal);
 
-$(".beneficiaryBtn").on("mouseover", (event) => {
+function updateBeneficiaryModal(event) {
   //   event.stopPropagation();
   let benificiaryBtn = $(event.target);
   let beneficiaryObject = JSON.parse(benificiaryBtn.attr("data"));
+  beneficiaryID.val(beneficiaryObject.id);
   beneficiaryName.val(beneficiaryObject.name);
   beneficiaryDOB.val(beneficiaryObject.DOB);
   beneficiaryRelation.val(beneficiaryObject.relationship);
   beneficiaryAddress.val(beneficiaryObject.address);
-});
+  beneficiaryIsChild.attr("checked", beneficiaryObject.isChild);
+  beneficiaryIsCharity.attr("checked", beneficiaryObject.isCharity);
+  beneficiaryGuardianAddress.val(beneficiaryObject.guardian_address);
+  beneficiaryGuardianName.val(beneficiaryObject.guardian_name);
+}
 
-// ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ All page rendering relevant codes ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+// ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ Beneficiary relevant codes ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 
 // alert("hello");
