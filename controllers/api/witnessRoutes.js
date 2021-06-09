@@ -30,7 +30,11 @@ router.get("/:id", async (req, res) => {
 // Route to Create New
 router.post("/", async (req, res) => {
   try {
-    const witnessNew = await Witness.create(req.body);
+    const witnessNew = await Witness.create({
+      ...req.body,
+      // This get witness linked with the login account
+      user_id: req.session.account_id,
+    });
     res.status(200).json(witnessNew);
   } catch (err) {
     res.status(400).json(err);

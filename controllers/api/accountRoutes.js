@@ -1,6 +1,21 @@
 const router = require("express").Router();
 const { Account } = require("../../models");
 
+// Route to Get All
+router.get("/", async (req, res) => {
+  try {
+    const accountData = await Account.findAll({
+      order: [['id', 'ASC']] 
+    });
+    res.status(200).json(accountData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
+
+
 router.post("/", async (req, res) => {
   try {
     const accountData = await Account.findOne({
