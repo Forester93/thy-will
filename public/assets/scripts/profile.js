@@ -114,7 +114,93 @@ function updateAssetModal(event) {
   assetType.val(assetObject.type);
   assetValue.val(assetObject.value);
 }
-// ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ Asset relevant codes ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+
+// ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Asset relevant codes ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+// %%%%%%%%%%%%%%%%%% Delete Handler %%%%%%%%%%%%%%%%%%
+const deleteAsset = async (event) => {
+  event.stopPropagation();
+  let targetDeleteBtn = $(event.target);
+  let assetOb = JSON.parse(targetDeleteBtn.parent().attr("data"));
+  // Call this Backend Route with this method
+  const response = await fetch(`/api/asset/${assetOb.id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (response.ok) {
+    // Front end element manipulating actions
+    $(event.target).parent().remove();
+  }
+};
+
+$(".assetDelete").on("click", deleteAsset);
+
+// %%%%%%%%%%%%%%%%%% Add Handler %%%%%%%%%%%%%%%%%%
+const addAsset = async (event) => {
+  event.preventDefault();
+  const description = $("#assetDescription").val().trim();
+  const type = $("#assetType").val();
+  const value = $("#assetValue").val();
+  // Prevent adding witness with same name (Pending)
+  // Call this Backend Route with this method
+  const response = await fetch(`/api/asset`, {
+    method: "POST",
+    body: JSON.stringify({ description, type, value }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (!response.ok) {
+    alert("Failed to add");
+  }
+  location.reload();
+};
+
+$("#assetModalFooter").on("click", "#addAssetBtn", addAsset);
+
+// %%%%%%%%%%%%%%%%%% Update Handler %%%%%%%%%%%%%%%%%%
+var assetIdClicked;
+const updateAsset = async (event) => {
+  event.preventDefault();
+  const description = $("#assetDescription").val().trim();
+  const type = $("#assetType").val();
+  const value = $("#assetValue").val();
+  // Call this Backend Route with this method
+  const response = await fetch(`/api/asset/${assetIdClicked}`, {
+    method: "PUT",
+    body: JSON.stringify({ description, type, value }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (!response.ok) {
+    alert("Failed to update");
+  }
+  location.reload();
+};
+$("#assetModalFooter").on("click", "#updateAssetBtn", updateAsset);
+
+// Functions to switch Add or Update Modal
+const assetModalToUpdate = (event) => {
+  // We need to get the target asset id for update with this click
+  let targetclicked = $(event.target);
+  assetObjClicked = JSON.parse(targetclicked.attr("data"));
+  assetIdClicked = assetObjClicked.id;
+  $("#assetModalTitle").text("Update Asset");
+  $("#assetModalFooter")
+    .children(0)
+    .attr("id", "updateAssetBtn")
+    .text("Update");
+};
+
+const assetModalToAdd = () => {
+  $("#assetModalTitle").text("Add Asset");
+  $("#assetModalFooter").children(0).attr("id", "addAssetBtn").text("Add");
+};
+
+$(".assetBtn").on("click", assetModalToUpdate);
+$("#launchAsset").on("click", assetModalToAdd);
 
 // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Witness relevant codes ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 // %%%%%%%%%%%%%%%%%% Delete Handler %%%%%%%%%%%%%%%%%%
@@ -188,7 +274,11 @@ const witnessModalToUpdate = (event) => {
   let targetclicked = $(event.target);
   witnessObjClicked = JSON.parse(targetclicked.attr("data"));
   witnessIdClicked = witnessObjClicked.id;
-  console.log(witnessIdClicked);
+  // Add some autocomplete for reviewing previous user input
+  $("#witnessName").val(witnessObjClicked.name);
+  $("#witnessRelation").val(witnessObjClicked.relationship);
+  $("#witnessAddress").val(witnessObjClicked.address);
+  // Switch to Update Modal
   $("#witnessModalTitle").text("Update Witness");
   $("#witnessModalFooter")
     .children(0)
@@ -197,6 +287,11 @@ const witnessModalToUpdate = (event) => {
 };
 
 const witnessModalToAdd = () => {
+  // Clear out autocomplete
+  $("#witnessName").val("");
+  $("#witnessRelation").val("");
+  $("#witnessAddress").val("");
+  // Switch to Add Modal
   $("#witnessModalTitle").text("Add Witness");
   $("#witnessModalFooter").children(0).attr("id", "addWitnessBtn").text("Add");
 };
