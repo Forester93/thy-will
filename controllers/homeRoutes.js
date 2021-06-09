@@ -10,19 +10,6 @@ const {
 } = require("../models");
 const withAuth = require("../utils/auth");
 
-// Starter route,
-router.get("/starter", (req, res) => {
-  res.render("starter", {
-    layout: "main-1",
-  });
-});
-
-router.get("/starter/asset", (req, res) => {
-  res.render("asset", {
-    layout: "main-1",
-  });
-});
-
 // This is home route, If the user is already logged in, redirect to user's profile page
 router.get("/", (req, res) => {
   if (req.session.logged_in) {
