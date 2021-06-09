@@ -53,8 +53,9 @@ function deleteBenificiary(event) {
   event.stopPropagation();
   let targetDeleteBtn = $(event.target);
   let beneficiaryOb = JSON.parse(targetDeleteBtn.parent().attr("data"));
-  // console.log(beneficiaryOb.id);
+  console.log(beneficiaryOb.id);
   $(event.target).parent().remove();
+  // Call this Backend Route with this method
   fetch(`/api/beneficiary/${beneficiaryOb.id}`, {
     method: "DELETE",
     headers: {
@@ -62,7 +63,7 @@ function deleteBenificiary(event) {
     },
   });
 
-  //Backend delete pending
+  
 }
 
 $(".beneficiaryBtn").on("mouseover", updateBeneficiaryModal);
@@ -116,3 +117,62 @@ function updateAssetModal(event) {
   assetValue.val(assetObject.value);
 }
 // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ Asset relevant codes ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Witness relevant codes ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+
+// Delete Handler
+function deleteWitness(event) {
+  event.stopPropagation();
+  let targetDeleteBtn = $(event.target);
+  let witnessOb = JSON.parse(targetDeleteBtn.parent().attr("data"));
+  console.log(witnessOb.id);
+  // Front end element manipulating actions
+  $(event.target).parent().remove();
+  // Call this Backend Route with this method
+  fetch(`/api/witness/${witnessOb.id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+}
+
+$(".witnessDelete").on("click", deleteWitness);
+
+
+// Add Handler
+const addWitness =  async (event) => {
+  // event.preventDefault();
+  const name = $("#witnessName").val().trim();
+  const relationship = $("#witnessRelation").val();
+  const address = $("#witnessAddress").val().trim();
+  // Prevent adding witness with same name
+  // Call this Backend Route with this method
+  const response = await fetch(`/api/witness`, {
+    method: 'POST',
+    body: JSON.stringify({ name, relationship, address }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  if (!response.ok) {
+    alert('Failed to add');
+  }  
+}
+
+$("#addWitnessBtn").on("click", addWitness);
