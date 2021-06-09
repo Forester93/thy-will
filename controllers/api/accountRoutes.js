@@ -22,7 +22,8 @@ router.post("/", async (req, res) => {
     req.session.save(() => {
       req.session.account_id = accountData.id;
       req.session.logged_in = true;
-
+      console.log(req.session.account_id);
+      console.log(req.session.logged_in);
       res.json({ account: accountData, message: "You are now logged in!" });
     });
   } catch (err) {

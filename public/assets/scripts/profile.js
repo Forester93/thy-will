@@ -55,6 +55,7 @@ function deleteBenificiary(event) {
   let beneficiaryOb = JSON.parse(targetDeleteBtn.parent().attr("data"));
   // console.log(beneficiaryOb.id);
   $(event.target).parent().remove();
+  // Call this Backend Route with this method
   fetch(`/api/beneficiary/${beneficiaryOb.id}`, {
     method: "DELETE",
     headers: {
@@ -62,7 +63,7 @@ function deleteBenificiary(event) {
     },
   });
 
-  //Backend delete pending
+  
 }
 
 $(".beneficiaryBtn").on("mouseover", updateBeneficiaryModal);
@@ -116,3 +117,20 @@ function updateAssetModal(event) {
   assetValue.val(assetObject.value);
 }
 // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ Asset relevant codes ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Witness relevant codes ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
