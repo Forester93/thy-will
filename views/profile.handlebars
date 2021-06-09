@@ -9,12 +9,12 @@
         <button><i class="fas fa-share-alt-square"> Share</i></button>
       </div>
     </li>
-    <li><a href="/api/pdf/{{id}}" target="_blank">Preview</a></li>
+    <li><a href="/api/pdf/{{account.id}}" target="_blank">Preview</a></li>
     <li><a href="/" id="logout">Logout</a></li>
   </ul>
 </header>
 
-<section class="user">
+<section class="user align-items-center">
   <div class="logo">Thy<span>Will</span></div>
 
 
@@ -22,26 +22,33 @@
 
   <div class="box-2">
     <div class="max-width">
-      <div class="carousel owl-carousel">
-          <div class="box-1">
-    <div class="box-head">
-      {{#if gender}}
-      <img src="/assets/images/users/oldman.jpg" alt="oldman">
-      {{else}}
-      <img src="/assets/images/users/oldlady.jpg" alt="oldlady">
-      {{/if}}
-      <div>
-        <p>Will owner:</p>
-        <p>{{name}}</p>
-      </div>
-    </div>
-    <p>Email: <a href="mailto:{{email}}">{{email}}</a></p>
-    <p>D.O.B: {{DOB}}</p>
-    <p>Address: {{address}}</p>
-    <p>Casket: {{casket}}</p>
-    <p>Ceremony: {{ceremony}}</p>
-    <button>Edit</button>
-  </div>
+      <div class="carousel 
+      owl-carousel
+      ">
+        <div class="card">
+            <div class="box-head">
+              {{#if user.gender}}
+              <img src="/assets/images/users/oldman.jpg" alt="oldman">
+              {{else}}
+              <img src="/assets/images/users/oldlady.jpg" alt="oldlady">
+              {{/if}}
+              <div>
+                <strong>Will owner:</strong>
+                <p>{{user.name}}</p>
+              </div>
+            </div>
+            <p><strong>Email:</strong>
+               {{!-- <a href="mailto:{{email}}"> --}}
+                 {{account.email}}
+                 {{!-- </a> --}}
+                 </p>
+            <p><strong>D.O.B:</strong> {{user.DOB}}</p>
+            <p><strong>Address:</strong> {{user.address}}</p>
+            <p><strong>Casket Instructions:</strong> {{user.casket}}</p>
+            <p><strong>Ceremonial Instructions:</strong> {{user.ceremony}}</p>
+            <button id="editUser" data-toggle="modal" data-target="#userModal">Edit</button>
+        </div>
+        
         <div class="card" id="part-1">
           <h3 class="num">1</h3>
           <h4>Benificiaries</h4>
@@ -76,7 +83,7 @@
         </div>
         <div class="card" id="part-4">
           <h3 class="num">4</h3>
-          <h4>AssetApportion</h4>
+          <h4>Assets Apportioning</h4>
           <p>Set up percentages for each benificiary.</p>
           {{#each assetApportions}}
           {{> assetApportion-details}}
