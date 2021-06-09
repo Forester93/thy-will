@@ -62,8 +62,6 @@ function deleteBenificiary(event) {
       "Content-Type": "application/json",
     },
   });
-
-  
 }
 
 $(".beneficiaryBtn").on("mouseover", updateBeneficiaryModal);
@@ -118,21 +116,6 @@ function updateAssetModal(event) {
 }
 // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ Asset relevant codes ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Witness relevant codes ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 
 // Delete Handler
@@ -154,9 +137,8 @@ function deleteWitness(event) {
 
 $(".witnessDelete").on("click", deleteWitness);
 
-
 // Add Handler
-const addWitness =  async (event) => {
+const addWitness = async (event) => {
   // event.preventDefault();
   const name = $("#witnessName").val().trim();
   const relationship = $("#witnessRelation").val();
@@ -164,15 +146,15 @@ const addWitness =  async (event) => {
   // Prevent adding witness with same name
   // Call this Backend Route with this method
   const response = await fetch(`/api/witness`, {
-    method: 'POST',
+    method: "POST",
     body: JSON.stringify({ name, relationship, address }),
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   });
   if (!response.ok) {
-    alert('Failed to add');
-  }  
-}
+    alert("Failed to add");
+  }
+};
 
 $("#addWitnessBtn").on("click", addWitness);
