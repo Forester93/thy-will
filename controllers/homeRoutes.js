@@ -79,7 +79,8 @@ router.get("/profile", withAuth, async (req, res) => {
 
     res.render("profile", {
       layout: "main-1",
-      ...account,
+      account,
+      user,
       beneficiaries: user.beneficiaries,
       executors: user.executors,
       witnesses: user.witnesses,

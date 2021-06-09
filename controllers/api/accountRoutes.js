@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Account } = require("../../models");
+const { Account, User } = require("../../models");
 
 router.post("/", async (req, res) => {
   try {
@@ -54,13 +54,23 @@ router.post("/create", async (req, res) => {
   try {
     const accountInfo = await Account.create(req.body);
     let account = accountInfo.get({ plain: true });
+    let newUser = await User.create({
+      name: "Your Full Name (including Middle Names)",
+      gender: true,
+      occupation: "What you do for a living",
+      DOB: "Your date of birth",
+      casket: "Any casket instructions here",
+      ceremony: "Any ceremonial instructions here",
+      address: "Your residential address",
+      account_id: account.id,
+    });
     res.status(200).json("Account created!");
     req.session.save(() => {
       req.session.account_id = account.id;
       req.session.logged_in = true;
       res.json({ account: account, message: "You are now logged in!" });
     });
-    res.redirect("/");
+    res.redirect("/profile");
   } catch (err) {
     res.status(400).send(err);
   }
