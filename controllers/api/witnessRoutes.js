@@ -35,6 +35,7 @@ router.post("/", async (req, res) => {
       // This get witness linked with the login account
       user_id: req.session.account_id,
     });
+    console.log(req.session.account_id);
     res.status(200).json(witnessNew);
   } catch (err) {
     res.status(400).json(err);
@@ -48,6 +49,8 @@ router.put("/:id", async (req, res) => {
       where: {
         id: req.params.id,
       },
+      // This get witness linked with the login account
+      user_id: req.session.account_id,
     });
     res.status(200).json(witnessData);
   } catch (err) {

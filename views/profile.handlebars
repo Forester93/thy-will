@@ -293,9 +293,8 @@
   <div class="modal fade custom-modal" id="witnessModal" tabindex="-1" role="dialog" aria-labelledby="project-modal-form" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
-        <form id="witness">
         <div class="modal-header">
-          <h5 class="modal-title">Add Witness</h5>
+          <h5 class="modal-title" id="witnessModalTitle"></h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
         <form id="witness-form">
@@ -317,8 +316,8 @@
               <label>Address *</label>
               <input type="text" id="witnessAddress" class="form-control" placeholder="79 Main Road, Suburb NSW" required />
             </div>
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-light" id="addWitnessBtn">Save</button>
+            <div class="modal-footer" id="witnessModalFooter">
+              <button type="submit" class="btn btn-light" id="addWitnessBtn" >add</button>
             </div>
           </div>
         </form>        
@@ -326,3 +325,4 @@
     </div>
   </div> 
 {{!↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ witnessModal ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑}} 
+{{!-- <button type="submit" class="btn btn-light" id="addWitnessBtn"></button> --}}
