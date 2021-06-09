@@ -62,8 +62,6 @@ function deleteBenificiary(event) {
       "Content-Type": "application/json",
     },
   });
-
-  
 }
 
 $(".beneficiaryBtn").on("mouseover", updateBeneficiaryModal);
@@ -127,52 +125,91 @@ function updateAssetModal(event) {
 
 
 
-
-
-
-
-
-
 // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Witness relevant codes ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-
-// Delete Handler
-function deleteWitness(event) {
+// %%%%%%%%%%%%%%%%%% Delete Handler %%%%%%%%%%%%%%%%%%
+const deleteWitness = async (event) => {
   event.stopPropagation();
   let targetDeleteBtn = $(event.target);
   let witnessOb = JSON.parse(targetDeleteBtn.parent().attr("data"));
-  console.log(witnessOb.id);
-  // Front end element manipulating actions
-  $(event.target).parent().remove();
   // Call this Backend Route with this method
-  fetch(`/api/witness/${witnessOb.id}`, {
+  const response = await fetch(`/api/witness/${witnessOb.id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
     },
   });
-}
+  if (response.ok) {
+    // Front end element manipulating actions
+    $(event.target).parent().remove();
+  }
+};
 
 $(".witnessDelete").on("click", deleteWitness);
 
-
-// Add Handler
-const addWitness =  async (event) => {
-  // event.preventDefault();
+// %%%%%%%%%%%%%%%%%% Add Handler %%%%%%%%%%%%%%%%%%
+const addWitness = async (event) => {
+  event.preventDefault();
   const name = $("#witnessName").val().trim();
   const relationship = $("#witnessRelation").val();
   const address = $("#witnessAddress").val().trim();
-  // Prevent adding witness with same name
+  // Prevent adding witness with same name (Pending)
   // Call this Backend Route with this method
   const response = await fetch(`/api/witness`, {
-    method: 'POST',
+    method: "POST",
     body: JSON.stringify({ name, relationship, address }),
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   });
   if (!response.ok) {
-    alert('Failed to add');
-  }  
-}
+    alert("Failed to add");
+  }
+  location.reload();
+};
 
-$("#addWitnessBtn").on("click", addWitness);
+$("#witnessModalFooter").on("click", "#addWitnessBtn", addWitness);
+
+// %%%%%%%%%%%%%%%%%% Update Handler %%%%%%%%%%%%%%%%%%
+var witnessIdClicked;
+const updateWitness = async (event) => {
+  event.preventDefault();
+  const name = $("#witnessName").val().trim();
+  const relationship = $("#witnessRelation").val();
+  const address = $("#witnessAddress").val().trim();
+  // Call this Backend Route with this method
+  const response = await fetch(`/api/witness/${witnessIdClicked}`, {
+    method: "PUT",
+    body: JSON.stringify({ name, relationship, address }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (!response.ok) {
+    alert("Failed to update");
+  }
+  location.reload();
+};
+$("#witnessModalFooter").on("click", "#updateWitnessBtn", updateWitness);
+
+
+// Functions to switch Add or Update Modal
+const witnessModalToUpdate = (event) => {
+  // We need to get the target witness id for update with this click
+  let targetclicked = $(event.target);
+  witnessObjClicked = JSON.parse(targetclicked.attr("data"));
+  witnessIdClicked = witnessObjClicked.id;
+  console.log(witnessIdClicked);
+  $("#witnessModalTitle").text("Update Witness");
+  $("#witnessModalFooter")
+    .children(0)
+    .attr("id", "updateWitnessBtn")
+    .text("Update");
+};
+
+const witnessModalToAdd = () => {
+  $("#witnessModalTitle").text("Add Witness");
+  $("#witnessModalFooter").children(0).attr("id", "addWitnessBtn").text("Add");
+};
+
+$(".witnessBtn").on("click", witnessModalToUpdate);
+$("#launchWitness").on("click", witnessModalToAdd);
