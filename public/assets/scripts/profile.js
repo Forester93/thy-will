@@ -124,7 +124,8 @@ const addBeneficiary = async (event) => {
 	}
 };
 
-$('#beneficiaryModalFooter').on('click', '#addBeneficiaryBtn', addBeneficiary);
+
+$("#beneficiaryModalFooter").on("submit", "#addBeneficiaryBtn", addBeneficiary);
 
 // %%%%%%%%%%%%%%%%%% Update Handler %%%%%%%%%%%%%%%%%%
 var beneficiaryIdClicked;
@@ -207,9 +208,12 @@ const beneficiaryModalToAdd = () => {
 		.text('Add');
 };
 
-$('.beneficiaryBtn').on('mouseover', beneficiaryModalToUpdate);
-$('.beneficiaryBtn').on('focus', beneficiaryModalToUpdate);
-$('#launchBeneficiary').on('click', beneficiaryModalToAdd);
+$(".beneficiaryBtn").on("mouseover", beneficiaryModalToUpdate);
+$(".beneficiaryBtn").on("focus", beneficiaryModalToUpdate);
+$(".beneficiaryBtn").on("click", beneficiaryModalToUpdate);
+$("#launchBeneficiary").on("click", beneficiaryModalToAdd);
+$(".launchBeneficiary").on("mouseover", beneficiaryModalToAdd);
+$(".launchBeneficiary").on("focus", beneficiaryModalToAdd);
 
 // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Executor relevant codes ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 // %%%%%%%%%%%%%%%%%% Delete Handler %%%%%%%%%%%%%%%%%%
@@ -234,90 +238,95 @@ $('.executorDelete').on('click', deleteExecutor);
 
 // %%%%%%%%%%%%%%%%%% Add Handler %%%%%%%%%%%%%%%%%%
 const addExecutor = async (event) => {
-	event.preventDefault();
-	const name = $('#executorName').val().trim();
-	const address = $('#executorAddress').val();
-	const isAlternate = $('#executorIsAlternate').val();
-	let hasBoolean;
-	if (isAlternate == 'true' || isAlternate == 'false') {
-		hasBoolean = true;
-	} else {
-		hasBoolean = false;
-	}
-	// Prevent adding data with same name (Pending)
-	// Call this Backend Route with this method, but need to prevent null with if statement
-	if (name && address && hasBoolean) {
-		const response = await fetch(`/api/executor`, {
-			method: 'POST',
-			body: JSON.stringify({ name, address, isAlternate }),
-			headers: {
-				'Content-Type': 'application/json',
-			},
-		});
-		if (!response.ok) {
-			alert('Failed to add');
-		}
-		location.reload();
-	}
+
+  event.preventDefault();
+  const name = $("#executorName").val();
+  const address = $("#executorAddress").val();
+  const relationship = $("#executorRelationship").val();
+  const isAlternate = $("#executorIsAlternate").prop("checked");
+  // Prevent adding data with same name (Pending)
+  // Call this Backend Route with this method, but need to prevent null with if statement
+  if (name && address && isAlternate && relationship) {
+    const response = await fetch(`/api/executor`, {
+      method: "POST",
+      body: JSON.stringify({ name, address, relationship, isAlternate }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (!response.ok) {
+      alert("Failed to add");
+    }
+    location.reload();
+  }
 };
 
-$('#executorModalFooter').on('click', '#addExecutorBtn', addExecutor);
+$("#executorModalFooter").on("submit", "#addExecutorBtn", addExecutor);
+
 
 // %%%%%%%%%%%%%%%%%% Update Handler %%%%%%%%%%%%%%%%%%
 var executorIdClicked;
 const updateExecutor = async (event) => {
-	event.preventDefault();
-	const name = $('#executorName').val().trim();
-	const address = $('#executorAddress').val();
-	const isAlternate = $('#executorIsAlternate').val();
-	// Call this Backend Route with this method
-	const response = await fetch(`/api/executor/${executorIdClicked}`, {
-		method: 'PUT',
-		body: JSON.stringify({ name, address, isAlternate }),
-		headers: {
-			'Content-Type': 'application/json',
-		},
-	});
-	if (!response.ok) {
-		alert('Failed to update');
-	}
-	location.reload();
+
+  event.preventDefault();
+  const name = $("#executorName").val();
+  const address = $("#executorAddress").val();
+  const relationship = $("#executorRelationship").val();
+  const isAlternate = $("#executorIsAlternate").prop("checked");
+  // Call this Backend Route with this method
+  const response = await fetch(`/api/executor/${executorIdClicked}`, {
+    method: "PUT",
+    body: JSON.stringify({ name, address, relationship, isAlternate }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (!response.ok) {
+    alert("Failed to update");
+  }
+  location.reload();
 };
-$('#executorModalFooter').on('click', '#updateExecutorBtn', updateExecutor);
+$("#executorModalFooter").on("submit", "#updateExecutorBtn", updateExecutor);
 
 // Functions to switch Add or Update Modal
 const executorModalToUpdate = (event) => {
-	// We need to get the target executor id for update with this click
-	let targetclicked = $(event.target);
-	executorObjClicked = JSON.parse(targetclicked.attr('data'));
-	executorIdClicked = executorObjClicked.id;
-	// Add some autocomplete for reviewing previous user input
-	$('#executorName').val(executorObjClicked.name);
-	$('#executorAddress').val(executorObjClicked.address);
-	$('#executorIsAlternate').val(executorObjClicked.isAlternate);
-	// Switch to Update Modal
-	$('#executorModalTitle').text('Update Executor');
-	$('#executorModalFooter')
-		.children(0)
-		.attr('id', 'updateExecutorBtn')
-		.text('Update');
+  // We need to get the target executor id for update with this click
+  let targetclicked = $(event.target);
+  executorObjClicked = JSON.parse(targetclicked.attr("data"));
+  executorIdClicked = executorObjClicked.id;
+  // Add some autocomplete for reviewing previous user input
+  $("#executorName").val(executorObjClicked.name);
+  $("#executorAddress").val(executorObjClicked.address);
+  $("#executorIsAlternate").prop("checked", executorObjClicked.isAlternate);
+  $("#executorRelationship").val(executorObjClicked.relationship);
+  // Switch to Update Modal
+  $("#executorModalTitle").text("Update Executor");
+  $("#executorModalFooter")
+    .children(0)
+    .attr("id", "updateExecutorBtn")
+    .text("Update");
 };
 
 const executorModalToAdd = () => {
-	// Clear out previous autocomplete
-	$('#executorName').val('');
-	$('#executorAddress').val('');
-	$('#executorIsAlternate').val('');
-	// Switch to Add Modal
-	$('#executorModalTitle').text('Add Executor');
-	$('#executorModalFooter')
-		.children(0)
-		.attr('id', 'addExecutorBtn')
-		.text('Add');
+  // Clear out previous autocomplete
+  $("#executorName").val("");
+  $("#executorAddress").val("");
+  $("#executorIsAlternate").val("");
+  $("#executorRelationship").val("");
+  // Switch to Add Modal
+  $("#executorModalTitle").text("Add Executor");
+  $("#executorModalFooter")
+    .children(0)
+    .attr("id", "addExecutorBtn")
+    .text("Add");
 };
 
-$('.executorBtn').on('click', executorModalToUpdate);
-$('#launchExecutor').on('click', executorModalToAdd);
+$(".executorBtn").on("mouseover", executorModalToUpdate);
+$(".executorBtn").on("focus", executorModalToUpdate);
+$(".executorBtn").on("click", executorModalToUpdate);
+$("#launchExecutor").on("mouseover", executorModalToAdd);
+$("#launchExecutor").on("focus", executorModalToAdd);
+$("#launchExecutor").on("click", executorModalToAdd);
 
 // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Asset relevant codes ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 // %%%%%%%%%%%%%%%%%% Delete Handler %%%%%%%%%%%%%%%%%%
@@ -363,7 +372,7 @@ const addAsset = async (event) => {
 	}
 };
 
-$('#assetModalFooter').on('click', '#addAssetBtn', addAsset);
+$("#assetModalFooter").on("submit", "#addAssetBtn", addAsset);
 
 // %%%%%%%%%%%%%%%%%% Update Handler %%%%%%%%%%%%%%%%%%
 var assetIdClicked;
@@ -385,7 +394,8 @@ const updateAsset = async (event) => {
 	}
 	location.reload();
 };
-$('#assetModalFooter').on('click', '#updateAssetBtn', updateAsset);
+
+$("#assetModalFooter").on("submit", "#updateAssetBtn", updateAsset);
 
 // Functions to switch Add or Update Modal
 const assetModalToUpdate = (event) => {
@@ -415,8 +425,12 @@ const assetModalToAdd = () => {
 	$('#assetModalFooter').children(0).attr('id', 'addAssetBtn').text('Add');
 };
 
-$('.assetBtn').on('click', assetModalToUpdate);
-$('#launchAsset').on('click', assetModalToAdd);
+$(".assetBtn").on("mouseover", assetModalToUpdate);
+$(".assetBtn").on("focus", assetModalToUpdate);
+$(".assetBtn").on("click", assetModalToUpdate);
+$("#launchAsset").on("mouseover", assetModalToAdd);
+$("#launchAsset").on("focus", assetModalToAdd);
+$("#launchAsset").on("click", assetModalToAdd);
 
 // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Witness relevant codes ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 // %%%%%%%%%%%%%%%%%% Delete Handler %%%%%%%%%%%%%%%%%%
