@@ -20,12 +20,14 @@ html {
   margin: auto;
 }
 /* ======================  Common stylings ====================== */
-.logo {
+.logo,
+.logo-2 {
   font-size: 75px;
   font-weight: 600;
   font-family: "Roboto", cursive;
 }
-.logo span {
+.logo span,
+.logo-2 span {
   color: var(--themeColor1);
 }
 button {

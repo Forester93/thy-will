@@ -28,7 +28,6 @@
 
 // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Beneficiary relevant codes ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 
-
 // $(".beneficiaryDelete").on("click", deleteBenificiary);
 // function deleteBenificiary(event) {
 //   event.stopPropagation();
@@ -92,7 +91,7 @@ const addBeneficiary = async (event) => {
   const address = $("#beneficiaryAddress").val();
   // Prevent adding data with same name (Pending)
   // Call this Backend Route with this method, but need to prevent null with if statement
-  if ( name && address ) {
+  if (name && address) {
     const response = await fetch(`/api/beneficiary`, {
       method: "POST",
       body: JSON.stringify({ name, address }),
@@ -128,7 +127,11 @@ const updateBeneficiary = async (event) => {
   }
   location.reload();
 };
-$("#beneficiaryModalFooter").on("click", "#updateBeneficiaryBtn", updateBeneficiary);
+$("#beneficiaryModalFooter").on(
+  "click",
+  "#updateBeneficiaryBtn",
+  updateBeneficiary
+);
 
 // Functions to switch Add or Update Modal
 const beneficiaryModalToUpdate = (event) => {
@@ -149,17 +152,20 @@ const beneficiaryModalToUpdate = (event) => {
 
 const beneficiaryModalToAdd = () => {
   // Clear out previous autocomplete
-  $("#beneficiaryName").val('');
-  $("#beneficiaryAddress").val('');
+  $("#beneficiaryName").val("");
+  $("#beneficiaryAddress").val("");
   // Switch to Add Modal
   $("#beneficiaryModalTitle").text("Add Beneficiary");
-  $("#beneficiaryModalFooter").children(0).attr("id", "addBeneficiaryBtn").text("Add");
+  $("#beneficiaryModalFooter")
+    .children(0)
+    .attr("id", "addBeneficiaryBtn")
+    .text("Add");
 };
 
 $(".beneficiaryBtn").on("click", beneficiaryModalToUpdate);
 $("#launchBeneficiary").on("click", beneficiaryModalToAdd);
 
-// ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Executor relevant codes ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ 
+// ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Executor relevant codes ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 // %%%%%%%%%%%%%%%%%% Delete Handler %%%%%%%%%%%%%%%%%%
 const deleteExecutor = async (event) => {
   event.stopPropagation();
@@ -187,10 +193,14 @@ const addExecutor = async (event) => {
   const address = $("#executorAddress").val();
   const isAlternate = $("#executorIsAlternate").val();
   let hasBoolean;
-  if ( isAlternate == "true" || isAlternate == "false" ){ hasBoolean = true } else { hasBoolean = false };
+  if (isAlternate == "true" || isAlternate == "false") {
+    hasBoolean = true;
+  } else {
+    hasBoolean = false;
+  }
   // Prevent adding data with same name (Pending)
   // Call this Backend Route with this method, but need to prevent null with if statement
-  if ( name && address && hasBoolean ) {
+  if (name && address && hasBoolean) {
     const response = await fetch(`/api/executor`, {
       method: "POST",
       body: JSON.stringify({ name, address, isAlternate }),
@@ -249,12 +259,15 @@ const executorModalToUpdate = (event) => {
 
 const executorModalToAdd = () => {
   // Clear out previous autocomplete
-  $("#executorName").val('');
-  $("#executorAddress").val('');
-  $("#executorIsAlternate").val('');
+  $("#executorName").val("");
+  $("#executorAddress").val("");
+  $("#executorIsAlternate").val("");
   // Switch to Add Modal
   $("#executorModalTitle").text("Add Executor");
-  $("#executorModalFooter").children(0).attr("id", "addExecutorBtn").text("Add");
+  $("#executorModalFooter")
+    .children(0)
+    .attr("id", "addExecutorBtn")
+    .text("Add");
 };
 
 $(".executorBtn").on("click", executorModalToUpdate);
@@ -289,7 +302,7 @@ const addAsset = async (event) => {
   const value = $("#assetValue").val();
   // Prevent adding data with same name (Pending)
   // Call this Backend Route with this method, but need to prevent null with if statement
-  if ( description && type && value ) {
+  if (description && type && value) {
     const response = await fetch(`/api/asset`, {
       method: "POST",
       body: JSON.stringify({ description, type, value }),
@@ -348,9 +361,9 @@ const assetModalToUpdate = (event) => {
 
 const assetModalToAdd = () => {
   // Clear out previous autocomplete
-  $("#assetDescription").val('');
-  $("#assetType").val('');
-  $("#assetValue").val('');
+  $("#assetDescription").val("");
+  $("#assetType").val("");
+  $("#assetValue").val("");
   // Switch to Add Modal
   $("#assetModalTitle").text("Add Asset");
   $("#assetModalFooter").children(0).attr("id", "addAssetBtn").text("Add");
@@ -388,22 +401,9 @@ const addWitness = async (event) => {
   const DOB = $("#witnessDOB").val().trim();
   const occupation = $("#witnessOccupation").val().trim();
   const address = $("#witnessAddress").val().trim();
-<<<<<<< HEAD
-  // Prevent adding witness with same name (Pending)
-  // Call this Backend Route with this method
-  const response = await fetch(`/api/witness`, {
-    method: "POST",
-    body: JSON.stringify({ name, relationship, DOB, address, occupation }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  if (!response.ok) {
-    alert("Failed to add");
-=======
   // Prevent adding data with same name (Pending)
   // Call this Backend Route with this method, but need to prevent null with if statement
-  if ( name && address ) {
+  if (name && address) {
     const response = await fetch(`/api/witness`, {
       method: "POST",
       body: JSON.stringify({ name, relationship, address }),
@@ -415,7 +415,6 @@ const addWitness = async (event) => {
       alert("Failed to add");
     }
     location.reload();
->>>>>>> 402a2c6bd5eed0056f9787d7300065fa082af2b6
   }
 };
 
@@ -464,9 +463,9 @@ const witnessModalToUpdate = (event) => {
 
 const witnessModalToAdd = () => {
   // Clear out previous autocomplete
-  $("#witnessName").val('');
-  $("#witnessRelation").val('');
-  $("#witnessAddress").val('');
+  $("#witnessName").val("");
+  $("#witnessRelation").val("");
+  $("#witnessAddress").val("");
   // Switch to Add Modal
   $("#witnessModalTitle").text("Add Witness");
   $("#witnessModalFooter").children(0).attr("id", "addWitnessBtn").text("Add");
