@@ -563,9 +563,9 @@ const userModalToUpdate = (event) => {
   // We need to get the target witness id for update with this click
   let targetclicked = $(event.target);
   userObjectClicked = JSON.parse(targetclicked.attr("data"));
-  userIdClicked = userObjectClicked.id;
-  console.log(userObjectClicked.name);
-  // Add some autocomplete for reviewing previous user input
+  // userIdClicked = userObjectClicked.id;
+  console.log(userObjectClicked);
+  // // Add some autocomplete for reviewing previous user input
   $("#userName").val(userObjectClicked.name);
   $("#userDOB").val(userObjectClicked.DOB);
   $("#userAddress").val(userObjectClicked.address);
@@ -574,8 +574,6 @@ const userModalToUpdate = (event) => {
   // $('#userGender').val(userObjectClicked.gender);
   $("#userOccupation").val(userObjectClicked.occupation);
 };
-
-$("#editUser").on("click", userModalToUpdate);
 $("#editUser").on("mouseover", userModalToUpdate);
 $("#editUser").on("focus", userModalToUpdate);
 $("#userModalFooter").on("click", "#userUpdateBtn", updateUser);

@@ -47,7 +47,7 @@
             <p><strong>COccupation:</strong> {{user.occupation}}</p>
             <p><strong>Casket Instructions:</strong> {{user.casket}}</p>
             <p><strong>Ceremonial Instructions:</strong> {{user.ceremony}}</p>
-            <button id="editUser" data-toggle="modal" data-target="#userModal" data='{{{unobjectify user}}}'>Edit</button>
+            <button id="editUser" data-toggle="modal" data-target="#userModal" data='{ "name":"{{{user.name}}}", "DOB":"{{{user.DOB}}}", "gender":"{{{user.gender}}}", "casket":"{{{user.casket}}}", "ceremony":"{{{user.ceremony}}}", "occupation":"{{{user.occupation}}}", "address":"{{{user.address}}}" }'>Edit</button>
         </div>
         
         <div class="card" id="part-1">
