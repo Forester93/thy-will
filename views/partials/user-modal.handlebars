@@ -1,0 +1,43 @@
+<div class="modal fade custom-modal" id="userModal" tabindex="-1" role="dialog" aria-labelledby="project-modal-form" aria-hidden="true">
+  <div class="modal-dialog modal-lg"> {{! model assets header added by jack}}
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="userModalTitle"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <form id="user-form">
+        <div class="modal-body">
+          <div class="form-group"> {{! jack added form for asset ID please check  }}
+            <label>Asset ID</label>
+            <input type="text" id="userId" class="form-control"/>
+          </div>
+
+          <div class="form-group"> {{! jack added form asset description }}
+            <label>Name *</label>
+            <input type="text" id="userName" class="form-control" required />
+          </div>
+
+            <div class="form-group"> {{! jack added form for  asset value }}
+              <label>Date of Birth *</label>
+              <input type="text" id="userDOB" class="form-control" enabled = required />
+            </div>
+
+          <div class="form-group"> {{! jack added form for  asset value }}
+            <label>Address *</label>
+            <input type="number" id="userAddress" class="form-control" required />
+          </div>
+          
+          <div class="form-group"> {{! jack added form for  asset value }}
+            <label>Funeral ceremony details *</label>
+            <input type="number" id="userCeremony" class="form-control" required />
+          </div>
+
+          <div class="modal-footer" id="assetModalFooter"> {{!asset model save button}}
+            <button type="submit" class="btn btn-light" id="addAssetBtn" >add</button>
+          </div>
+
+        </div>
+      </form>  
+    </div> 
+  </div>     
+</div>
