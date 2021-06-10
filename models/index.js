@@ -28,9 +28,15 @@ Witness.belongsTo(User, { foreignKey: "user_id" });
 
 // Asset Apportionment Relations
 
-Asset.belongsToMany(Beneficiary, { through: AssetApportion });
-Beneficiary.belongsToMany(Asset, { through: AssetApportion });
-AssetApportion.belongsTo(User, { foreignKey: "user_id" });
+Asset.belongsToMany(Beneficiary, {
+  through: AssetApportion,
+  onDelete: "set null",
+});
+Beneficiary.belongsToMany(Asset, {
+  through: AssetApportion,
+  onDelete: "set null",
+});
+AssetApportion.belongsTo(User, { foreignKey: "user_id", onDelete: "cascade" });
 
 module.exports = {
   User,

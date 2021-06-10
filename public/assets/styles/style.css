@@ -157,7 +157,7 @@ footer {
   align-items: flex-start;
   color: black;
   background-size: cover;
-  background-color: #fffff0;
+  background-color: #080806;
   padding: 30px;
   font-family: "Montserrat", sans-serif;
 }
@@ -186,13 +186,20 @@ footer {
   font-weight: 600;
 }
 
+.card {
+  margin: 2vw;
+}
+
+.box-2 {
+  border-radius: 5px;
+}
 .box-2 .card .updateBtn {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 5px;
 }
-.box-2 .card .updateBtn span{
+.box-2 .card .updateBtn span {
   text-align: left;
 }
 .box-2 .card {
@@ -206,10 +213,11 @@ footer {
   transition: all 0.3s ease;
 }
 
-
-
 .box-2 .card:hover {
-  box-shadow: 0px 0px 16px pink;
+  animation-duration: 0.75s;
+  animation-name: glow-black;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
 }
 .box-2 .card .num {
   width: 60px;
@@ -262,4 +270,40 @@ footer {
   max-width: 1500px;
 }
 
-/* ======================  Question pages styling ====================== */
+.logo {
+  background-color: white;
+  padding: 1vw;
+  margin-bottom: 2vw;
+  border-radius: 5px;
+}
+
+.logo:hover {
+  animation-duration: 0.75s;
+  animation-name: glow;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+/*the glow effect on the borders*/
+@keyframes glow {
+  0% {
+    box-shadow: 1.75px 1.75px 20px 1.25px rgba(255, 6, 255, 0.1);
+  }
+  50% {
+    box-shadow: 1.75px 1.75px 20px 1.25px rgba(195, 0, 255, 0.75);
+  }
+  100% {
+    box-shadow: 1.75px 1.75px 20px 1.25px rgb(255, 0, 212);
+  }
+}
+
+@keyframes glow-black {
+  0% {
+    box-shadow: 1.75px 1.75px 20px 1.25px rgba(128, 102, 128, 0.1);
+  }
+  50% {
+    box-shadow: 1.75px 1.75px 20px 1.25px rgba(61, 54, 63, 0.75);
+  }
+  100% {
+    box-shadow: 1.75px 1.75px 20px 1.25px rgb(14, 13, 14);
+  }
+}

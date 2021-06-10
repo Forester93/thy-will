@@ -5,7 +5,7 @@ const { Witness } = require("../../models");
 router.get("/", async (req, res) => {
   try {
     const witnessData = await Witness.findAll({
-      order: [['id', 'ASC']] 
+      order: [["id", "ASC"]],
     });
     res.status(200).json(witnessData);
   } catch (err) {

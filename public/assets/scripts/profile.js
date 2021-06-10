@@ -141,13 +141,15 @@ $(".witnessDelete").on("click", deleteWitness);
 const addWitness = async (event) => {
   event.preventDefault();
   const name = $("#witnessName").val().trim();
-  const relationship = $("#witnessRelation").val();
+  const relationship = $("#witnessRelationship").val().trim();
+  const DOB = $("#witnessDOB").val().trim();
+  const occupation = $("#witnessOccupation").val().trim();
   const address = $("#witnessAddress").val().trim();
   // Prevent adding witness with same name (Pending)
   // Call this Backend Route with this method
   const response = await fetch(`/api/witness`, {
     method: "POST",
-    body: JSON.stringify({ name, relationship, address }),
+    body: JSON.stringify({ name, relationship, DOB, address, occupation }),
     headers: {
       "Content-Type": "application/json",
     },
