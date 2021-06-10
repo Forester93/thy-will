@@ -23,7 +23,7 @@ html {
 .logo {
   font-size: 75px;
   font-weight: 600;
-  font-family: "Parisienne", cursive;
+  font-family: "Roboto", cursive;
 }
 .logo span {
   color: var(--themeColor1);

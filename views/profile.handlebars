@@ -105,172 +105,181 @@
   </div>
 </section>
 
-  {{!↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓  Modal Beneficiary Adding ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓}}
-  <div class="modal fade custom-modal" id="beneficiaryModal" tabindex="-1" role="dialog" aria-labelledby="project-modal-form" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
 
-        <div class="modal-header">
-          <h5 class="modal-title" id="beneficiaryModalTitle">Beneficiary Details</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        </div>
-
-        <form id="beneficiary">
-          <div class="modal-body">
-
-            <div class="form-group" 
+{{!↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓  BeneficiaryModal  ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓}}
+<div class="modal fade custom-modal" id="beneficiaryModal" tabindex="-1" role="dialog" aria-labelledby="project-modal-form" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="beneficiaryModalTitle"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <form id="beneficiary-form">
+        <div class="modal-body">
+          <div class="form-group" 
             {{!-- style="{display:none}" --}}
             > {{! jack added form group for benificary ID please check  }}
-              <label>Beneficiary ID</label>
-              <input type="text" id="beneficiaryId" class="form-control" enabled = false />
-            </div>
+            <label>Beneficiary ID</label>
+            <input type="text" id="beneficiaryId" class="form-control" enabled = false />
+          </div>
 
-            <div class="form-group">
-              <label>Name *</label>
-              <input type="text" id="beneficiaryName" class="form-control" placeholder="First & Last" required />
-            </div>
+          <div class="form-group">
+            <label>Name *</label>
+            <input type="text" id="beneficiaryName" class="form-control" placeholder="First & Last" required />
+          </div>
 
-            <div class="form-group">
-              <label for="DOB">DOB:</label>
-              <input type="text" id="beneficiaryDOB" class="form-control"/>
-            </div>
+          <div class="form-group">
+            <label for="DOB">DOB:</label>
+            <input type="text" id="beneficiaryDOB" class="form-control"/>
+          </div>
 
-            <div class="form-group">
-              <label>Relationship:</label>
-              <input type="text" id="beneficiaryRelation" class="form-control" placeholder="First & Last" required />
-            </div>
+          <div class="form-group">
+            <label>Relationship:</label>
+            <input type="text" id="beneficiaryRelation" class="form-control" placeholder="First & Last" required />
+          </div>
 
-            <div class="form-group">
-              <label>Address *</label>
-              <input type="text" id="beneficiaryAddress" class="form-control" placeholder="Example: 79 Main Road, Suburb NSW" required />
-            </div>
-
-            <div class="form-group"> {{! added by jack check this.}}
-              <input type="checkbox" id="beneficiaryIsChild" class="btn-check" placeholder= required autocomplete="off"/>
-              <label class="btn btn-outline-primary" for="beneficiaryIsChild">Minor</label>
-            </div>
-
-            <div class="form-group"> {{! added by jack check this.}}
-              <input type="checkbox" id="beneficiaryIsCharity" class="btn-check" placeholder= required autocomplete="off" />
-              <label class="btn btn-outline-primary" for="beneficiaryIsCharity">Charity</label>
-            </div>
+          <div class="form-group">
+            <label>Address *</label>
+            <input type="text" id="beneficiaryAddress" class="form-control" placeholder="Example: 79 Main Road, Suburb NSW" required />
+          </div>
 
           <div class="form-group"> {{! added by jack check this.}}
-              <label>Guardian Name</label>
-              <input type="text" id="beneficiaryGuardianName" class="form-control">
-            </div>
-
-            <div class="form-group"> {{! added by jack check this.}}
-              <label>Guardian Address</label>
-              <input type="text" id="beneficiaryGuardianAddress" class="form-control" placeholder="example: # street name, suburb, state, post-code" />
-            </div>
-
-
-
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-light" id="beneficiarySave">Save</button>
-            </div>
-
+            <input type="checkbox" id="beneficiaryIsChild" class="btn-check" placeholder= required autocomplete="off"/>
+            <label class="btn btn-outline-primary" for="beneficiaryIsChild">Minor</label>
           </div>
-        </form>  
 
-      </div>     
-    </div>
-  </div> 
-  {{!↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑  Modal Beneficiary Adding ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑}}
-  {{!↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓  Modal Executor Adding    ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓}}
+          <div class="form-group"> {{! added by jack check this.}}
+            <input type="checkbox" id="beneficiaryIsCharity" class="btn-check" placeholder= required autocomplete="off" />
+            <label class="btn btn-outline-primary" for="beneficiaryIsCharity">Charity</label>
+          </div>
 
-<div class="modal fade custom-modal" id="executorModal" tabindex="-1" role="dialog" aria-labelledby="project-modal-form" aria-hidden="true">
-    <div class="modal-dialog modal-lg"> {{! model header added by jack}}
-      <div class="modal-content">
+          <div class="form-group"> {{! added by jack check this.}}
+            <label>Guardian Name</label>
+            <input type="text" id="beneficiaryGuardianName" class="form-control">
+          </div>
 
-        <div class="modal-header">
-          <h5 class="modal-title" id="executorModalTitle">Executor Details</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <div class="form-group"> {{! added by jack check this.}}
+            <label>Guardian Address</label>
+            <input type="text" id="beneficiaryGuardianAddress" class="form-control" placeholder="example: # street name, suburb, state, post-code" />
+          </div>
+
+          <div class="modal-footer" id="beneficiaryModalFooter">
+              <button type="submit" class="btn btn-light" id="addBeneficiary"></button>
+          </div>
+
         </div>
-        <form id="executor">
+      </form>  
+    </div>     
+  </div>
+</div> 
+  
+  
+{{!↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓  ExecutorModal  ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓}}
+<div class="modal fade custom-modal" id="executorModal" tabindex="-1" role="dialog" aria-labelledby="project-modal-form" aria-hidden="true">
+  <div class="modal-dialog modal-lg"> {{! model header added by jack}}
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="executorModalTitle"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <form id="executor-form">
         <div class="modal-body">
-        <div class="form-group"> {{! jack added form for  executor ID please check  }}
-              <label>Executor ID</label>
-              <input type="text" id="executorId" class="form-control" enabled = false />
-            </div>
-
-            <div class="form-group"> {{! jack added form for  executor name please check  }}
-              <label>Executor Name</label>
-              <input type="text" id="executorName" class="form-control" enabled = required />
-            </div>
-
-            <div class="form-group"> {{! jack added form for  executor DOB please check  }}
-              <label>Executor DOB</label>
-              <input type="text" id="executorDOB" class="form-control" enabled = required />
-            </div>
-
-            <div class="form-group"> {{! jack added form for  executor DOB please check  }}
-              <label>Executor Relationship</label>
-              <input type="text" id="executorRelationship" class="form-control" enabled = required />
-            </div>
-
-            <div class="form-group"> {{! jack added form for  executor address please check  }}
-              <label>Executor Address</label>
-              <input type="text" id="executorAddress" class="form-control" enabled = required />
-            </div>
-            <div class="form-group"> {{! jack added form for  executor is alternate  please check  }}
-              <label>Executor Alternate</label>
-              <input type="checkbox" id="executorIsAlternate" class="form-control" enabled = required />
-            </div>
-              <div class="modal-footer">
-              <button type="submit" class="btn btn-light" id="executorSave">Save</button>
-            </div>
-
+          <div class="form-group"> {{! jack added form for  executor ID please check  }}
+            <label>Executor ID:</label>
+            <input type="text" id="executorId" class="form-control"/>
           </div>
-        </form>  
 
-      </div>     
-    </div>
+          <div class="form-group"> {{! jack added form for  executor name please check  }}
+            <label>Executor Name *</label>
+            <input type="text" id="executorName" class="form-control" required />
+          </div>
+
+          <div class="form-group"> {{! jack added form for  executor DOB please check  }}
+            <label>Executor DOB:</label>
+            <input type="text" id="executorDOB" class="form-control"/>
+          </div>
+
+          <div class="form-group"> {{! jack added form for  executor DOB please check  }}
+            <label>Executor Relationship:</label>
+            <input type="text" id="executorRelationship" class="form-control"/>
+          </div>
+
+          <div class="form-group"> {{! jack added form for  executor address please check  }}
+            <label>Executor Address *</label>
+            <input type="text" id="executorAddress" class="form-control" required />
+          </div>
+
+          <div class="form-group"> {{! jack added form for  executor is alternate  please check  }}
+            <label>Executor Alternate *</label>
+            <select class="form-control" id="executorIsAlternate" required>
+              <option value = "true" >Yes</option>
+              <option value = "false">No</option>
+            </select>
+          </div>
+
+          <div class="modal-footer" id="executorModalFooter">
+            <button type="submit" class="btn btn-light" id="addExecutorBtn"></button>
+          </div>
+
+        </div>
+      </form>  
+    </div>     
+  </div>
 </div>
 
-{{! modal for assets}}
 
-    <div class="modal fade custom-modal" id="assetModal" tabindex="-1" role="dialog" aria-labelledby="project-modal-form" aria-hidden="true">
-    <div class="modal-dialog modal-lg"> {{! model assets header added by jack}}
-      <div class="modal-content">
-        <form id="asset">
+{{!↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ assetModal ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓}}
+<div class="modal fade custom-modal" id="assetModal" tabindex="-1" role="dialog" aria-labelledby="project-modal-form" aria-hidden="true">
+  <div class="modal-dialog modal-lg"> {{! model assets header added by jack}}
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="assetModalTitle"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <form id="asset-form">
         <div class="modal-body">
+          <div class="form-group"> {{! jack added form for asset ID please check  }}
+            <label>Asset ID</label>
+            <input type="text" id="assetId" class="form-control"/>
+          </div>
 
-        <div class="modal-header">
-          <h5 class="modal-title" id="assetsModalTitle">Add Assets</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        </div>
+          <div class="form-group"> {{! jack added form asset description }}
+            <label>Asset Description *</label>
+            <input type="text" id="assetDescription" class="form-control" required />
+          </div>
 
-            <div class="form-group"> {{! jack added form for asset ID please check  }}
-              <label>Asset ID</label>
-              <input type="text" id="assetId" class="form-control" enabled = false />
-            </div>
-
-            <div class="form-group"> {{! jack added form asset description }}
-              <label>Asset Description</label>
-              <input type="text" id="assetDescription" class="form-control" enabled = required />
-            </div>
-
-            <div class="form-group"> {{! jack added form for type of asset, text for now could be drop down}}
-              <label>Asset Type</label>
-              <input type="text" id="assetType" class="form-control" enabled = required />
-            </div>
-
+<<<<<<< HEAD
             <div class="form-group"> {{! jack added form for  asset value }}
               <label>Asset Value</label>
               <input type="text" id="assetValue" class="form-control" enabled = required />
             </div>
-
-              <div class="modal-footer"> {{!asset model save button}}
-              <button type="submit" class="btn btn-light" id="assetSave">Save</button>
-            </div>
-
+=======
+          <div class="form-group"> {{! jack added form for type of asset, text for now could be drop down}}
+            <label>Asset Type *</label>
+            <select class="form-control" id="assetType" required>
+              <option value="Monetary">Monetary</option>
+              <option value="Physical">Physical</option>
+              <option value="Sentimental">Sentimental</option>
+              <option value="Miscellaneous">Miscellaneous</option>
+              <option value=""></option>
+            </select>
           </div>
-        </form>  
-        </div> 
-      </div>     
-    </div>
+>>>>>>> 402a2c6bd5eed0056f9787d7300065fa082af2b6
+
+          <div class="form-group"> {{! jack added form for  asset value }}
+            <label>Asset value *</label>
+            <input type="number" id="assetValue" class="form-control" required />
+          </div>
+
+          <div class="modal-footer" id="assetModalFooter"> {{!asset model save button}}
+            <button type="submit" class="btn btn-light" id="addAssetBtn" >add</button>
+          </div>
+
+        </div>
+      </form>  
+    </div> 
+  </div>     
+</div>
 
 
 
@@ -289,7 +298,7 @@
 
 
 
-  {{!↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ witnessModal ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓}}
+{{!↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ witnessModal ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓}}
   <div class="modal fade custom-modal" id="witnessModal" tabindex="-1" role="dialog" aria-labelledby="project-modal-form" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -303,6 +312,23 @@
               <label>Name *</label>
               <input type="text" id="witnessName" class="form-control" placeholder="First Last" required />
             </div>
+<<<<<<< HEAD
+=======
+            <div class="form-group">
+              <label>Relationship:</label>
+              <select class="form-control" id="witnessRelation">
+                <option value="Friend">Friend</option>
+                <option value="Relatives">Relatives</option>
+                <option value="Business Partner">Business Partner</option>
+                <option value="Others">Others</option>
+                <option value=""></option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Address *</label>
+              <input type="text" id="witnessAddress" class="form-control" placeholder="79 Main Road, Suburb NSW" required />
+            </div>
+>>>>>>> 402a2c6bd5eed0056f9787d7300065fa082af2b6
             <div class="modal-footer" id="witnessModalFooter">
               <button type="submit" class="btn btn-light" id="addWitnessBtn" >add</button>
             </div>
@@ -311,5 +337,3 @@
       </div>     
     </div>
   </div> 
-{{!↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ witnessModal ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑}} 
-{{!-- <button type="submit" class="btn btn-light" id="addWitnessBtn"></button> --}}
