@@ -56,7 +56,7 @@ router.get('/:id', withAuth, async (req, res) => {
 				for (i = 0; i < executors.length; i++) {
 					if (!executors[i].isAlternate) {
 						executorArray.push(
-							`Executor #${executorNumber}\n\n    Name: ${executors[i].name}\n    Date of Birth: ${executors[i].DOB}\n    Relationship: ${executors[i].relationship}\n    Address: ${executors[i].address}\n\n`
+							`Executor #${executorNumber}\n\n    Name: ${executors[i].name}\n    Relationship: ${executors[i].relationship}\n    Address: ${executors[i].address}\n\n`
 						);
 						executorNumber++;
 					}
@@ -71,7 +71,7 @@ router.get('/:id', withAuth, async (req, res) => {
 				for (i = 0; i < executors.length; i++) {
 					if (executors[i].isAlternate) {
 						executorArray.push(
-							`Alternate Executor #${executorNumber}\n\n    Name: ${executors[i].name}\n    Date of Birth: ${executors[i].DOB}\n    Relationship: ${executors[i].relationship}\n    Address: ${executors[i].address}\n\n`
+							`Alternate Executor #${executorNumber}\n\n    Name: ${executors[i].name}\n    Relationship: ${executors[i].relationship}\n    Address: ${executors[i].address}\n\n`
 						);
 						executorNumber++;
 					}
@@ -86,13 +86,27 @@ router.get('/:id', withAuth, async (req, res) => {
 				const beneficiaryArray = [];
 				for (i = 0; i < beneficiaries.length; i++) {
 					if (!beneficiaries[i].isCharity) {
-						beneficiaryArray.push(
-							`Beneficiary #${i + 1}\n\n    Name: ${
-								beneficiaries[i].name
-							}\n    DOB: ${beneficiaries[i].DOB}\n    Relationship: ${
-								beneficiaries[i].relationship
-							}\n    Address: ${beneficiaries[i].address}\n\n`
-						);
+						if (beneficiaries[i].isChild) {
+							beneficiaryArray.push(
+								`Beneficiary #${i + 1}\n\n    Name: ${
+									beneficiaries[i].name
+								}\n    DOB: ${beneficiaries[i].DOB}\n    Relationship: ${
+									beneficiaries[i].relationship
+								}\n    Address: ${beneficiaries[i].address}\n    Guardian: ${
+									beneficiaries[i].guardian_name
+								}\n    Guardian Address: ${
+									beneficiaries[i].guardian_address
+								}\n\n`
+							);
+						} else {
+							beneficiaryArray.push(
+								`Beneficiary #${i + 1}\n\n    Name: ${
+									beneficiaries[i].name
+								}\n    DOB: ${beneficiaries[i].DOB}\n    Relationship: ${
+									beneficiaries[i].relationship
+								}\n    Address: ${beneficiaries[i].address}\n\n`
+							);
+						}
 					} else {
 						beneficiaryArray.push(
 							`Beneficiary #${i + 1}\n\n    Name: ${
