@@ -1,0 +1,61 @@
+{{!↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓  BeneficiaryModal  ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓}}
+<div class="modal fade custom-modal" id="beneficiaryModal" tabindex="-1" role="dialog" aria-labelledby="project-modal-form" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="beneficiaryModalTitle"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <form id="beneficiary-form">
+        <div class="modal-body">
+
+          <div class="form-group">
+            <label>Name *</label>
+            <input type="text" id="beneficiaryName" class="form-control" placeholder="First & Last" required />
+          </div>
+
+          <div class="form-group">
+            <label for="DOB">DOB:</label>
+            <input type="text" id="beneficiaryDOB" class="form-control"/>
+          </div>
+
+          <div class="form-group">
+            <label>Relationship:</label>
+            <input type="text" id="beneficiaryRelationship" class="form-control" placeholder="Relative, Friend, etc" />
+          </div>
+
+          <div class="form-group">
+            <label>Address *</label>
+            <input type="text" id="beneficiaryAddress" class="form-control" placeholder="Example: 79 Main Road, Suburb NSW" required />
+          </div>
+
+          <div class="form-group"> {{! added by jack check this.}}
+            <input type="checkbox" id="beneficiaryIsChild" class="btn-check" placeholder= required autocomplete="off"/>
+            <label class="btn btn-outline-primary" for="beneficiaryIsChild">Minor</label>
+          </div>
+
+          <div class="form-group"> {{! added by jack check this.}}
+            <input type="checkbox" id="beneficiaryIsCharity" class="btn-check" placeholder= required autocomplete="off" />
+            <label class="btn btn-outline-primary" for="beneficiaryIsCharity">Charity</label>
+          </div>
+
+          <div class="form-group"> {{! added by jack check this.}}
+            <label>Guardian Name</label>
+            <input type="text" id="beneficiaryGuardianName" class="form-control">
+          </div>
+
+          <div class="form-group"> {{! added by jack check this.}}
+            <label>Guardian Address</label>
+            <input type="text" id="beneficiaryGuardianAddress" class="form-control" placeholder="example: # street name, suburb, state, post-code" />
+          </div>
+
+          <div class="modal-footer" id="beneficiaryModalFooter">
+              <button type="submit" class="btn btn-light" id="addBeneficiary"></button>
+          </div>
+
+        </div>
+      </form>  
+    </div>     
+  </div>
+</div> 
+  

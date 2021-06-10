@@ -1,7 +1,6 @@
 [
   {
     "name": "Saul Goodman",
-    "DOB": "01/02/1980",
     "relationship": "Solicitor",
     "address": "230 Saul Street, Albuquerque NSW",
     "isAlternate": false,
@@ -9,7 +8,6 @@
   },
   {
     "name": "Harvey Specter",
-    "DOB": "01/03/1979",
     "relationship": "Lawyer",
     "address": "230 Harvey Street, Melbourne VIC",
     "isAlternate": true,
@@ -17,7 +15,6 @@
   },
   {
     "name": "Aaron Schmidt",
-    "DOB": "09/07/1970",
     "relationship": "Family Lawyer",
     "address": "1/230 Law Street, Sydney NSW",
     "isAlternate": false,
@@ -25,7 +22,6 @@
   },
   {
     "name": "Michael Portelli",
-    "DOB": "04/03/1972",
     "relationship": "Lawyer",
     "address": "2/230 Law Street, Sydney NSW",
     "isAlternate": true,

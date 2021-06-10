@@ -30,11 +30,17 @@ Witness.belongsTo(User, { foreignKey: "user_id" });
 
 Asset.belongsToMany(Beneficiary, {
   through: AssetApportion,
-  onDelete: "set null",
 });
 Beneficiary.belongsToMany(Asset, {
   through: AssetApportion,
-  onDelete: "set null",
+});
+Beneficiary.hasMany(AssetApportion, {
+  foreignKey: "beneficiary_id",
+  onDelete: "cascade",
+});
+Asset.hasMany(AssetApportion, {
+  foreignKey: "asset_id",
+  onDelete: "cascade",
 });
 AssetApportion.belongsTo(User, { foreignKey: "user_id", onDelete: "cascade" });
 

@@ -17,7 +17,7 @@ Asset.init(
     },
     type: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
     value: {
       type: DataTypes.DECIMAL(12, 2),

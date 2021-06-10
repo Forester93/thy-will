@@ -8,23 +8,25 @@
       </div>
       <form id="asset-form">
         <div class="modal-body">
-          <div class="form-group"> {{! jack added form for asset ID please check  }}
-            <label>Asset ID</label>
-            <input type="text" id="assetId" class="form-control"/>
-          </div>
 
           <div class="form-group"> {{! jack added form asset description }}
-            <label>Asset Description *</label>
+            <label>Asset Description*:</label>
             <input type="text" id="assetDescription" class="form-control" required />
           </div>
 
             <div class="form-group"> {{! jack added form for  asset value }}
-              <label>Asset Type</label>
-              <input type="text" id="assetType" class="form-control" enabled = required />
+              <label>Asset Type*:</label>
+              <select class="form-control" id="assetType" required>
+              <option value="Monetary">Monetary</option>
+              <option value="Physical">Physical</option>
+              <option value="Sentimental">Sentimental</option>
+              <option value="Miscellaneous">Miscellaneous</option>
+              <option value=""></option>
+            </select>
             </div>
 
           <div class="form-group"> {{! jack added form for  asset value }}
-            <label>Asset value *</label>
+            <label>Asset Value*:</label>
             <input type="number" id="assetValue" class="form-control" required />
           </div>
 
