@@ -34,14 +34,14 @@ Asset.belongsToMany(Beneficiary, {
 Beneficiary.belongsToMany(Asset, {
   through: AssetApportion,
 });
-Beneficiary.hasMany(AssetApportion, {
-  foreignKey: "beneficiary_id",
-  onDelete: "cascade",
-});
-Asset.hasMany(AssetApportion, {
-  foreignKey: "asset_id",
-  onDelete: "cascade",
-});
+// Beneficiary.hasMany(AssetApportion, {
+//   foreignKey: "beneficiary_id",
+//   onDelete: "cascade",
+// });
+// Asset.hasMany(AssetApportion, {
+//   foreignKey: "asset_id",
+//   onDelete: "cascade",
+// });
 AssetApportion.belongsTo(User, { foreignKey: "user_id", onDelete: "cascade" });
 
 module.exports = {

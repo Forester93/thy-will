@@ -15,14 +15,6 @@ Witness.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    DOB: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    relationship: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
     address: {
       type: DataTypes.STRING,
       allowNull: false,

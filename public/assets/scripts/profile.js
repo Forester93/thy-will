@@ -124,7 +124,7 @@ const addBeneficiary = async (event) => {
   }
 };
 
-$("#beneficiaryModalFooter").on("submit", "#addBeneficiaryBtn", addBeneficiary);
+$("#beneficiaryModalFooter").on("click", "#addBeneficiaryBtn", addBeneficiary);
 
 // %%%%%%%%%%%%%%%%%% Update Handler %%%%%%%%%%%%%%%%%%
 var beneficiaryIdClicked;
@@ -259,7 +259,7 @@ const addExecutor = async (event) => {
   }
 };
 
-$("#executorModalFooter").on("submit", "#addExecutorBtn", addExecutor);
+$("#executorModalFooter").on("click", "#addExecutorBtn", addExecutor);
 
 // %%%%%%%%%%%%%%%%%% Update Handler %%%%%%%%%%%%%%%%%%
 var executorIdClicked;
@@ -282,7 +282,7 @@ const updateExecutor = async (event) => {
   }
   location.reload();
 };
-$("#executorModalFooter").on("submit", "#updateExecutorBtn", updateExecutor);
+$("#executorModalFooter").on("click", "#updateExecutorBtn", updateExecutor);
 
 // Functions to switch Add or Update Modal
 const executorModalToUpdate = (event) => {
@@ -368,7 +368,7 @@ const addAsset = async (event) => {
   }
 };
 
-$("#assetModalFooter").on("submit", "#addAssetBtn", addAsset);
+$("#assetModalFooter").on("click", "#addAssetBtn", addAsset);
 
 // %%%%%%%%%%%%%%%%%% Update Handler %%%%%%%%%%%%%%%%%%
 var assetIdClicked;
@@ -390,7 +390,7 @@ const updateAsset = async (event) => {
   }
   location.reload();
 };
-$("#assetModalFooter").on("submit", "#updateAssetBtn", updateAsset);
+$("#assetModalFooter").on("click", "#updateAssetBtn", updateAsset);
 
 // Functions to switch Add or Update Modal
 const assetModalToUpdate = (event) => {
@@ -485,7 +485,7 @@ const updateWitness = async (event) => {
   // Call this Backend Route with this method
   const response = await fetch(`/api/witness/${witnessIdClicked}`, {
     method: "PUT",
-    body: JSON.stringify({ name, relationship, address }),
+    body: JSON.stringify({ name, occupation, address }),
     headers: {
       "Content-Type": "application/json",
     },
@@ -519,7 +519,7 @@ const witnessModalToUpdate = (event) => {
 const witnessModalToAdd = () => {
   // Clear out previous autocomplete
   $("#witnessName").val("");
-  $("#witnessRelation").val("");
+  $("#witnessOccupation").val("");
   $("#witnessAddress").val("");
   // Switch to Add Modal
   $("#witnessModalTitle").text("Add Witness");

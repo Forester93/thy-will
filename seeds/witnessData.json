@@ -2,8 +2,6 @@
   {
     "id": 1,
     "name": "Tom Hunter",
-    "DOB": "12/03/1991",
-    "relationship": "Friend",
     "address": "79 Main Road, Suburb NSW",
     "occupation": "Crypto Trader",
     "user_id": 1
@@ -11,8 +9,6 @@
   {
     "id": 2,
     "name": "Joshua Forester",
-    "DOB": "12/03/1991",
-    "relationship": "Relatives",
     "address": "1/212 Joshua Pl, Suburb NSW",
     "occupation": "Doctor",
     "user_id": 1
@@ -20,8 +16,6 @@
   {
     "id": 3,
     "name": "George Black",
-    "DOB": "07/03/1971",
-    "relationship": "Business Partner",
     "address": "2 George St, Suburb NSW",
     "occupation": "Web Developer",
     "user_id": 2
@@ -29,8 +23,6 @@
   {
     "id": 4,
     "name": "Maxim Stepanov",
-    "DOB": "12/08/1975",
-    "relationship": "Business Partner",
     "occupation": "Company Co-founder",
     "address": "3 Main Rd, Suburb NSW",
     "user_id": 2

@@ -140,17 +140,11 @@ router.get("/:id", withAuth, async (req, res) => {
         let apportionArray = [];
         for (x = 0; x < assetApportions.length; x++) {
           if (assetApportions[x].asset_id == assetID.id) {
-            // if (
-            //   beneficiaries[assetApportions[x].beneficiary_id - 1] ==
-            //     undefined ||
-            //   assets[assetApportions[x].asset_id - 1] == undefined
-            // ) {
-            //   continue;
-            // }
+            const beneficiary = beneficiaries.find(
+              (item) => (item.id = assetApportions[x].beneficiary_id)
+            );
             apportionArray.push(
-              `    Beneficiary: ${
-                beneficiaries[assetApportions[x].beneficiary_id - 1].name
-              }\n    Instruction: ${
+              `    Beneficiary: ${beneficiary.name}\n    Instruction: ${
                 assetApportions[x].apportion_instructions
               }\n    Apportion value: $${(
                 assetID.value * assetApportions[x].percentage
