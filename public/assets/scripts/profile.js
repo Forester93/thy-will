@@ -102,19 +102,6 @@ function updateExecutorModal(event) {
 
 // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ Executor relevant codes ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 
-$(".assetBtn").on("mouseover", updateAssetModal);
-$(".assetBtn").on("focus", updateAssetModal);
-
-function updateAssetModal(event) {
-  //   event.stopPropagation();
-  let assetBtn = $(event.target);
-  let assetObject = JSON.parse(assetBtn.attr("data"));
-  assetID.val(assetObject.id);
-  assetDescription.val(assetObject.description);
-  assetType.val(assetObject.type);
-  assetValue.val(assetObject.value);
-}
-
 // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Asset relevant codes ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 // %%%%%%%%%%%%%%%%%% Delete Handler %%%%%%%%%%%%%%%%%%
 const deleteAsset = async (event) => {
@@ -138,23 +125,25 @@ $(".assetDelete").on("click", deleteAsset);
 
 // %%%%%%%%%%%%%%%%%% Add Handler %%%%%%%%%%%%%%%%%%
 const addAsset = async (event) => {
-  event.preventDefault();
+  // event.preventDefault();
   const description = $("#assetDescription").val().trim();
   const type = $("#assetType").val();
   const value = $("#assetValue").val();
-  // Prevent adding witness with same name (Pending)
-  // Call this Backend Route with this method
-  const response = await fetch(`/api/asset`, {
-    method: "POST",
-    body: JSON.stringify({ description, type, value }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  if (!response.ok) {
-    alert("Failed to add");
+  // Prevent adding data with same name (Pending)
+  // Call this Backend Route with this method, but need to prevent null with if statement
+  if ( description && type && value ) {
+    const response = await fetch(`/api/asset`, {
+      method: "POST",
+      body: JSON.stringify({ description, type, value }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (!response.ok) {
+      alert("Failed to add");
+    }
+    // location.reload();
   }
-  location.reload();
 };
 
 $("#assetModalFooter").on("click", "#addAssetBtn", addAsset);
@@ -162,7 +151,7 @@ $("#assetModalFooter").on("click", "#addAssetBtn", addAsset);
 // %%%%%%%%%%%%%%%%%% Update Handler %%%%%%%%%%%%%%%%%%
 var assetIdClicked;
 const updateAsset = async (event) => {
-  event.preventDefault();
+  // event.preventDefault();
   const description = $("#assetDescription").val().trim();
   const type = $("#assetType").val();
   const value = $("#assetValue").val();
@@ -177,7 +166,7 @@ const updateAsset = async (event) => {
   if (!response.ok) {
     alert("Failed to update");
   }
-  location.reload();
+  // location.reload();
 };
 $("#assetModalFooter").on("click", "#updateAssetBtn", updateAsset);
 
@@ -187,6 +176,11 @@ const assetModalToUpdate = (event) => {
   let targetclicked = $(event.target);
   assetObjClicked = JSON.parse(targetclicked.attr("data"));
   assetIdClicked = assetObjClicked.id;
+  // Add some autocomplete for reviewing previous user input
+  $("#assetDescription").val(assetObjClicked.description);
+  $("#assetType").val(assetObjClicked.type);
+  $("#assetValue").val(assetObjClicked.value);
+  // Switch to Update Modal
   $("#assetModalTitle").text("Update Asset");
   $("#assetModalFooter")
     .children(0)
@@ -195,6 +189,11 @@ const assetModalToUpdate = (event) => {
 };
 
 const assetModalToAdd = () => {
+  // Clear out previous autocomplete
+  $("#assetDescription").val('');
+  $("#assetType").val('');
+  $("#assetValue").val('');
+  // Switch to Add Modal
   $("#assetModalTitle").text("Add Asset");
   $("#assetModalFooter").children(0).attr("id", "addAssetBtn").text("Add");
 };
@@ -225,23 +224,25 @@ $(".witnessDelete").on("click", deleteWitness);
 
 // %%%%%%%%%%%%%%%%%% Add Handler %%%%%%%%%%%%%%%%%%
 const addWitness = async (event) => {
-  event.preventDefault();
+  // event.preventDefault();
   const name = $("#witnessName").val().trim();
   const relationship = $("#witnessRelation").val();
   const address = $("#witnessAddress").val().trim();
-  // Prevent adding witness with same name (Pending)
-  // Call this Backend Route with this method
-  const response = await fetch(`/api/witness`, {
-    method: "POST",
-    body: JSON.stringify({ name, relationship, address }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  if (!response.ok) {
-    alert("Failed to add");
+  // Prevent adding data with same name (Pending)
+  // Call this Backend Route with this method, but need to prevent null with if statement
+  if ( name && address ) {
+    const response = await fetch(`/api/witness`, {
+      method: "POST",
+      body: JSON.stringify({ name, relationship, address }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (!response.ok) {
+      alert("Failed to add");
+    }
+    // location.reload();
   }
-  location.reload();
 };
 
 $("#witnessModalFooter").on("click", "#addWitnessBtn", addWitness);
@@ -249,7 +250,7 @@ $("#witnessModalFooter").on("click", "#addWitnessBtn", addWitness);
 // %%%%%%%%%%%%%%%%%% Update Handler %%%%%%%%%%%%%%%%%%
 var witnessIdClicked;
 const updateWitness = async (event) => {
-  event.preventDefault();
+  // event.preventDefault();
   const name = $("#witnessName").val().trim();
   const relationship = $("#witnessRelation").val();
   const address = $("#witnessAddress").val().trim();
@@ -264,8 +265,9 @@ const updateWitness = async (event) => {
   if (!response.ok) {
     alert("Failed to update");
   }
-  location.reload();
+  // location.reload();
 };
+
 $("#witnessModalFooter").on("click", "#updateWitnessBtn", updateWitness);
 
 // Functions to switch Add or Update Modal
@@ -287,10 +289,10 @@ const witnessModalToUpdate = (event) => {
 };
 
 const witnessModalToAdd = () => {
-  // Clear out autocomplete
-  $("#witnessName").val("");
-  $("#witnessRelation").val("");
-  $("#witnessAddress").val("");
+  // Clear out previous autocomplete
+  $("#witnessName").val('');
+  $("#witnessRelation").val('');
+  $("#witnessAddress").val('');
   // Switch to Add Modal
   $("#witnessModalTitle").text("Add Witness");
   $("#witnessModalFooter").children(0).attr("id", "addWitnessBtn").text("Add");

@@ -242,22 +242,27 @@
         <div class="modal-body">
           <div class="form-group"> {{! jack added form for asset ID please check  }}
             <label>Asset ID</label>
-            <input type="text" id="assetId" class="form-control" enabled = false />
+            <input type="text" id="assetId" class="form-control"/>
           </div>
 
           <div class="form-group"> {{! jack added form asset description }}
             <label>Asset Description *</label>
-            <input type="text" id="assetDescription" class="form-control" enabled = required />
+            <input type="text" id="assetDescription" class="form-control" required />
           </div>
 
           <div class="form-group"> {{! jack added form for type of asset, text for now could be drop down}}
             <label>Asset Type *</label>
-            <input type="text" id="assetType" class="form-control" enabled = required />
+            <select class="form-control" id="assetType" required>
+              <option value="Monetary">Monetary</option>
+              <option value="Physical">Physical</option>
+              <option value="Sentimental">Sentimental</option>
+              <option value="Miscellaneous">Miscellaneous</option>
+            </select>
           </div>
 
           <div class="form-group"> {{! jack added form for  asset value }}
             <label>Asset value *</label>
-            <input type="text" id="assetValue" class="form-control" enabled = required />
+            <input type="number" id="assetValue" class="form-control" required />
           </div>
 
           <div class="modal-footer" id="assetModalFooter"> {{!asset model save button}}
@@ -323,5 +328,3 @@
       </div>     
     </div>
   </div> 
-{{!↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ witnessModal ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑}} 
-{{!-- <button type="submit" class="btn btn-light" id="addWitnessBtn"></button> --}}
