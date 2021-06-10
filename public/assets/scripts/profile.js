@@ -63,6 +63,8 @@
 //   beneficiaryGuardianName.val(beneficiaryObject.guardian_name);
 // }
 
+const userID = $("header").attr("user-id");
+console.log(userID);
 // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Beneficiary relevant codes ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 // %%%%%%%%%%%%%%%%%% Delete Handler %%%%%%%%%%%%%%%%%%
 const deleteBenificiary = async (event) => {
@@ -87,22 +89,38 @@ $(".beneficiaryDelete").on("click", deleteBenificiary);
 // %%%%%%%%%%%%%%%%%% Add Handler %%%%%%%%%%%%%%%%%%
 const addBeneficiary = async (event) => {
   event.preventDefault();
-  const name = $("#beneficiaryName").val().trim();
+  const name = $("#beneficiaryName").val();
   const address = $("#beneficiaryAddress").val();
+  const relationship = $("#beneficiaryRelationship").val();
+  const DOB = $("#beneficiaryDOB").val();
+  const isChild = $("#beneficiaryIsChild").prop("checked");
+  const isCharity = $("#beneficiaryIsCharity").prop("checked");
+  const guardian_address = $("#beneficiaryGuardianAddress").val();
+  const guardian_name = $("#beneficiaryGuardianName").val();
   // Prevent adding data with same name (Pending)
   // Call this Backend Route with this method, but need to prevent null with if statement
   if (name && address) {
     const response = await fetch(`/api/beneficiary`, {
       method: "POST",
-      body: JSON.stringify({ name, address }),
+      body: JSON.stringify({
+        name,
+        address,
+        relationship,
+        DOB,
+        isChild,
+        isCharity,
+        guardian_address,
+        guardian_name,
+      }),
       headers: {
         "Content-Type": "application/json",
       },
     });
     if (!response.ok) {
       alert("Failed to add");
+    } else {
+      location.reload();
     }
-    location.reload();
   }
 };
 
@@ -112,12 +130,27 @@ $("#beneficiaryModalFooter").on("click", "#addBeneficiaryBtn", addBeneficiary);
 var beneficiaryIdClicked;
 const updateBeneficiary = async (event) => {
   event.preventDefault();
-  const name = $("#beneficiaryName").val().trim();
+  const name = $("#beneficiaryName").val();
   const address = $("#beneficiaryAddress").val();
+  const relationship = $("#beneficiaryRelationship").val();
+  const DOB = $("#beneficiaryDOB").val();
+  const isChild = $("#beneficiaryIsChild").prop("checked");
+  const isCharity = $("#beneficiaryIsCharity").attr("checked");
+  const guardian_address = $("#beneficiaryGuardianAddress").val();
+  const guardian_name = $("#beneficiaryGuardianName").val();
   // Call this Backend Route with this method
   const response = await fetch(`/api/beneficiary/${beneficiaryIdClicked}`, {
     method: "PUT",
-    body: JSON.stringify({ name, address }),
+    body: JSON.stringify({
+      name,
+      address,
+      relationship,
+      DOB,
+      isChild,
+      isCharity,
+      guardian_address,
+      guardian_name,
+    }),
     headers: {
       "Content-Type": "application/json",
     },
@@ -142,6 +175,12 @@ const beneficiaryModalToUpdate = (event) => {
   // Add some autocomplete for reviewing previous user input
   $("#beneficiaryName").val(beneficiaryObjClicked.name);
   $("#beneficiaryAddress").val(beneficiaryObjClicked.address);
+  $("#beneficiaryDOB").val(beneficiaryObjClicked.DOB);
+  $("#beneficiaryIsChild").attr("checked", beneficiaryObjClicked.isChild);
+  $("#beneficiaryIsCharity").attr("checked", beneficiaryObjClicked.isCharity);
+  $("#beneficiaryRelationship").val(beneficiaryObjClicked.relationship);
+  $("#beneficiaryGuardianName").val(beneficiaryObjClicked.guardian_name);
+  $("#beneficiaryGuardianAddress").val(beneficiaryObjClicked.guardian_address);
   // Switch to Update Modal
   $("#beneficiaryModalTitle").text("Update Beneficiary");
   $("#beneficiaryModalFooter")
@@ -154,6 +193,12 @@ const beneficiaryModalToAdd = () => {
   // Clear out previous autocomplete
   $("#beneficiaryName").val("");
   $("#beneficiaryAddress").val("");
+  $("#beneficiaryDOB").val("");
+  $("#beneficiaryIsChild").attr("checked", false);
+  $("#beneficiaryIsCharity").attr("checked", false);
+  $("beneficiaryRelationship").val("");
+  $("#beneficiaryGuardianName").val("");
+  $("#beneficiaryGuardianAddress").val("");
   // Switch to Add Modal
   $("#beneficiaryModalTitle").text("Add Beneficiary");
   $("#beneficiaryModalFooter")
@@ -162,7 +207,8 @@ const beneficiaryModalToAdd = () => {
     .text("Add");
 };
 
-$(".beneficiaryBtn").on("click", beneficiaryModalToUpdate);
+$(".beneficiaryBtn").on("mouseover", beneficiaryModalToUpdate);
+$(".beneficiaryBtn").on("focus", beneficiaryModalToUpdate);
 $("#launchBeneficiary").on("click", beneficiaryModalToAdd);
 
 // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Executor relevant codes ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓

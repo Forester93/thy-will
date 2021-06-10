@@ -5,7 +5,7 @@ const { Beneficiary } = require("../../models");
 router.get("/", async (req, res) => {
   try {
     const beneficiaryData = await Beneficiary.findAll({
-      order: [['id', 'ASC']] 
+      order: [["id", "ASC"]],
     });
     res.status(200).json(beneficiaryData);
   } catch (err) {
@@ -30,6 +30,7 @@ router.get("/:id", async (req, res) => {
 // Route to Create New
 router.post("/", async (req, res) => {
   try {
+    console.log(req.body);
     const beneficiaryNew = await Beneficiary.create({
       ...req.body,
       // This get Beneficiary linked with the login account

@@ -167,7 +167,6 @@ footer {
 .box-2 {
   background-color: white;
   border-radius: 15;
-  box-shadow: 8px 8px 5px var(--themeColor1);
   padding: 25px;
   margin-bottom: 25px;
 }
