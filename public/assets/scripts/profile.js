@@ -63,459 +63,499 @@
 //   beneficiaryGuardianName.val(beneficiaryObject.guardian_name);
 // }
 
-const userID = $("header").attr("user-id");
+const userID = $('header').attr('user-id');
 console.log(userID);
 // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Beneficiary relevant codes ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 // %%%%%%%%%%%%%%%%%% Delete Handler %%%%%%%%%%%%%%%%%%
 const deleteBenificiary = async (event) => {
-  event.stopPropagation();
-  let targetDeleteBtn = $(event.target);
-  let beneficiaryOb = JSON.parse(targetDeleteBtn.parent().attr("data"));
-  // Call this Backend Route with this method
-  const response = await fetch(`/api/beneficiary/${beneficiaryOb.id}`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  if (response.ok) {
-    // Front end element manipulating actions
-    $(event.target).parent().remove();
-  }
+	event.stopPropagation();
+	let targetDeleteBtn = $(event.target);
+	let beneficiaryOb = JSON.parse(targetDeleteBtn.parent().attr('data'));
+	// Call this Backend Route with this method
+	const response = await fetch(`/api/beneficiary/${beneficiaryOb.id}`, {
+		method: 'DELETE',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	});
+	if (response.ok) {
+		// Front end element manipulating actions
+		$(event.target).parent().remove();
+	}
 };
 
-$(".beneficiaryDelete").on("click", deleteBenificiary);
+$('.beneficiaryDelete').on('click', deleteBenificiary);
 
 // %%%%%%%%%%%%%%%%%% Add Handler %%%%%%%%%%%%%%%%%%
 const addBeneficiary = async (event) => {
-  event.preventDefault();
-  const name = $("#beneficiaryName").val();
-  const address = $("#beneficiaryAddress").val();
-  const relationship = $("#beneficiaryRelationship").val();
-  const DOB = $("#beneficiaryDOB").val();
-  const isChild = $("#beneficiaryIsChild").prop("checked");
-  const isCharity = $("#beneficiaryIsCharity").prop("checked");
-  const guardian_address = $("#beneficiaryGuardianAddress").val();
-  const guardian_name = $("#beneficiaryGuardianName").val();
-  // Prevent adding data with same name (Pending)
-  // Call this Backend Route with this method, but need to prevent null with if statement
-  if (name && address) {
-    const response = await fetch(`/api/beneficiary`, {
-      method: "POST",
-      body: JSON.stringify({
-        name,
-        address,
-        relationship,
-        DOB,
-        isChild,
-        isCharity,
-        guardian_address,
-        guardian_name,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    if (!response.ok) {
-      alert("Failed to add");
-    } else {
-      location.reload();
-    }
-  }
+	event.preventDefault();
+	const name = $('#beneficiaryName').val();
+	const address = $('#beneficiaryAddress').val();
+	const relationship = $('#beneficiaryRelationship').val();
+	const DOB = $('#beneficiaryDOB').val();
+	const isChild = $('#beneficiaryIsChild').prop('checked');
+	const isCharity = $('#beneficiaryIsCharity').prop('checked');
+	const guardian_address = $('#beneficiaryGuardianAddress').val();
+	const guardian_name = $('#beneficiaryGuardianName').val();
+	// Prevent adding data with same name (Pending)
+	// Call this Backend Route with this method, but need to prevent null with if statement
+	if (name && address) {
+		const response = await fetch(`/api/beneficiary`, {
+			method: 'POST',
+			body: JSON.stringify({
+				name,
+				address,
+				relationship,
+				DOB,
+				isChild,
+				isCharity,
+				guardian_address,
+				guardian_name,
+			}),
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		});
+		if (!response.ok) {
+			alert('Failed to add');
+		} else {
+			location.reload();
+		}
+	}
 };
 
-$("#beneficiaryModalFooter").on("click", "#addBeneficiaryBtn", addBeneficiary);
+$('#beneficiaryModalFooter').on('click', '#addBeneficiaryBtn', addBeneficiary);
 
 // %%%%%%%%%%%%%%%%%% Update Handler %%%%%%%%%%%%%%%%%%
 var beneficiaryIdClicked;
 const updateBeneficiary = async (event) => {
-  event.preventDefault();
-  const name = $("#beneficiaryName").val();
-  const address = $("#beneficiaryAddress").val();
-  const relationship = $("#beneficiaryRelationship").val();
-  const DOB = $("#beneficiaryDOB").val();
-  const isChild = $("#beneficiaryIsChild").prop("checked");
-  const isCharity = $("#beneficiaryIsCharity").attr("checked");
-  const guardian_address = $("#beneficiaryGuardianAddress").val();
-  const guardian_name = $("#beneficiaryGuardianName").val();
-  // Call this Backend Route with this method
-  const response = await fetch(`/api/beneficiary/${beneficiaryIdClicked}`, {
-    method: "PUT",
-    body: JSON.stringify({
-      name,
-      address,
-      relationship,
-      DOB,
-      isChild,
-      isCharity,
-      guardian_address,
-      guardian_name,
-    }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  if (!response.ok) {
-    alert("Failed to update");
-  }
-  location.reload();
+	event.preventDefault();
+	const name = $('#beneficiaryName').val();
+	const address = $('#beneficiaryAddress').val();
+	const relationship = $('#beneficiaryRelationship').val();
+	const DOB = $('#beneficiaryDOB').val();
+	const isChild = $('#beneficiaryIsChild').prop('checked');
+	const isCharity = $('#beneficiaryIsCharity').attr('checked');
+	const guardian_address = $('#beneficiaryGuardianAddress').val();
+	const guardian_name = $('#beneficiaryGuardianName').val();
+	// Call this Backend Route with this method
+	const response = await fetch(`/api/beneficiary/${beneficiaryIdClicked}`, {
+		method: 'PUT',
+		body: JSON.stringify({
+			name,
+			address,
+			relationship,
+			DOB,
+			isChild,
+			isCharity,
+			guardian_address,
+			guardian_name,
+		}),
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	});
+	if (!response.ok) {
+		alert('Failed to update');
+	}
+	location.reload();
 };
-$("#beneficiaryModalFooter").on(
-  "click",
-  "#updateBeneficiaryBtn",
-  updateBeneficiary
+$('#beneficiaryModalFooter').on(
+	'click',
+	'#updateBeneficiaryBtn',
+	updateBeneficiary
 );
 
 // Functions to switch Add or Update Modal
 const beneficiaryModalToUpdate = (event) => {
-  // We need to get the target beneficiary id for update with this click
-  let targetclicked = $(event.target);
-  beneficiaryObjClicked = JSON.parse(targetclicked.attr("data"));
-  beneficiaryIdClicked = beneficiaryObjClicked.id;
-  // Add some autocomplete for reviewing previous user input
-  $("#beneficiaryName").val(beneficiaryObjClicked.name);
-  $("#beneficiaryAddress").val(beneficiaryObjClicked.address);
-  $("#beneficiaryDOB").val(beneficiaryObjClicked.DOB);
-  $("#beneficiaryIsChild").attr("checked", beneficiaryObjClicked.isChild);
-  $("#beneficiaryIsCharity").attr("checked", beneficiaryObjClicked.isCharity);
-  $("#beneficiaryRelationship").val(beneficiaryObjClicked.relationship);
-  $("#beneficiaryGuardianName").val(beneficiaryObjClicked.guardian_name);
-  $("#beneficiaryGuardianAddress").val(beneficiaryObjClicked.guardian_address);
-  // Switch to Update Modal
-  $("#beneficiaryModalTitle").text("Update Beneficiary");
-  $("#beneficiaryModalFooter")
-    .children(0)
-    .attr("id", "updateBeneficiaryBtn")
-    .text("Update");
+	// We need to get the target beneficiary id for update with this click
+	let targetclicked = $(event.target);
+	beneficiaryObjClicked = JSON.parse(targetclicked.attr('data'));
+	beneficiaryIdClicked = beneficiaryObjClicked.id;
+	// Add some autocomplete for reviewing previous user input
+	$('#beneficiaryName').val(beneficiaryObjClicked.name);
+	$('#beneficiaryAddress').val(beneficiaryObjClicked.address);
+	$('#beneficiaryDOB').val(beneficiaryObjClicked.DOB);
+	$('#beneficiaryIsChild').attr('checked', beneficiaryObjClicked.isChild);
+	$('#beneficiaryIsCharity').attr('checked', beneficiaryObjClicked.isCharity);
+	$('#beneficiaryRelationship').val(beneficiaryObjClicked.relationship);
+	$('#beneficiaryGuardianName').val(beneficiaryObjClicked.guardian_name);
+	$('#beneficiaryGuardianAddress').val(beneficiaryObjClicked.guardian_address);
+	// Switch to Update Modal
+	$('#beneficiaryModalTitle').text('Update Beneficiary');
+	$('#beneficiaryModalFooter')
+		.children(0)
+		.attr('id', 'updateBeneficiaryBtn')
+		.text('Update');
 };
 
 const beneficiaryModalToAdd = () => {
-  // Clear out previous autocomplete
-  $("#beneficiaryName").val("");
-  $("#beneficiaryAddress").val("");
-  $("#beneficiaryDOB").val("");
-  $("#beneficiaryIsChild").attr("checked", false);
-  $("#beneficiaryIsCharity").attr("checked", false);
-  $("beneficiaryRelationship").val("");
-  $("#beneficiaryGuardianName").val("");
-  $("#beneficiaryGuardianAddress").val("");
-  // Switch to Add Modal
-  $("#beneficiaryModalTitle").text("Add Beneficiary");
-  $("#beneficiaryModalFooter")
-    .children(0)
-    .attr("id", "addBeneficiaryBtn")
-    .text("Add");
+	// Clear out previous autocomplete
+	$('#beneficiaryName').val('');
+	$('#beneficiaryAddress').val('');
+	$('#beneficiaryDOB').val('');
+	$('#beneficiaryIsChild').attr('checked', false);
+	$('#beneficiaryIsCharity').attr('checked', false);
+	$('beneficiaryRelationship').val('');
+	$('#beneficiaryGuardianName').val('');
+	$('#beneficiaryGuardianAddress').val('');
+	// Switch to Add Modal
+	$('#beneficiaryModalTitle').text('Add Beneficiary');
+	$('#beneficiaryModalFooter')
+		.children(0)
+		.attr('id', 'addBeneficiaryBtn')
+		.text('Add');
 };
 
-$(".beneficiaryBtn").on("mouseover", beneficiaryModalToUpdate);
-$(".beneficiaryBtn").on("focus", beneficiaryModalToUpdate);
-$("#launchBeneficiary").on("click", beneficiaryModalToAdd);
+$('.beneficiaryBtn').on('mouseover', beneficiaryModalToUpdate);
+$('.beneficiaryBtn').on('focus', beneficiaryModalToUpdate);
+$('#launchBeneficiary').on('click', beneficiaryModalToAdd);
 
 // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Executor relevant codes ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 // %%%%%%%%%%%%%%%%%% Delete Handler %%%%%%%%%%%%%%%%%%
 const deleteExecutor = async (event) => {
-  event.stopPropagation();
-  let targetDeleteBtn = $(event.target);
-  let executorOb = JSON.parse(targetDeleteBtn.parent().attr("data"));
-  // Call this Backend Route with this method
-  const response = await fetch(`/api/executor/${executorOb.id}`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  if (response.ok) {
-    // Front end element manipulating actions
-    $(event.target).parent().remove();
-  }
+	event.stopPropagation();
+	let targetDeleteBtn = $(event.target);
+	let executorOb = JSON.parse(targetDeleteBtn.parent().attr('data'));
+	// Call this Backend Route with this method
+	const response = await fetch(`/api/executor/${executorOb.id}`, {
+		method: 'DELETE',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	});
+	if (response.ok) {
+		// Front end element manipulating actions
+		$(event.target).parent().remove();
+	}
 };
 
-$(".executorDelete").on("click", deleteExecutor);
+$('.executorDelete').on('click', deleteExecutor);
 
 // %%%%%%%%%%%%%%%%%% Add Handler %%%%%%%%%%%%%%%%%%
 const addExecutor = async (event) => {
-  event.preventDefault();
-  const name = $("#executorName").val().trim();
-  const address = $("#executorAddress").val();
-  const isAlternate = $("#executorIsAlternate").val();
-  let hasBoolean;
-  if (isAlternate == "true" || isAlternate == "false") {
-    hasBoolean = true;
-  } else {
-    hasBoolean = false;
-  }
-  // Prevent adding data with same name (Pending)
-  // Call this Backend Route with this method, but need to prevent null with if statement
-  if (name && address && hasBoolean) {
-    const response = await fetch(`/api/executor`, {
-      method: "POST",
-      body: JSON.stringify({ name, address, isAlternate }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    if (!response.ok) {
-      alert("Failed to add");
-    }
-    location.reload();
-  }
+	event.preventDefault();
+	const name = $('#executorName').val().trim();
+	const address = $('#executorAddress').val();
+	const isAlternate = $('#executorIsAlternate').val();
+	let hasBoolean;
+	if (isAlternate == 'true' || isAlternate == 'false') {
+		hasBoolean = true;
+	} else {
+		hasBoolean = false;
+	}
+	// Prevent adding data with same name (Pending)
+	// Call this Backend Route with this method, but need to prevent null with if statement
+	if (name && address && hasBoolean) {
+		const response = await fetch(`/api/executor`, {
+			method: 'POST',
+			body: JSON.stringify({ name, address, isAlternate }),
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		});
+		if (!response.ok) {
+			alert('Failed to add');
+		}
+		location.reload();
+	}
 };
 
-$("#executorModalFooter").on("click", "#addExecutorBtn", addExecutor);
+$('#executorModalFooter').on('click', '#addExecutorBtn', addExecutor);
 
 // %%%%%%%%%%%%%%%%%% Update Handler %%%%%%%%%%%%%%%%%%
 var executorIdClicked;
 const updateExecutor = async (event) => {
-  event.preventDefault();
-  const name = $("#executorName").val().trim();
-  const address = $("#executorAddress").val();
-  const isAlternate = $("#executorIsAlternate").val();
-  // Call this Backend Route with this method
-  const response = await fetch(`/api/executor/${executorIdClicked}`, {
-    method: "PUT",
-    body: JSON.stringify({ name, address, isAlternate }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  if (!response.ok) {
-    alert("Failed to update");
-  }
-  location.reload();
+	event.preventDefault();
+	const name = $('#executorName').val().trim();
+	const address = $('#executorAddress').val();
+	const isAlternate = $('#executorIsAlternate').val();
+	// Call this Backend Route with this method
+	const response = await fetch(`/api/executor/${executorIdClicked}`, {
+		method: 'PUT',
+		body: JSON.stringify({ name, address, isAlternate }),
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	});
+	if (!response.ok) {
+		alert('Failed to update');
+	}
+	location.reload();
 };
-$("#executorModalFooter").on("click", "#updateExecutorBtn", updateExecutor);
+$('#executorModalFooter').on('click', '#updateExecutorBtn', updateExecutor);
 
 // Functions to switch Add or Update Modal
 const executorModalToUpdate = (event) => {
-  // We need to get the target executor id for update with this click
-  let targetclicked = $(event.target);
-  executorObjClicked = JSON.parse(targetclicked.attr("data"));
-  executorIdClicked = executorObjClicked.id;
-  // Add some autocomplete for reviewing previous user input
-  $("#executorName").val(executorObjClicked.name);
-  $("#executorAddress").val(executorObjClicked.address);
-  $("#executorIsAlternate").val(executorObjClicked.isAlternate);
-  // Switch to Update Modal
-  $("#executorModalTitle").text("Update Executor");
-  $("#executorModalFooter")
-    .children(0)
-    .attr("id", "updateExecutorBtn")
-    .text("Update");
+	// We need to get the target executor id for update with this click
+	let targetclicked = $(event.target);
+	executorObjClicked = JSON.parse(targetclicked.attr('data'));
+	executorIdClicked = executorObjClicked.id;
+	// Add some autocomplete for reviewing previous user input
+	$('#executorName').val(executorObjClicked.name);
+	$('#executorAddress').val(executorObjClicked.address);
+	$('#executorIsAlternate').val(executorObjClicked.isAlternate);
+	// Switch to Update Modal
+	$('#executorModalTitle').text('Update Executor');
+	$('#executorModalFooter')
+		.children(0)
+		.attr('id', 'updateExecutorBtn')
+		.text('Update');
 };
 
 const executorModalToAdd = () => {
-  // Clear out previous autocomplete
-  $("#executorName").val("");
-  $("#executorAddress").val("");
-  $("#executorIsAlternate").val("");
-  // Switch to Add Modal
-  $("#executorModalTitle").text("Add Executor");
-  $("#executorModalFooter")
-    .children(0)
-    .attr("id", "addExecutorBtn")
-    .text("Add");
+	// Clear out previous autocomplete
+	$('#executorName').val('');
+	$('#executorAddress').val('');
+	$('#executorIsAlternate').val('');
+	// Switch to Add Modal
+	$('#executorModalTitle').text('Add Executor');
+	$('#executorModalFooter')
+		.children(0)
+		.attr('id', 'addExecutorBtn')
+		.text('Add');
 };
 
-$(".executorBtn").on("click", executorModalToUpdate);
-$("#launchExecutor").on("click", executorModalToAdd);
+$('.executorBtn').on('click', executorModalToUpdate);
+$('#launchExecutor').on('click', executorModalToAdd);
 
 // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Asset relevant codes ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 // %%%%%%%%%%%%%%%%%% Delete Handler %%%%%%%%%%%%%%%%%%
 const deleteAsset = async (event) => {
-  event.stopPropagation();
-  let targetDeleteBtn = $(event.target);
-  let assetOb = JSON.parse(targetDeleteBtn.parent().attr("data"));
-  // Call this Backend Route with this method
-  const response = await fetch(`/api/asset/${assetOb.id}`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  if (response.ok) {
-    // Front end element manipulating actions
-    $(event.target).parent().remove();
-  }
+	event.stopPropagation();
+	let targetDeleteBtn = $(event.target);
+	let assetOb = JSON.parse(targetDeleteBtn.parent().attr('data'));
+	// Call this Backend Route with this method
+	const response = await fetch(`/api/asset/${assetOb.id}`, {
+		method: 'DELETE',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	});
+	if (response.ok) {
+		// Front end element manipulating actions
+		$(event.target).parent().remove();
+	}
 };
 
-$(".assetDelete").on("click", deleteAsset);
+$('.assetDelete').on('click', deleteAsset);
 
 // %%%%%%%%%%%%%%%%%% Add Handler %%%%%%%%%%%%%%%%%%
 const addAsset = async (event) => {
-  event.preventDefault();
-  const description = $("#assetDescription").val().trim();
-  const type = $("#assetType").val();
-  const value = $("#assetValue").val();
-  // Prevent adding data with same name (Pending)
-  // Call this Backend Route with this method, but need to prevent null with if statement
-  if (description && type && value) {
-    const response = await fetch(`/api/asset`, {
-      method: "POST",
-      body: JSON.stringify({ description, type, value }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    if (!response.ok) {
-      alert("Failed to add");
-    }
-    location.reload();
-  }
+	event.preventDefault();
+	const description = $('#assetDescription').val().trim();
+	const type = $('#assetType').val();
+	const value = $('#assetValue').val();
+	// Prevent adding data with same name (Pending)
+	// Call this Backend Route with this method, but need to prevent null with if statement
+	if (description && type && value) {
+		const response = await fetch(`/api/asset`, {
+			method: 'POST',
+			body: JSON.stringify({ description, type, value }),
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		});
+		if (!response.ok) {
+			alert('Failed to add');
+		}
+		location.reload();
+	}
 };
 
-$("#assetModalFooter").on("click", "#addAssetBtn", addAsset);
+$('#assetModalFooter').on('click', '#addAssetBtn', addAsset);
 
 // %%%%%%%%%%%%%%%%%% Update Handler %%%%%%%%%%%%%%%%%%
 var assetIdClicked;
 const updateAsset = async (event) => {
-  event.preventDefault();
-  const description = $("#assetDescription").val().trim();
-  const type = $("#assetType").val();
-  const value = $("#assetValue").val();
-  // Call this Backend Route with this method
-  const response = await fetch(`/api/asset/${assetIdClicked}`, {
-    method: "PUT",
-    body: JSON.stringify({ description, type, value }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  if (!response.ok) {
-    alert("Failed to update");
-  }
-  location.reload();
+	event.preventDefault();
+	const description = $('#assetDescription').val().trim();
+	const type = $('#assetType').val();
+	const value = $('#assetValue').val();
+	// Call this Backend Route with this method
+	const response = await fetch(`/api/asset/${assetIdClicked}`, {
+		method: 'PUT',
+		body: JSON.stringify({ description, type, value }),
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	});
+	if (!response.ok) {
+		alert('Failed to update');
+	}
+	location.reload();
 };
-$("#assetModalFooter").on("click", "#updateAssetBtn", updateAsset);
+$('#assetModalFooter').on('click', '#updateAssetBtn', updateAsset);
 
 // Functions to switch Add or Update Modal
 const assetModalToUpdate = (event) => {
-  // We need to get the target asset id for update with this click
-  let targetclicked = $(event.target);
-  assetObjClicked = JSON.parse(targetclicked.attr("data"));
-  assetIdClicked = assetObjClicked.id;
-  // Add some autocomplete for reviewing previous user input
-  $("#assetDescription").val(assetObjClicked.description);
-  $("#assetType").val(assetObjClicked.type);
-  $("#assetValue").val(assetObjClicked.value);
-  // Switch to Update Modal
-  $("#assetModalTitle").text("Update Asset");
-  $("#assetModalFooter")
-    .children(0)
-    .attr("id", "updateAssetBtn")
-    .text("Update");
+	// We need to get the target asset id for update with this click
+	let targetclicked = $(event.target);
+	assetObjClicked = JSON.parse(targetclicked.attr('data'));
+	assetIdClicked = assetObjClicked.id;
+	// Add some autocomplete for reviewing previous user input
+	$('#assetDescription').val(assetObjClicked.description);
+	$('#assetType').val(assetObjClicked.type);
+	$('#assetValue').val(assetObjClicked.value);
+	// Switch to Update Modal
+	$('#assetModalTitle').text('Update Asset');
+	$('#assetModalFooter')
+		.children(0)
+		.attr('id', 'updateAssetBtn')
+		.text('Update');
 };
 
 const assetModalToAdd = () => {
-  // Clear out previous autocomplete
-  $("#assetDescription").val("");
-  $("#assetType").val("");
-  $("#assetValue").val("");
-  // Switch to Add Modal
-  $("#assetModalTitle").text("Add Asset");
-  $("#assetModalFooter").children(0).attr("id", "addAssetBtn").text("Add");
+	// Clear out previous autocomplete
+	$('#assetDescription').val('');
+	$('#assetType').val('');
+	$('#assetValue').val('');
+	// Switch to Add Modal
+	$('#assetModalTitle').text('Add Asset');
+	$('#assetModalFooter').children(0).attr('id', 'addAssetBtn').text('Add');
 };
 
-$(".assetBtn").on("click", assetModalToUpdate);
-$("#launchAsset").on("click", assetModalToAdd);
+$('.assetBtn').on('click', assetModalToUpdate);
+$('#launchAsset').on('click', assetModalToAdd);
 
 // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Witness relevant codes ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 // %%%%%%%%%%%%%%%%%% Delete Handler %%%%%%%%%%%%%%%%%%
 const deleteWitness = async (event) => {
-  event.stopPropagation();
-  let targetDeleteBtn = $(event.target);
-  let witnessOb = JSON.parse(targetDeleteBtn.parent().attr("data"));
-  // Call this Backend Route with this method
-  const response = await fetch(`/api/witness/${witnessOb.id}`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  if (response.ok) {
-    // Front end element manipulating actions
-    $(event.target).parent().remove();
-  }
+	event.stopPropagation();
+	let targetDeleteBtn = $(event.target);
+	let witnessOb = JSON.parse(targetDeleteBtn.parent().attr('data'));
+	// Call this Backend Route with this method
+	const response = await fetch(`/api/witness/${witnessOb.id}`, {
+		method: 'DELETE',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	});
+	if (response.ok) {
+		// Front end element manipulating actions
+		$(event.target).parent().remove();
+	}
 };
 
-$(".witnessDelete").on("click", deleteWitness);
+$('.witnessDelete').on('click', deleteWitness);
 
 // %%%%%%%%%%%%%%%%%% Add Handler %%%%%%%%%%%%%%%%%%
 const addWitness = async (event) => {
-  event.preventDefault();
-  const name = $("#witnessName").val().trim();
-  const relationship = $("#witnessRelationship").val().trim();
-  const DOB = $("#witnessDOB").val().trim();
-  const occupation = $("#witnessOccupation").val().trim();
-  const address = $("#witnessAddress").val().trim();
-  // Prevent adding data with same name (Pending)
-  // Call this Backend Route with this method, but need to prevent null with if statement
-  if (name && address) {
-    const response = await fetch(`/api/witness`, {
-      method: "POST",
-      body: JSON.stringify({ name, relationship, address }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    if (!response.ok) {
-      alert("Failed to add");
-    }
-    location.reload();
-  }
+	event.preventDefault();
+	const name = $('#witnessName').val().trim();
+	const relationship = $('#witnessRelationship').val().trim();
+	const DOB = $('#witnessDOB').val().trim();
+	const occupation = $('#witnessOccupation').val().trim();
+	const address = $('#witnessAddress').val().trim();
+	// Prevent adding data with same name (Pending)
+	// Call this Backend Route with this method, but need to prevent null with if statement
+	if (name && address) {
+		const response = await fetch(`/api/witness`, {
+			method: 'POST',
+			body: JSON.stringify({ name, relationship, address }),
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		});
+		if (!response.ok) {
+			alert('Failed to add');
+		}
+		location.reload();
+	}
 };
 
-$("#witnessModalFooter").on("click", "#addWitnessBtn", addWitness);
+$('#witnessModalFooter').on('click', '#addWitnessBtn', addWitness);
 
 // %%%%%%%%%%%%%%%%%% Update Handler %%%%%%%%%%%%%%%%%%
 var witnessIdClicked;
 const updateWitness = async (event) => {
-  event.preventDefault();
-  const name = $("#witnessName").val().trim();
-  const relationship = $("#witnessRelation").val();
-  const address = $("#witnessAddress").val().trim();
-  // Call this Backend Route with this method
-  const response = await fetch(`/api/witness/${witnessIdClicked}`, {
-    method: "PUT",
-    body: JSON.stringify({ name, relationship, address }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  if (!response.ok) {
-    alert("Failed to update");
-  }
-  location.reload();
+	event.preventDefault();
+	const name = $('#witnessName').val().trim();
+	const relationship = $('#witnessRelation').val();
+	const address = $('#witnessAddress').val().trim();
+	// Call this Backend Route with this method
+	const response = await fetch(`/api/witness/${witnessIdClicked}`, {
+		method: 'PUT',
+		body: JSON.stringify({ name, relationship, address }),
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	});
+	if (!response.ok) {
+		alert('Failed to update');
+	}
+	location.reload();
 };
 
-$("#witnessModalFooter").on("click", "#updateWitnessBtn", updateWitness);
+$('#witnessModalFooter').on('click', '#updateWitnessBtn', updateWitness);
 
 // Functions to switch Add or Update Modal
 const witnessModalToUpdate = (event) => {
-  // We need to get the target witness id for update with this click
-  let targetclicked = $(event.target);
-  witnessObjClicked = JSON.parse(targetclicked.attr("data"));
-  witnessIdClicked = witnessObjClicked.id;
-  // Add some autocomplete for reviewing previous user input
-  $("#witnessName").val(witnessObjClicked.name);
-  $("#witnessRelation").val(witnessObjClicked.relationship);
-  $("#witnessAddress").val(witnessObjClicked.address);
-  // Switch to Update Modal
-  $("#witnessModalTitle").text("Update Witness");
-  $("#witnessModalFooter")
-    .children(0)
-    .attr("id", "updateWitnessBtn")
-    .text("Update");
+	// We need to get the target witness id for update with this click
+	let targetclicked = $(event.target);
+	witnessObjClicked = JSON.parse(targetclicked.attr('data'));
+	witnessIdClicked = witnessObjClicked.id;
+	// Add some autocomplete for reviewing previous user input
+	$('#witnessName').val(witnessObjClicked.name);
+	$('#witnessRelation').val(witnessObjClicked.relationship);
+	$('#witnessAddress').val(witnessObjClicked.address);
+	// Switch to Update Modal
+	$('#witnessModalTitle').text('Update Witness');
+	$('#witnessModalFooter')
+		.children(0)
+		.attr('id', 'updateWitnessBtn')
+		.text('Update');
 };
 
 const witnessModalToAdd = () => {
-  // Clear out previous autocomplete
-  $("#witnessName").val("");
-  $("#witnessRelation").val("");
-  $("#witnessAddress").val("");
-  // Switch to Add Modal
-  $("#witnessModalTitle").text("Add Witness");
-  $("#witnessModalFooter").children(0).attr("id", "addWitnessBtn").text("Add");
+	// Clear out previous autocomplete
+	$('#witnessName').val('');
+	$('#witnessRelation').val('');
+	$('#witnessAddress').val('');
+	// Switch to Add Modal
+	$('#witnessModalTitle').text('Add Witness');
+	$('#witnessModalFooter').children(0).attr('id', 'addWitnessBtn').text('Add');
 };
 
-$(".witnessBtn").on("click", witnessModalToUpdate);
-$("#launchWitness").on("click", witnessModalToAdd);
+$('.witnessBtn').on('click', witnessModalToUpdate);
+$('#launchWitness').on('click', witnessModalToAdd);
+
+// ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ User relevant codes ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+
+var userIdClicked;
+var userObjectClicked;
+const updateUser = async (event) => {
+	event.preventDefault();
+	const name = $('#userName').val().trim();
+	const DOB = $('#userDOB').val();
+	const address = $('#userAddress').val().trim();
+	const ceremony = $('#userCeremony').val().trim();
+	const casket = $('#userCasket').val().trim();
+	const occupation = $('#userOccupation').val().trim();
+	// Call this Backend Route with this method
+	const response = await fetch(`/api/users/${userIdClicked}}`, {
+		method: 'PUT',
+		body: JSON.stringify({ name, DOB, address, ceremony, casket, occupation }),
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	});
+	if (!response.ok) {
+		alert('Failed to update');
+	}
+	location.reload();
+};
+
+const userModalToUpdate = (event) => {
+	// We need to get the target witness id for update with this click
+	let targetclicked = $(event.target);
+	userObjectClicked = JSON.parse(targetclicked.attr('data'));
+	userIdClicked = userObjectClicked.id;
+	// Add some autocomplete for reviewing previous user input
+	$('#userName').val(userObjectClicked.name);
+	$('#userRelation').val(userObjectClicked.relationship);
+	$('#userAddress').val(userObjectClicked.address);
+};
+
+$('#editUser').on('click', userModalToUpdate);
+$('#userModalFooter').on('click', '#userUpdateBtn', updateUser);
