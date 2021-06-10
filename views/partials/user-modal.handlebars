@@ -1,0 +1,53 @@
+<div class="modal fade custom-modal" id="userModal" tabindex="-1" role="dialog" aria-labelledby="project-modal-form" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="userModalTitle">Update your details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <form id="user-form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Asset ID</label>
+            <input type="text" id="userId" class="form-control"/>
+          </div>
+
+          <div class="form-group">
+            <label>Name *</label>
+            <input type="text" id="userName" class="form-control" required />
+          </div>
+
+            <div class="form-group"> 
+              <label>Date of Birth *</label>
+              <input type="text" id="userDOB" class="form-control" enabled = required />
+            </div>
+
+          <div class="form-group">
+            <label>Address *</label>
+            <input type="text" id="userAddress" class="form-control" required />
+          </div>
+
+          <div class="form-group">
+            <label>Occupation *</label>
+            <input type="text" id="userOccupation" class="form-control" required />
+          </div>
+
+          <div class="form-group">
+            <label>Casket details *</label>
+            <input type="text" id="userCasket" class="form-control" required />
+          </div>
+          
+          <div class="form-group">
+            <label>Funeral ceremony details *</label>
+            <input type="text" id="userCeremony" class="form-control" required />
+          </div>
+
+          <div class="modal-footer" id="userModalFooter"> 
+            <button type="submit" class="btn btn-light" id="userUpdateButton" >Update</button>
+          </div>
+
+        </div>
+      </form>  
+    </div> 
+  </div>     
+</div>
