@@ -506,7 +506,7 @@ const witnessModalToUpdate = (event) => {
   $("#witnessModal").find("form").attr("id", "witness-form-update");
   $("#witnessModalTitle").text("Update Witness");
   $("#witnessModalBtn").text("Update");
-  $("#witness-form-update").on("submit", addWitness);
+  $("#witness-form-update").on("submit", updateWitness);
 };
 
 const witnessModalToAdd = () => {
@@ -518,7 +518,7 @@ const witnessModalToAdd = () => {
   $("#witnessModal").find("form").attr("id", "witness-form-add");
   $("#witnessModalTitle").text("Add Witness");
   $("#witnessModalBtn").text("Add");
-  $("#witness-form-add").on("submit", updateWitness);
+  $("#witness-form-add").on("submit", addWitness);
 };
 
 $(".witnessBtn").on("click", witnessModalToUpdate);
