@@ -5,7 +5,7 @@
         <h5 class="modal-title" id="userModalTitle">Update your details</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
-      <form id="user-form">
+      <form id="userModalform">
         <div class="modal-body">
 
           <div class="form-group">
@@ -21,8 +21,8 @@
             <div class="form-group"> 
               <label>Gender*:</label>
               <select class="form-control" id="userGender" required>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
+              <option value="true">Male</option>
+              <option value="false">Female</option>
               </select>
             </div>
 
@@ -46,8 +46,8 @@
             <input type="text" id="userCeremony" class="form-control" required />
           </div>
 
-          <div class="modal-footer" id="userModalFooter"> 
-            <button type="submit" class="btn btn-light" id="userUpdateButton" >Update</button>
+          <div class="modal-footer"> 
+            <button type="submit" class="btn btn-light">Update</button>
           </div>
 
         </div>
