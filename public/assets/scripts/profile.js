@@ -65,6 +65,11 @@
 //   beneficiaryGuardianName.val(beneficiaryObject.guardian_name);
 // }
 
+function alert(text) {
+  $("#alertMessage").text(text);
+  $("#alertButton").trigger("click");
+}
+
 const userID = $("#userHeader").attr("user-id");
 console.log(userID);
 // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Beneficiary relevant codes ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
@@ -82,7 +87,8 @@ const deleteBenificiary = async (event) => {
   });
   if (response.ok) {
     // Front end element manipulating actions
-    $(event.target).parent().remove();
+    // $(event.target).parent().remove();
+    location.reload();
   }
 };
 
@@ -231,7 +237,8 @@ const deleteExecutor = async (event) => {
   });
   if (response.ok) {
     // Front end element manipulating actions
-    $(event.target).parent().remove();
+    // $(event.target).parent().remove();
+    location.reload();
   }
 };
 
@@ -341,7 +348,8 @@ const deleteAsset = async (event) => {
   });
   if (response.ok) {
     // Front end element manipulating actions
-    $(event.target).parent().remove();
+    // $(event.target).parent().remove();
+    location.reload();
   }
 };
 
@@ -444,7 +452,8 @@ const deleteWitness = async (event) => {
   });
   if (response.ok) {
     // Front end element manipulating actions
-    $(event.target).parent().remove();
+    // $(event.target).parent().remove();
+    location.reload();
   }
 };
 
@@ -522,11 +531,11 @@ const witnessModalToAdd = () => {
 };
 
 $(".witnessBtn").on("click", witnessModalToUpdate);
-// $(".witnessBtn").on("mouseover", witnessModalToUpdate);
-// $(".witnessBtn").on("focus", witnessModalToUpdate);
+$(".witnessBtn").on("mouseover", witnessModalToUpdate);
+$(".witnessBtn").on("focus", witnessModalToUpdate);
 $("#launchWitness").on("click", witnessModalToAdd);
-// $("#launchWitness").on("mouseover", witnessModalToAdd);
-// $("#launchWitness").on("focus", witnessModalToAdd);
+$("#launchWitness").on("mouseover", witnessModalToAdd);
+$("#launchWitness").on("focus", witnessModalToAdd);
 
 // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ User relevant codes ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 const updateUser = async (event) => {
@@ -571,7 +580,7 @@ const userModalToUpdate = () => {
 };
 
 $("#editUser").on("click", userModalToUpdate);
-// $("#editUser").on("mouseover", userModalToUpdate);
-// $("#editUser").on("focus", userModalToUpdate);
+$("#editUser").on("mouseover", userModalToUpdate);
+$("#editUser").on("focus", userModalToUpdate);
 
 $("#userModalform").on("submit", updateUser);
