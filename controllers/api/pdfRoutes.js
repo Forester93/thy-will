@@ -35,7 +35,7 @@ router.get("/:id", withAuth, async (req, res) => {
 
       const user = userInfo.get({ plain: true });
 
-      // console.log(user);
+      //   console.log(user);
 
       const date = new Date();
 
@@ -125,11 +125,11 @@ router.get("/:id", withAuth, async (req, res) => {
           assetArray.push(
             `Asset #${i + 1}\n\n    Description: ${
               assets[i].description
-            }\n    Type: ${assets[i].type}\n    Total value: $${assets[
-              i
-            ].value.toFixed(
-              2
-            )}\n\n  Apportion instructions:\n\n${apportionTemplate(assets[i])}`
+            }\n    Type: ${assets[i].type}\n    Total value: $${parseFloat(
+              assets[i].value
+            ).toFixed(2)}\n\n  Apportion instructions:\n\n${apportionTemplate(
+              assets[i]
+            )}`
           );
         }
         let assetString = assetArray.join("");
@@ -164,7 +164,7 @@ router.get("/:id", withAuth, async (req, res) => {
           witnessArray.push(
             `Witness #${i + 1}\n\n    Name: ${
               witnesses[i].name
-            }\n    Relationship: ${witnesses[i].relationship}\n    Address: ${
+            }\n    Occupation: ${witnesses[i].occupation}\n    Address: ${
               witnesses[i].address
             }\n\n\n    Date signed: ______________\n\n\n\n    _________________________\n    Signature\n\n\n`
           );
@@ -177,9 +177,9 @@ router.get("/:id", withAuth, async (req, res) => {
 
       const assetApportions = user.asset_apportions;
 
-      // console.log(assets);
+      //   console.log(assets);
 
-      // console.log(assetApportions);
+      //   console.log(assetApportions);
 
       const doc = new PDFDocument({ font: "Times-Roman" });
 
