@@ -1,5 +1,7 @@
 // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Codes about page rendering ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 
+// const { on } = require("pdfkit");
+
 // let beneficiaryName = $("#beneficiaryName");
 // let beneficiaryDOB = $("#beneficiaryDOB");
 // let beneficiaryAddress = $("#beneficiaryAddress");
@@ -63,7 +65,7 @@
 //   beneficiaryGuardianName.val(beneficiaryObject.guardian_name);
 // }
 
-const userID = $("header").attr("user-id");
+const userID = $("#userHeader").attr("user-id");
 console.log(userID);
 // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Beneficiary relevant codes ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 // %%%%%%%%%%%%%%%%%% Delete Handler %%%%%%%%%%%%%%%%%%
@@ -452,35 +454,29 @@ $(".witnessDelete").on("click", deleteWitness);
 const addWitness = async (event) => {
   event.preventDefault();
   const name = $("#witnessName").val().trim();
-  const relationship = $("#witnessRelationship").val().trim();
-  const DOB = $("#witnessDOB").val().trim();
-  const occupation = $("#witnessOccupation").val().trim();
+  const occupation = $("#witnessOccupation").val();
   const address = $("#witnessAddress").val().trim();
   // Prevent adding data with same name (Pending)
   // Call this Backend Route with this method, but need to prevent null with if statement
-  if (name && address) {
-    const response = await fetch(`/api/witness`, {
-      method: "POST",
-      body: JSON.stringify({ name, relationship, address }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    if (!response.ok) {
-      alert("Failed to add");
-    }
-    location.reload();
+  const response = await fetch(`/api/witness`, {
+    method: "POST",
+    body: JSON.stringify({ name, occupation, address }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (!response.ok) {
+    alert("Failed to add");
   }
+  location.reload();
 };
-
-$("#witnessModalFooter").on("click", "#addWitnessBtn", addWitness);
 
 // %%%%%%%%%%%%%%%%%% Update Handler %%%%%%%%%%%%%%%%%%
 var witnessIdClicked;
 const updateWitness = async (event) => {
   event.preventDefault();
   const name = $("#witnessName").val().trim();
-  const relationship = $("#witnessRelation").val();
+  const occupation = $("#witnessOccupation").val();
   const address = $("#witnessAddress").val().trim();
   // Call this Backend Route with this method
   const response = await fetch(`/api/witness/${witnessIdClicked}`, {
@@ -496,8 +492,6 @@ const updateWitness = async (event) => {
   location.reload();
 };
 
-$("#witnessModalFooter").on("click", "#updateWitnessBtn", updateWitness);
-
 // Functions to switch Add or Update Modal
 const witnessModalToUpdate = (event) => {
   // We need to get the target witness id for update with this click
@@ -506,14 +500,13 @@ const witnessModalToUpdate = (event) => {
   witnessIdClicked = witnessObjClicked.id;
   // Add some autocomplete for reviewing previous user input
   $("#witnessName").val(witnessObjClicked.name);
-  $("#witnessRelation").val(witnessObjClicked.relationship);
+  $("#witnessOccupation").val(witnessObjClicked.occupation);
   $("#witnessAddress").val(witnessObjClicked.address);
   // Switch to Update Modal
+  $("#witnessModal").find("form").attr("id", "witness-form-update");
   $("#witnessModalTitle").text("Update Witness");
-  $("#witnessModalFooter")
-    .children(0)
-    .attr("id", "updateWitnessBtn")
-    .text("Update");
+  $("#witnessModalBtn").text("Update");
+  $("#witness-form-update").on("submit", updateWitness);
 };
 
 const witnessModalToAdd = () => {
@@ -522,33 +515,41 @@ const witnessModalToAdd = () => {
   $("#witnessOccupation").val("");
   $("#witnessAddress").val("");
   // Switch to Add Modal
+  $("#witnessModal").find("form").attr("id", "witness-form-add");
   $("#witnessModalTitle").text("Add Witness");
-  $("#witnessModalFooter").children(0).attr("id", "addWitnessBtn").text("Add");
+  $("#witnessModalBtn").text("Add");
+  $("#witness-form-add").on("submit", addWitness);
 };
 
 $(".witnessBtn").on("click", witnessModalToUpdate);
-$(".witnessBtn").on("mouseover", witnessModalToUpdate);
-$(".witnessBtn").on("focus", witnessModalToUpdate);
+// $(".witnessBtn").on("mouseover", witnessModalToUpdate);
+// $(".witnessBtn").on("focus", witnessModalToUpdate);
 $("#launchWitness").on("click", witnessModalToAdd);
-$("#launchWitness").on("mouseover", witnessModalToAdd);
-$("#launchWitness").on("focus", witnessModalToAdd);
+// $("#launchWitness").on("mouseover", witnessModalToAdd);
+// $("#launchWitness").on("focus", witnessModalToAdd);
 
 // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ User relevant codes ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-
-var userIdClicked;
-var userObjectClicked;
 const updateUser = async (event) => {
   event.preventDefault();
   const name = $("#userName").val().trim();
   const DOB = $("#userDOB").val();
   const address = $("#userAddress").val().trim();
+  const gender = $("#userGender").val();
   const ceremony = $("#userCeremony").val().trim();
   const casket = $("#userCasket").val().trim();
   const occupation = $("#userOccupation").val().trim();
   // Call this Backend Route with this method
-  const response = await fetch(`/api/users/${userIdClicked}`, {
+  const response = await fetch(`/api/users/${userID}`, {
     method: "PUT",
-    body: JSON.stringify({ name, DOB, address, ceremony, casket, occupation }),
+    body: JSON.stringify({
+      name,
+      gender,
+      DOB,
+      address,
+      ceremony,
+      casket,
+      occupation,
+    }),
     headers: {
       "Content-Type": "application/json",
     },
@@ -559,21 +560,18 @@ const updateUser = async (event) => {
   location.reload();
 };
 
-const userModalToUpdate = (event) => {
-  // We need to get the target witness id for update with this click
-  let targetclicked = $(event.target);
-  userObjectClicked = JSON.parse(targetclicked.attr("data"));
-  // userIdClicked = userObjectClicked.id;
-  console.log(userObjectClicked);
+const userModalToUpdate = () => {
   // // Add some autocomplete for reviewing previous user input
-  $("#userName").val(userObjectClicked.name);
-  $("#userDOB").val(userObjectClicked.DOB);
-  $("#userAddress").val(userObjectClicked.address);
-  $("#userCasket").val(userObjectClicked.casket);
-  $("#userCeremony").val(userObjectClicked.ceremony);
-  // $('#userGender').val(userObjectClicked.gender);
-  $("#userOccupation").val(userObjectClicked.occupation);
+  $("#userName").val($("#currentUserName").text());
+  $("#userDOB").val($("#currentUserDOB").text());
+  $("#userAddress").val($("#currentUserAddress").text());
+  $("#userCasket").val($("#currentUserCasket").text());
+  $("#userCeremony").val($("#currentUserCeremony").text());
+  $("#userOccupation").val($("#currentUserOccupation").text());
 };
-$("#editUser").on("mouseover", userModalToUpdate);
-$("#editUser").on("focus", userModalToUpdate);
-$("#userModalFooter").on("click", "#userUpdateBtn", updateUser);
+
+$("#editUser").on("click", userModalToUpdate);
+// $("#editUser").on("mouseover", userModalToUpdate);
+// $("#editUser").on("focus", userModalToUpdate);
+
+$("#userModalform").on("submit", updateUser);

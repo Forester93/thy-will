@@ -6,7 +6,7 @@
           <h5 class="modal-title" id="witnessModalTitle"></h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
-        <form id="witness-form">
+        <form>
           <div class="modal-body">
             <div class="form-group">
               <label>Name*:</label>
@@ -14,14 +14,14 @@
             </div>
             <div class="form-group">
               <label>Occupation*:</label>
-              <input type="text" id="witnessOccupation" class="form-control" placeholder="Relative, Friend, Business Partner, etc." required />
+              <input type="text" id="witnessOccupation" class="form-control" placeholder="Trader, Doctor, Web Developer, etc." required />
             </div>
             <div class="form-group">
               <label>Address*:</label>
               <input type="text" id="witnessAddress" class="form-control" placeholder="79 Main Road, Suburb NSW" required />
             </div>
-            <div class="modal-footer" id="witnessModalFooter">
-              <button type="submit" class="btn btn-light" id="addWitnessBtn" >add</button>
+            <div class="modal-footer" >
+              <button type="submit" class="btn btn-light" id="witnessModalBtn"></button>
             </div>
           </div>
         </form>        
