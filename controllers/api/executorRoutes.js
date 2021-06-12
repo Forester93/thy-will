@@ -5,7 +5,7 @@ const { Executor } = require("../../models");
 router.get("/", async (req, res) => {
   try {
     const executorData = await Executor.findAll({
-      order: [['id', 'ASC']] 
+      order: [["id", "ASC"]],
     });
     res.status(200).json(executorData);
   } catch (err) {
@@ -35,7 +35,7 @@ router.post("/", async (req, res) => {
       // This get Executor linked with the login account
       user_id: req.session.account_id,
     });
-    console.log(req.session.account_id);
+    // console.log(req.session.account_id);
     res.status(200).json(executorNew);
   } catch (err) {
     res.status(400).json(err);

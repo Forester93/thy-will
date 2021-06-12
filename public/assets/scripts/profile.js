@@ -64,9 +64,13 @@
 //   beneficiaryGuardianAddress.val(beneficiaryObject.guardian_address);
 //   beneficiaryGuardianName.val(beneficiaryObject.guardian_name);
 // }
+function alert(text) {
+  $("#alertMessage").text(text);
+  $("#alertButton").trigger("click");
+}
 
 const userID = $("#userHeader").attr("user-id");
-console.log(userID);
+// console.log(userID);
 // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Beneficiary relevant codes ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 // %%%%%%%%%%%%%%%%%% Delete Handler %%%%%%%%%%%%%%%%%%
 const deleteBenificiary = async (event) => {
@@ -82,7 +86,8 @@ const deleteBenificiary = async (event) => {
   });
   if (response.ok) {
     // Front end element manipulating actions
-    $(event.target).parent().remove();
+    // $(event.target).parent().remove();
+    location.reload();
   }
 };
 
@@ -231,7 +236,8 @@ const deleteExecutor = async (event) => {
   });
   if (response.ok) {
     // Front end element manipulating actions
-    $(event.target).parent().remove();
+    // $(event.target).parent().remove();
+    location.reload();
   }
 };
 
@@ -341,7 +347,8 @@ const deleteAsset = async (event) => {
   });
   if (response.ok) {
     // Front end element manipulating actions
-    $(event.target).parent().remove();
+    // $(event.target).parent().remove();
+    location.reload();
   }
 };
 
@@ -444,7 +451,8 @@ const deleteWitness = async (event) => {
   });
   if (response.ok) {
     // Front end element manipulating actions
-    $(event.target).parent().remove();
+    // $(event.target).parent().remove();
+    location.reload();
   }
 };
 
@@ -522,11 +530,11 @@ const witnessModalToAdd = () => {
 };
 
 $(".witnessBtn").on("click", witnessModalToUpdate);
-// $(".witnessBtn").on("mouseover", witnessModalToUpdate);
-// $(".witnessBtn").on("focus", witnessModalToUpdate);
+$(".witnessBtn").on("mouseover", witnessModalToUpdate);
+$(".witnessBtn").on("focus", witnessModalToUpdate);
 $("#launchWitness").on("click", witnessModalToAdd);
-// $("#launchWitness").on("mouseover", witnessModalToAdd);
-// $("#launchWitness").on("focus", witnessModalToAdd);
+$("#launchWitness").on("mouseover", witnessModalToAdd);
+$("#launchWitness").on("focus", witnessModalToAdd);
 
 // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ User relevant codes ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 const updateUser = async (event) => {
@@ -562,16 +570,87 @@ const updateUser = async (event) => {
 
 const userModalToUpdate = () => {
   // // Add some autocomplete for reviewing previous user input
+  userInfoUpdate();
+};
+
+function userInfoUpdate() {
   $("#userName").val($("#currentUserName").text());
   $("#userDOB").val($("#currentUserDOB").text());
   $("#userAddress").val($("#currentUserAddress").text());
   $("#userCasket").val($("#currentUserCasket").text());
   $("#userCeremony").val($("#currentUserCeremony").text());
   $("#userOccupation").val($("#currentUserOccupation").text());
-};
+  $("#userGender").val($("#currentUserGender").text());
+}
 
 $("#editUser").on("click", userModalToUpdate);
-// $("#editUser").on("mouseover", userModalToUpdate);
-// $("#editUser").on("focus", userModalToUpdate);
+$("#editUser").on("mouseover", userModalToUpdate);
+$("#editUser").on("focus", userModalToUpdate);
 
 $("#userModalform").on("submit", updateUser);
+userInfoUpdate();
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////ASSET APPORTIONING//////////////////////////////////////////
+$(".apportionBtn").on("click", (event) => {
+  event.stopPropagation();
+  alert(
+    "Updating Instructions Not Supported. You can only add or delete instructions."
+  );
+});
+
+const deleteAssetApportion = async (event) => {
+  event.stopPropagation();
+  let targetDeleteBtn = $(event.target);
+  let assetApportionOb = JSON.parse(targetDeleteBtn.parent().attr("data"));
+  // Call this Backend Route with this method
+  const response = await fetch(`/api/assetapportion/${assetApportionOb.id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (response.ok) {
+    // Front end element manipulating actions
+    // $(event.target).parent().remove();
+    location.reload();
+  } else {
+    alert("Something went wrong! Error:" + response.status);
+  }
+};
+
+$(".assetApportionDelete").on("click", deleteAssetApportion);
+
+// %%%%%%%%%%%%%%%%%% Add Handler %%%%%%%%%%%%%%%%%%
+const addAssetApportion = async (event) => {
+  event.preventDefault();
+  const apportion_instructions = $("#apportionInstructions").val().trim();
+  const beneficiary_id = $("#apportionBeneficiaryID").val();
+  const asset_id = $("#apportionAssetID").val().trim();
+  const percentage = $("#apportionPercentage").val().trim();
+  // Prevent adding data with same name (Pending)
+  // Call this Backend Route with this method, but need to prevent null with if statement
+  const response = await fetch(`/api/assetapportion`, {
+    method: "POST",
+    body: JSON.stringify({
+      apportion_instructions,
+      beneficiary_id,
+      asset_id,
+      percentage,
+    }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (!response.ok) {
+    alert(
+      "Failed to add instructions! Error " +
+        response.status +
+        response.statusText
+    );
+  } else {
+    location.reload();
+  }
+};
+
+$("#assetApportion-form").on("submit", addAssetApportion);

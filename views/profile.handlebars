@@ -25,12 +25,14 @@
       <div class="carousel 
       owl-carousel
       ">
-        <div class="card">
+        <div class="card" id="userCard">
             <div class="box-head">
               {{#if user.gender}}
               <img src="/assets/images/users/oldman.jpg" alt="oldman">
+              <p id="currentUserGender" style="display: none;">true</p>
               {{else}}
               <img src="/assets/images/users/oldlady.jpg" alt="oldlady">
+              <p id="currentUserGender" style="display: none;">false</p>
               {{/if}}
               <div>
                 <strong>Will owner:</strong>
@@ -55,7 +57,7 @@
             <button id="editUser" data-toggle="modal" data-target="#userModal">Edit</button>
         </div>
         
-        <div class="card" id="part-1">
+        <div class="card" id="beneficiariesCard">
           <h3 class="num">1</h3>
           <h4>Benificiaries</h4>
           <p>Individuals and/or organisations to inherit.</p>
@@ -67,7 +69,7 @@
           <button data-toggle="modal" data-target="#beneficiaryModal" id="launchBeneficiary"><i class="fas fa-plus"></i></button>
         </div>
 
-        <div class="card" id="part-2">
+        <div class="card" id="executorsCard">
           <h3 class="num">2</h3>
           <h4>Executors</h4>
           <p>The ones to execute your will.</p>
@@ -77,7 +79,7 @@
           <button data-toggle="modal" data-target="#executorModal" id="launchExecutor"><i class="fas fa-plus"></i></button>
         </div>
 
-        <div class="card" id="part-3">
+        <div class="card" id="assetsCard">
           <h3 class="num">3</h3>
           <h4>Asset</h4>
           <p>A list of your major Assets.</p>
@@ -87,7 +89,7 @@
           <button data-toggle="modal" data-target="#assetModal" id="launchAsset"><i class="fas fa-plus"></i></button>
 
         </div>
-        <div class="card" id="part-4">
+        <div class="card" id="assetApportionsCard">
           <h3 class="num">4</h3>
           <h4>Assets Apportioning</h4>
           <p>Set up percentages for each benificiary.</p>
@@ -97,7 +99,7 @@
           <button data-toggle="modal" data-target="#assetApportionModal" id="launchAssetApportion"><i class="fas fa-plus"></i></button>
 
         </div>
-        <div class="card" id="part-5">
+        <div class="card" id="witnessesCard">
           <h3 class="num">5</h3>
           <h4>Witness</h4>
           <p>Basic info of your nominated Witness</p>
@@ -122,6 +124,9 @@
 
 {{> user-modal}}
 
+{{> assetApportion-modal}}
+
+{{> alert-modal}}
 
 
 

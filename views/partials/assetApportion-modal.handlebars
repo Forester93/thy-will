@@ -1,0 +1,50 @@
+{{!↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ assetApportionModal ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓}}
+<div class="modal fade custom-modal" id="assetApportionModal" tabindex="-1" role="dialog" aria-labelledby="project-modal-form" aria-hidden="true">
+  <div class="modal-dialog modal-lg"> {{! model assets header added by jack}}
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="assetApportionModalTitle"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <form id="assetApportion-form">
+        <div class="modal-body">
+
+          <div class="form-group"> {{! jack added form for  asset value }}
+            <label>Apportioning Instructions*:</label>
+            <input type="text" id="apportionInstructions" class="form-control" required />
+          </div>
+
+          <div class="form-group"> {{! jack added form for  asset value }}
+            <label>Apportioning Percentage*:</label>
+            <input type="number" id="apportionPercentage" class="form-control" required />
+          </div>
+
+          <div class="form-group"> {{! jack added form for  asset value }}
+            <label>Asset:</label>
+            <select class="form-control" id="apportionAssetID" required>
+                <option value=""></option>
+                {{#each assets}}
+              <option value={{id}}>{{description}}</option>
+                {{/each}}
+            </select>
+          </div>
+            <div class="form-group"> {{! jack added form for  asset value }}
+            <label>Beneficiary*:</label>
+            <select class="form-control" id="apportionBeneficiaryID" required>
+            <option value=""></option>
+            {{#each beneficiaries}}
+            <option value={{id}}>{{name}}</option>
+            {{/each}}
+            </select>
+          </div>
+
+          <div class="modal-footer" id="assetModalFooter"> {{!asset model save button}}
+            <button type="submit" class="btn btn-light" id="addAssetBtn" >Add Instruction</button>
+          </div>
+
+        </div>
+      </form>  
+    </div> 
+  </div>     
+</div>
+

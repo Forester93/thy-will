@@ -1,13 +1,13 @@
 const router = require("express").Router();
-const { Asset } = require("../../models");
+const { AssetApportion } = require("../../models");
 
 // Route to Get All
 router.get("/", async (req, res) => {
   try {
-    const assetData = await Asset.findAll({
+    const assetApportionData = await AssetApportion.findAll({
       order: [["id", "ASC"]],
     });
-    res.status(200).json(assetData);
+    res.status(200).json(assetApportionData);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -16,12 +16,12 @@ router.get("/", async (req, res) => {
 // Route to Get By ID
 router.get("/:id", async (req, res) => {
   try {
-    const assetData = await Asset.findByPk(req.params.id);
-    if (!assetData) {
+    const assetApportionData = await AssetApportion.findByPk(req.params.id);
+    if (!assetApportionData) {
       res.status(404).json({ message: "No Asset found with this id!" });
       return;
     }
-    res.status(200).json(assetData);
+    res.status(200).json(assetApportionData);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -30,47 +30,49 @@ router.get("/:id", async (req, res) => {
 // Route to Create New
 router.post("/", async (req, res) => {
   try {
-    const assetNew = await Asset.create({
+    const assetApportionNew = await AssetApportion.create({
       ...req.body,
       // This get Asset linked with the login account
       user_id: req.session.account_id,
     });
+
+    console.log(req.body);
     // console.log(req.session.account_id);
-    res.status(200).json(assetNew);
+    res.status(200).json(assetApportionNew);
   } catch (err) {
     res.status(400).json(err);
   }
 });
 
-// Route to Update By ID
-router.put("/:id", async (req, res) => {
-  try {
-    const assetData = await Asset.update(req.body, {
-      where: {
-        id: req.params.id,
-      },
-      // This get Asset linked with the login account
-      user_id: req.session.account_id,
-    });
-    res.status(200).json(assetData);
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
+// // Route to Update By ID
+// router.put("/:id", async (req, res) => {
+//   try {
+//     const assetData = await Asset.update(req.body, {
+//       where: {
+//         id: req.params.id,
+//       },
+//       // This get Asset linked with the login account
+//       user_id: req.session.account_id,
+//     });
+//     res.status(200).json(assetData);
+//   } catch (err) {
+//     res.status(400).json(err);
+//   }
+// });
 
 // Route to Delete By ID
 router.delete("/:id", async (req, res) => {
   try {
-    const assetData = await Asset.destroy({
+    const assetApportionData = await AssetApportion.destroy({
       where: {
         id: req.params.id,
       },
     });
-    if (!assetData) {
+    if (!assetApportionData) {
       res.status(404).json({ message: "No Asset found with this id!" });
       return;
     }
-    res.status(200).json(assetData);
+    res.status(200).json(assetApportionData);
   } catch (err) {
     res.status(500).json(err);
   }

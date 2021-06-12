@@ -30,13 +30,13 @@ router.get("/:id", async (req, res) => {
 // Route to Create New
 router.post("/", async (req, res) => {
   try {
-    console.log(req.body);
+    // console.log(req.body);
     const beneficiaryNew = await Beneficiary.create({
       ...req.body,
       // This get Beneficiary linked with the login account
       user_id: req.session.account_id,
     });
-    console.log(req.session.account_id);
+    // console.log(req.session.account_id);
     res.status(200).json(beneficiaryNew);
   } catch (err) {
     res.status(400).json(err);
