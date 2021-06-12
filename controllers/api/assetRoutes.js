@@ -5,7 +5,7 @@ const { Asset } = require("../../models");
 router.get("/", async (req, res) => {
   try {
     const assetData = await Asset.findAll({
-      order: [['id', 'ASC']] 
+      order: [["id", "ASC"]],
     });
     res.status(200).json(assetData);
   } catch (err) {
@@ -35,7 +35,7 @@ router.post("/", async (req, res) => {
       // This get Asset linked with the login account
       user_id: req.session.account_id,
     });
-    console.log(req.session.account_id);
+    // console.log(req.session.account_id);
     res.status(200).json(assetNew);
   } catch (err) {
     res.status(400).json(err);

@@ -35,7 +35,7 @@ router.get("/:id", withAuth, async (req, res) => {
 
       const user = userInfo.get({ plain: true });
 
-      console.log(user);
+      // console.log(user);
 
       const date = new Date();
 
@@ -177,9 +177,9 @@ router.get("/:id", withAuth, async (req, res) => {
 
       const assetApportions = user.asset_apportions;
 
-      console.log(assets);
+      // console.log(assets);
 
-      console.log(assetApportions);
+      // console.log(assetApportions);
 
       const doc = new PDFDocument({ font: "Times-Roman" });
 
@@ -282,7 +282,7 @@ router.get("/:id", withAuth, async (req, res) => {
 
       doc.end();
 
-      console.log("done");
+      // console.log("done");
     } catch (err) {
       console.log(err);
       res.status(403).json(err);

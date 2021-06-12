@@ -5,16 +5,13 @@ const { Account, User } = require("../../models");
 router.get("/", async (req, res) => {
   try {
     const accountData = await Account.findAll({
-      order: [['id', 'ASC']] 
+      order: [["id", "ASC"]],
     });
     res.status(200).json(accountData);
   } catch (err) {
     res.status(500).json(err);
   }
 });
-
-
-
 
 router.post("/", async (req, res) => {
   try {
@@ -37,8 +34,8 @@ router.post("/", async (req, res) => {
     req.session.save(() => {
       req.session.account_id = accountData.id;
       req.session.logged_in = true;
-      console.log(req.session.account_id);
-      console.log(req.session.logged_in);
+      // console.log(req.session.account_id);
+      // console.log(req.session.logged_in);
       res.json({ account: accountData, message: "You are now logged in!" });
     });
   } catch (err) {
