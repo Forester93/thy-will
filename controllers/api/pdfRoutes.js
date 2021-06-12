@@ -260,6 +260,18 @@ router.get("/:id", withAuth, async (req, res) => {
         .addPage()
         .stroke()
         .fontSize(20)
+        .text(`Funneral Ceremony Instructions\n\n`, { underline: true });
+
+      doc
+        .fontSize(13)
+        .text(
+          `I wish to be buried in a casket made of ${user.casket}.\n\nThe details of my funeral ceremony will be decided by my executor(s), and will be based on a ${user.ceremony} style funeral.`
+        );
+
+      doc
+        .addPage()
+        .stroke()
+        .fontSize(20)
         .text(`Witnesses\n\n`, { underline: true });
 
       doc
@@ -282,7 +294,7 @@ router.get("/:id", withAuth, async (req, res) => {
 
       doc.end();
 
-      // console.log("done");
+      console.log("done");
     } catch (err) {
       console.log(err);
       res.status(403).json(err);
