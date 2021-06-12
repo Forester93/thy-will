@@ -1,3 +1,8 @@
+function alert(text) {
+  $("#alertMessage").text(text);
+  $("#alertButton").trigger("click");
+}
+
 const loginFormHandler = async (event) => {
   event.preventDefault();
 
@@ -14,7 +19,7 @@ const loginFormHandler = async (event) => {
     if (response.ok) {
       document.location.replace("/profile");
     } else {
-      alert("Failed to log in");
+      alert("Failed to log in!");
     }
   }
 };
@@ -46,7 +51,7 @@ const signUpFormHandler = async (event) => {
         document.location.replace("/profile");
       }
     } else {
-      alert("Failed to sign up");
+      alert("Failed to sign up!");
     }
   }
 };

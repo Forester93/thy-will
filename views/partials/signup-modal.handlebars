@@ -1,0 +1,36 @@
+{{!↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Signup modal ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓}}
+    <div class="modal fade custom-modal" id="signUpModal" tabindex="-1" role="dialog"
+        aria-labelledby="project-modal-form" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Sign Up<span class="flash" id="validateMessageSignUp"></span></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="signup-form">
+                    <div class="modal-body">
+                      <div class="form-group">
+                          <label for="email-signup">Email:</label>
+                          <input type="email" id="email-signup" class="form-control" required />
+                      </div>
+                      <div class="form-group">
+                        <label for="password-signup">Password:</label>
+                        <input type= "password" id="password-signup" class="form-control" required />
+                      </div>
+                      <div class="form-group">
+                        <label for="password-repeat">Repeat Password:</label>
+                        <input type= "password" id="password-repeat" class="form-control" required />
+                      </div>
+                      </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-light" id="signBtn">Sign Up</button>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+{{!↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ Signup modal ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑}}

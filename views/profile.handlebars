@@ -29,8 +29,10 @@
             <div class="box-head">
               {{#if user.gender}}
               <img src="/assets/images/users/oldman.jpg" alt="oldman">
+              <p id="currentUserGender" style="display: none;">true</p>
               {{else}}
               <img src="/assets/images/users/oldlady.jpg" alt="oldlady">
+              <p id="currentUserGender" style="display: none;">false</p>
               {{/if}}
               <div>
                 <strong>Will owner:</strong>

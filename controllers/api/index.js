@@ -6,6 +6,7 @@ const assetRoutes = require("./assetRoutes");
 const beneficiaryRoutes = require("./beneficiaryRoutes");
 const executorRoutes = require("./executorRoutes");
 const witnessRoutes = require("./witnessRoutes");
+const assetApportionRoutes = require("./assetApportionRoutes");
 
 router.use("/accounts", accountRoutes);
 
@@ -20,5 +21,7 @@ router.use("/witness", witnessRoutes);
 router.use("/pdf", pdfRoutes);
 
 router.use("/users", userRoutes);
+
+router.use("/assetapportion/", assetApportionRoutes);
 
 module.exports = router;
