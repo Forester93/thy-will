@@ -10,10 +10,10 @@ const {
   Witness,
 } = require("../../models");
 
-router.get("/:id", withAuth, async (req, res) => {
-  if (req.session.account_id == req.params.id) {
+router.get("/", withAuth, async (req, res) => {
+  if (req.session.account_id) {
     try {
-      const userInfo = await User.findByPk(req.params.id, {
+      const userInfo = await User.findByPk(req.session.account_id, {
         include: [
           {
             model: Asset,
