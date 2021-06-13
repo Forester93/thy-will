@@ -5,20 +5,22 @@ $(document).ready(function () {
     autoplayTimeOut: 2000,
     autoplayHoverPause: true,
     autoHeight: true,
+    margin:30,
+    responsiveClass:true,
     responsive: {
       0: {
         items: 1,
         nav: false,
       },
-      500: {
+      314: {
         items: 1,
         nav: false,
       },
-      800: {
+      668: {
         items: 2,
         nav: false,
       },
-      1200: {
+      1250: {
         items: 3,
         nav: false,
       },
