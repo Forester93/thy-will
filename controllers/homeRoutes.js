@@ -20,6 +20,25 @@ router.get("/", (req, res) => {
     layout: "main",
   });
 });
+router.get("/home", (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect("/profile");
+    return;
+  }
+  res.render("home", {
+    layout: "main",
+  });
+});
+
+router.get("/about", (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect("/profile");
+    return;
+  }
+  res.render("team", {
+    layout: "main-about",
+  });
+});
 
 router.get("/login", (req, res) => {
   if (req.session.logged_in) {

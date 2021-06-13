@@ -68,7 +68,9 @@ router.post("/create", async (req, res) => {
   try {
     const accountInfo = await Account.create(req.body);
     let account = accountInfo.get({ plain: true });
+    console.log(account);
     let newUser = await User.create({
+      id: account.id,
       name: "Your Full Name (including Middle Names)",
       gender: true,
       occupation: "What you do for a living",
@@ -78,13 +80,14 @@ router.post("/create", async (req, res) => {
       address: "Your residential address",
       account_id: account.id,
     });
+    newUser = newUser.get({ plain: true });
+
     res.status(200).json("Account created!");
     req.session.save(() => {
       req.session.account_id = account.id;
       req.session.logged_in = true;
-      res.json({ account: account, message: "You are now logged in!" });
     });
-    res.redirect("/profile");
+    res.redirect("../../profile");
   } catch (err) {
     res.status(400).send(err);
   }

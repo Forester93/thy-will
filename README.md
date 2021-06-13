@@ -14,54 +14,11 @@ Don't wait... 'till it's too late.
 • [Links](#links)
 • [Questions](#questions)
 • [Contributing](#contributing)
+• [Rights](#rights)
 
 ## Description
 
 Draft your will in under 10 minutes and make sure your loved ones are protected. All within a few clicks of a button.
-
-### User Story
-
-```
-AS A parent with loved ones who are dependant on me
-I WANT to create a will
-SO THAT in the event of my death, I know my assets will be distributed between them appropriately and I can be confident that I can provide for their future
-
-GIVEN THAT I have decided to draft a will
-WHEN I visit the web page
-THEN I am greeted with a landing page with information about the process
-
-GIVEN THAT I have read the information
-WHEN I want to make a will
-THEN I click a button and am brought to the will creation tool
-
-GIVEN THAT I have started the will creation process
-WHEN I want to save my progress
-THEN I am prompted to create an account
-
-GIVEN THAT I want to create an account
-WHEN I provide my first name, last name, email, and a password
-THEN I am taken back to the will creation tool
-
-GIVEN THAT I want to leave the will creation tool
-WHEN I click the ‘save’ button
-THEN the information I have entered is saved
-
-GIVEN THAT I want to return to my saved information
-WHEN I log into my account
-THEN I am redirected to my account page with a list of saved applications
-
-GIVEN THAT I have completed the creation of a will
-WHEN I click the ‘submit’ button
-THEN I am emailed a PDF version of my will
-
-GIVEN THAT I want to make changes to my will
-WHEN I go to my account page
-THEN I can click ‘edit’ on a completed will
-
-GIVEN THAT I need a copy of my will
-WHEN I go to my account page
-THEN I can click ‘download’ and download a PDF copy of my will
-```
 
 ### Technologies
 
@@ -81,7 +38,7 @@ THEN I can click ‘download’ and download a PDF copy of my will
 
 ### Link to the Deployed Application
 
-[Thy Will Deployed Webpage](https://thy-will.herokuapp.com)
+[Thy Will Deployed Webpage](https://www.thywill.com.au)
 
 ### Link to the Github Repository
 
@@ -97,7 +54,7 @@ You can reach out to us over one of the following for any questions about this a
 
 ## Contributing
 
-Contact the team as per the below contact information.
+Contact the members (collectively 'The Team') as per the below contact information.
 
 | Name            | Email                       | Phone Numer         | GitHubProfile                                                  |
 | --------------- | --------------------------- | ------------------- | -------------------------------------------------------------- |
@@ -105,3 +62,7 @@ Contact the team as per the below contact information.
 | Tom Chappell    | thomas.chappell@outlook.com | +61-(0)-437-840-909 | [Tom Chappell's Github Profile](https://github.com/choonchy/)  |
 | Jack Ritchie    | jack@example.com            | Jack's Phone Number | [Jack Ritchie's Github Profile](https://github.com/jitchie/)   |
 | Zhou (Joe) Tian | egglord0716@gmail.com       | +61-(0)-406-199-376 | [Zhou Tian's Github Profile](https://github.com/ZhouTian0716/) |
+
+## Rights
+
+The Team reserves all its rights. This material is not to be duplicated or regenerated in any form.

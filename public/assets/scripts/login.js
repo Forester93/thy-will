@@ -32,22 +32,21 @@ const signUpFormHandler = async (event) => {
   const passwordRepeat = document
     .querySelector("#password-repeat")
     .value.trim();
-
+  let response;
   if (email && password && password == passwordRepeat) {
-    let response;
     response = await fetch("/api/accounts/create", {
       method: "POST",
       body: JSON.stringify({ email: email, password: password }),
       headers: { "Content-Type": "application/json" },
     });
 
-    if (response.status == 200) {
+    if (response.ok) {
       response = await fetch("/api/accounts", {
         method: "POST",
         body: JSON.stringify({ email, password }),
         headers: { "Content-Type": "application/json" },
       });
-      if (response.status == 200) {
+      if (response.ok) {
         document.location.replace("/profile");
       }
     } else {

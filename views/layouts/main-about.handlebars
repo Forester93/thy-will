@@ -16,10 +16,50 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
     <link rel="stylesheet" href="/assets/styles/style.css" />
     {{!-- <script data-ad-client="ca-pub-2679577236751743" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> --}}
+        <style>
+      .bg-black {
+        background-color: black;
+      }
+      /* On screens that are 992px or less */
+      @media screen and (max-width: 992px) {
+        .card-columns {
+          column-count: 2;
+        }
+      }
+
+      /* On screens that are 780px or less*/
+      @media screen and (max-width: 780px) {
+        .card-columns {
+          column-count: 2;
+        }
+      }
+      @media screen and (max-width: 480px) {
+        .card-columns {
+          column-count: 2;
+        }
+      }
+    </style>
   </head>
   <body>
-    <main>
-      {{{body}}}
+    <header class="header">
+      
+        <div class="text">
+          Be done in as little as 10 minutes. Don't wait 'till it's too late...
+        </div>
+        <ul class="menu">
+          <li><a href="/home" class="menu-btn">Home</a></li>
+          <li><a href="/about" class="menu-btn">About</a></li>
+          {{!-- <li><a href="#" class="menu-btn">Guide</a></li> --}}
+          <li><a href="https://legislation.nsw.gov.au/view/whole/html/inforce/current/act-2006-080" target="_blank" ="menu-btn">Legal</a></li>
+          {{!-- <li><a href="#" class="menu-btn">Testimonials</a></li> --}}
+          
+        </ul>
+        
+      
+    </header>
+    <main class="bg-black">
+
+          {{{body}}}
     </main>
     <!-- footer section start -->
     <footer>
