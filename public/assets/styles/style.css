@@ -15,8 +15,7 @@ html {
   text-decoration: none;
 }
 .max-width {
-  max-width: 1400px;
-  padding: 0 50px;
+  width: 1350px;
   margin: auto;
 }
 /* ======================  Common stylings ====================== */
@@ -272,7 +271,7 @@ footer {
 }
 
 .carousel {
-  max-width: 1500px;
+  max-width: 1400px;
 }
 
 .logo {
@@ -312,3 +311,26 @@ footer {
     box-shadow: 1.75px 1.75px 20px 1.25px rgb(14, 13, 14);
   }
 }
+
+
+@media (max-width: 768px){
+  .max-width {
+    width: 668px;
+  }
+  .logo {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 414px){
+  .max-width {
+    width: 314px;
+  }
+  .box-2 .card {
+  width: 250px;
+  }
+  .logo {
+    font-size: 36px;
+  }
+}
+
