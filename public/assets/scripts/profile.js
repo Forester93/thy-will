@@ -530,11 +530,11 @@ const witnessModalToAdd = () => {
 };
 
 $(".witnessBtn").on("click", witnessModalToUpdate);
-$(".witnessBtn").on("mouseover", witnessModalToUpdate);
-$(".witnessBtn").on("focus", witnessModalToUpdate);
+// $(".witnessBtn").on("mouseover", witnessModalToUpdate);
+// $(".witnessBtn").on("focus", witnessModalToUpdate);
 $("#launchWitness").on("click", witnessModalToAdd);
-$("#launchWitness").on("mouseover", witnessModalToAdd);
-$("#launchWitness").on("focus", witnessModalToAdd);
+// $("#launchWitness").on("mouseover", witnessModalToAdd);
+// $("#launchWitness").on("focus", witnessModalToAdd);
 
 // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ User relevant codes ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 const updateUser = async (event) => {
