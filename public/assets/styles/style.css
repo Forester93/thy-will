@@ -187,7 +187,7 @@ footer {
 }
 
 .card {
-  margin: 2vw;
+  margin: 3vh;
 }
 
 .box-2 {
@@ -203,7 +203,7 @@ footer {
   text-align: left;
 }
 .box-2 .card {
-  width: 300px;
+  width: 350px;
   height: 600px;
   padding: 15px;
   border-radius: 8px;
@@ -312,8 +312,7 @@ footer {
   }
 }
 
-
-@media (max-width: 768px){
+@media (max-width: 768px) {
   .max-width {
     width: 668px;
   }
@@ -322,15 +321,14 @@ footer {
   }
 }
 
-@media (max-width: 414px){
+@media (max-width: 414px) {
   .max-width {
     width: 314px;
   }
   .box-2 .card {
-  width: 250px;
+    width: 250px;
   }
   .logo {
     font-size: 36px;
   }
 }
-
